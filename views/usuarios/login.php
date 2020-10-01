@@ -4,30 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="public/css/login.css">
     <title>Document</title>
 </head>
 <body>
-    <?php require 'views/header.php'; ?>
+    
     
     <div class="wrapper">
-    <form class="login">
-    <p class="title">Login</p>
-    <input type="text" placeholder="Username" autofocus/>
-    <i class="fa fa-user"></i>
-    <input type="password" placeholder="Password" />
-    <i class="fa fa-key"></i>
-    <a href="#">Forgot your password?</a>
-    <button>
-      <i class="spinner"></i>
-      <span class="state">Log in</span>
-    </button>
-  </form>
-  <footer><a target="blank" href="http://boudra.me/">boudra.me</a></footer>
+      <form class="login">
+            <p class="title">Bienvenido a SISO</p>
+                 <input type="text" placeholder="Ingrese usuario" autofocus/>
+                    <i class="fa fa-user"></i>
+                 <input type="password" placeholder="ingrese Password" />
+                   <i class="fa fa-key"></i>
+                <a href="#">Olvidente tu contraseña?</a>
+            <button>
+            <i class="spinner"></i>
+            <span class="state">Ingresar al sistema</span>
+            </button>
+     </form>
+  <footer><a target="blank" href="http://boudra.me/">HRD version 1.0</a></footer>
   </p>
 </div>
 
     
-    <?php require 'views/footer.php'; ?>
+    
     <script>
                     var working = false;
                     $('.login').on('submit', function(e) {

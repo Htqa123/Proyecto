@@ -13,26 +13,6 @@
     <?php require 'views/header.php'; ?>
     
 
-    <!-- <div id="main">
-        <h1 class="center">Crear categorías</h1>
-
-        <div class="center"><?php echo $this->mensaje; ?></div>
-
-        <form class="form-horizontal" id="form1" action="  <?php echo constant('URL'); ?>nuevo/registrarCategorias" method="POST">
-
-            <div class="form-group"> 
-                <label for="cateNomb">Nombre de la categoría</label><br>
-                <input type="text" name="cateNomb" id="" required>
-            </div>
-            
-            <div class="form-group">
-            <input type="submit" class="btn btn-default" value="Crear categoría">
-            </div>
-
-        </form>
-    </div> -->
-    
- 
 </div>
 <div class="form-control">
 <button type="button" id="Btn-modal" class="btn btn-success" onClick='mostrarModal()'>Nueva Referencia</button>
@@ -100,7 +80,12 @@
                     <option selected>Medida</option>
                     <option value="1">Botella</option>
             </select>
-            
+            <br><br>
+            <select class="custom-select">
+                    <option selected>Medida</option>
+                    <option value="1">Botella</option>
+            </select>
+            <br>
             <div class="form-group">
             <input type="submit" class="btn btn-default" value="Crear referencia">
             </div>

@@ -15,21 +15,7 @@
 </head>
 <body>
     
-    <!-- <div id="header">
-        <ul>
-            <li><a href="<?php echo constant('URL'); ?>main">Inicio</a></li>
-            <li><a href="<?php echo constant('URL'); ?>nuevo">Nuevo</a></li>
-            <li><a href="<?php echo constant('URL'); ?>consulta">Consulta</a></li>
-            <li><a href="<?php echo constant('URL'); ?>ayuda">Ayuda</a></li>
-        
-            <li class="right menu">
-                <a class="item">Login</a>
-                <a class="item">Registrarse</a>
-           </li>
-            
-            
-        </ul>
-    </div> -->
+   
 <nav class="navbar navbar-expand-lg navbar-light"  >
   <a class="navbar-brand" href="<?php echo constant('URL'); ?>main">SISO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,8 +30,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>categorias">Categorias</a>
-          <a class="dropdown-item" href="<?php echo constant('URL'); ?>referencias">Referencias</a>
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>medidas">Medidas</a>
+          <a class="dropdown-item" href="<?php echo constant('URL'); ?>referencias">Referencias</a>
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>productos">Productos</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Inventarios</a>
@@ -89,6 +75,10 @@
       <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
+    <div class= "right menu">
+    <a class="item" href="<?php echo constant('URL'); ?>usuarios">Login</a>
+    <a class="item" href="<?php echo constant('URL'); ?>usuarios">Registrarse</a>
+    </div> 
   </div>
 </nav>
     <script src="<?php echo constant('URL'); ?>public/js/jquery-3.5.1.js"></script>
