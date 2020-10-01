@@ -8,13 +8,9 @@ body{
     background-color: #eee;
 }
 
-#navbarSupportedContent{
-    background-color:#6b6b6b;
+#header{
+    background: black;
     padding: 10px;
-}
-#navbarSupportedContent a
-{
-  background-color: #eee;
 }
 
 #header ul li{
