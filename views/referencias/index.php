@@ -76,12 +76,23 @@
                 <input type="text" name="refeNomb" id="" required>
             </div>
 
-            <select class="custom-select">
-                    <option selected>Medida</option>
-                    <option value="1">Botella</option>
+            <div class="form-group">
+            <select class="custom-select" name="mediId">
+                     <?php
+                     include_once 'models/medidas.php';
+                     foreach ($this->medidas as $row){
+                      $medidas = new medidas();
+                      $medidas = $row; 
+                      
+                      ?>
+                      <?php echo $medidas->mediId ?>
+                      <?php echo $medidas->mediNomb ?>
+                      
+                     <?php } ?>
             </select>
-            <br><br>
-            <select class="custom-select">
+            </div>
+
+            <select class="custom-select" >
                     <option selected>Medida</option>
                     <option value="1">Botella</option>
             </select>

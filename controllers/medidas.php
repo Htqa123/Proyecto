@@ -11,7 +11,7 @@ class Medidas extends Controller{
 
     function render(){
     
-        $medidas = $this->model->get();
+        $medidas = $this->model->consulta_Medidas();
         $this->view->medidas = $medidas;
         $this->view->render('medidas/index');
        

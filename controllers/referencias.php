@@ -10,10 +10,13 @@ class Referencias extends Controller{
     }
 
     function render(){
-    
+       
         $referencias = $this->model->get();
         $this->view->referencias = $referencias;
         $this->view->render('referencias/index');
+        $referencias = $this->model->consulta_Medidas();
+        
+        
        
         
     }

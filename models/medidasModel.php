@@ -22,7 +22,7 @@ class medidasModel extends Model{
     }
 
     
-    public function get(){
+    public function consulta_Medidas(){
         $items = [];
 
         try{

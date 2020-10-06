@@ -11,7 +11,7 @@
     
     
     <div class="wrapper">
-      <form class="login">
+      <form class="login" action="usuarios.php" method="POST">
             <p class="title">Bienvenido a SISO</p>
                  <input type="text" placeholder="Ingrese usuario" autofocus/>
                     <i class="fa fa-user"></i>

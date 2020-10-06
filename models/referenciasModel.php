@@ -1,5 +1,5 @@
 <?php
-
+include_once 'models/medida.php';
 include_once 'models/referencia.php';
 class referenciasModel extends Model{
 
@@ -38,6 +38,27 @@ class referenciasModel extends Model{
                 $item->refeFech  = $row['refeFech'];
                 $item->refeInact  = $row['refeInact'];
 
+                array_push($items, $item);
+            }
+
+            return $items;
+        }catch(PDOException $e){
+            return [];
+        }
+    }
+
+    public function consulta_medidas(){
+        $items = [];
+
+        try{
+
+          $query = $this->db->connect()->query("SELECT mediId, mediNomb FROM medidas WHERE mediId=mediId");
+           
+            while($row = $query->fetch()){
+                $item = new Medida();
+                
+                $item->mediId = $row['mediId'];
+                $item->mediNomb    = $row['mediNomb'];
                 array_push($items, $item);
             }
 
