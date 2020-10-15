@@ -19,7 +19,6 @@
 
 </div>
 <h1 class="center">Ver referencias</h1>
-<!-- <div class="center"><?php echo $this->mensaje; ?></div> -->
     <div id="main-2" class="form-control" class="aling-item-righ" align="center">
         
        
@@ -27,8 +26,8 @@
             <thead>
                 <tr> 
                     <th>#</th>
-                    <th>Nombre Referencia</th>
-                    <th>Medida</th>
+                    <th>Nombre referencia</th>
+                    <th>Nombre medida</th>
                     <th>Fecha creación</th>
                     <th>Estado</th>
                     <th>Operación</th> 
@@ -52,7 +51,7 @@
                     <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
-                
+               
                 <?php } ?>
             </tbody>
         </table>
@@ -75,25 +74,26 @@
 
             <div class="form-group"> 
                 <label for="refeNomb">Nombre de la referencia</label><br>
-                <input type="text" name="refeNomb" id="refeNomb" >
+                <input type="text" name="refeNomb" id="" required>
             </div>
 
             <div class="form-group">
-            <select  class="custom-select" id="refeMedi" name="refeMedi">
-              
+            <select class="custom-select" id="refeMedi" name="refeMedi">
+            <option value="mediId">Seleccione:</option>
               <?php 
               include_once 'models/medidasModel.php';
               $instanciamedidas = new medidasModel();
               $objetomedidas = $instanciamedidas->consulta_Medidas();
               foreach($objetomedidas as $p) { ?>
               <option value="mediId"><?php echo $p->mediNomb; ?></option>
-              
-             
-            <?php } ?>
+              <?php } ?>
             </select>
             </div>
 
-            
+            <select class="custom-select" >
+                    <option selected>Medida</option>
+                    <option value="1">Botella</option>
+            </select>
             <br>
             <div class="form-group">
             <input type="submit" class="btn btn-default" value="Crear referencia">

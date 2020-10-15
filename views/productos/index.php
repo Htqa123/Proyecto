@@ -25,7 +25,9 @@
             <thead>
                 <tr> 
                     <th>#</th>
-                    <th>Nombre categoria</th>
+                    <th>Nombre Categoría</th>
+                    <th>Nombre referencia</th>
+                    <th>Nombre Producto</th>
                     <th>Fecha creación</th>
                     <th>Estado</th>
                     <th>Operación</th> 
@@ -39,8 +41,9 @@
                         $productos = $row; 
                 ?>
                 <tr>
-                    <td><?php echo $productos->cateId; ?></td>
-                    <td><?php echo $productos->cateNomb; ?></td>
+                    <td><?php echo $productos->prodId; ?></td>
+                    <td><?php echo $productos->prodCate; ?></td>
+                    <td><?php echo $productos->prodRefe; ?></td>
                     <td><?php echo $productos->cateFech; ?></td>
                     <td><?php echo $productos->cateInact; ?></td>
                     <td>
