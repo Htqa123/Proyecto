@@ -11,7 +11,7 @@
     
     
     <div class="wrapper">
-      <form class="login" action="usuarios.php" method="POST">
+      <form class="login" action="main.php" method="POST">
             <p class="title">Bienvenido a SISO</p>
                  <input type="text" placeholder="Ingrese usuario" autofocus/>
                     <i class="fa fa-user"></i>
@@ -21,6 +21,7 @@
             <button>
             <i class="spinner"></i>
             <span class="state">Ingresar al sistema</span>
+            <a class="dropdown-item" href="<?php echo constant('URL'); ?>main">Productos</a>
             </button>
      </form>
   <footer><a target="blank" href="http://boudra.me/">HRD version 1.0</a></footer>

@@ -19,6 +19,7 @@
 
 </div>
 <h1 class="center">Ver referencias</h1>
+<!-- <div class="center"><?php echo $this->mensaje; ?></div> -->
     <div id="main-2" class="form-control" class="aling-item-righ" align="center">
         
        
@@ -26,7 +27,8 @@
             <thead>
                 <tr> 
                     <th>#</th>
-                    <th>Nombre categoria</th>
+                    <th>Nombre Referencia</th>
+                    <th>Medida</th>
                     <th>Fecha creación</th>
                     <th>Estado</th>
                     <th>Operación</th> 
@@ -50,11 +52,11 @@
                     <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
-
+                
                 <?php } ?>
             </tbody>
         </table>
-        
+       
     </div>
 </div>
 
@@ -73,29 +75,25 @@
 
             <div class="form-group"> 
                 <label for="refeNomb">Nombre de la referencia</label><br>
-                <input type="text" name="refeNomb" id="" required>
+                <input type="text" name="refeNomb" id="refeNomb" >
             </div>
 
             <div class="form-group">
-            <select class="custom-select" name="mediId">
-                     <?php
-                     include_once 'models/medidas.php';
-                     foreach ($this->medidas as $row){
-                      $medidas = new medidas();
-                      $medidas = $row; 
-                      
-                      ?>
-                      <?php echo $medidas->mediId ?>
-                      <?php echo $medidas->mediNomb ?>
-                      
-                     <?php } ?>
+            <select  class="custom-select" id="refeMedi" name="refeMedi">
+              
+              <?php 
+              include_once 'models/medidasModel.php';
+              $instanciamedidas = new medidasModel();
+              $objetomedidas = $instanciamedidas->consulta_Medidas();
+              foreach($objetomedidas as $p) { ?>
+              <option value="mediId"><?php echo $p->mediNomb; ?></option>
+              
+             
+            <?php } ?>
             </select>
             </div>
 
-            <select class="custom-select" >
-                    <option selected>Medida</option>
-                    <option value="1">Botella</option>
-            </select>
+            
             <br>
             <div class="form-group">
             <input type="submit" class="btn btn-default" value="Crear referencia">
@@ -112,5 +110,4 @@
 </div>
     
 </body>
-
 </html>

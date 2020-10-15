@@ -2,8 +2,8 @@
 
 class usuarios{
 
-    public $matricula;
-    public $nombre;
+    public $usuNomb;
+    public $usuPass;
     public $apellido;
 }
 

@@ -1,6 +1,10 @@
 <?php
-include_once 'models/medida.php';
+include_once 'models/medidasModel.php';
+$instanciamedidas = new medidasModel();
+$objetomedidas = $instanciamedidas->consulta_Medidas();
+/////var_dump($objetomedidas);
 include_once 'models/referencia.php';
+
 class referenciasModel extends Model{
 
     public function __construct(){
@@ -14,6 +18,7 @@ class referenciasModel extends Model{
              VALUES(:refeId, :refeNomb, :refeMedi, :refeFech, :refeInact)');
             $query->execute(['refeId' => $datos['refeId'], 'refeNomb' => $datos['refeNomb'], 'refeMedi' => $datos['refeMedi'], 'refeFech' => $datos['refeFech'], 'refeInact' => $datos['refeInact']]);
             return true;
+           /// echo $_POST['refeMedi'];
         }catch(PDOException $e){
             
             return false;
@@ -41,18 +46,18 @@ class referenciasModel extends Model{
                 array_push($items, $item);
             }
 
-            return $items;
+            return $items;   
+
         }catch(PDOException $e){
             return [];
-        }
+        } 
     }
-
-    public function consulta_medidas(){
+    public function consulta_Medidas(){
         $items = [];
 
         try{
 
-          $query = $this->db->connect()->query("SELECT mediId, mediNomb FROM medidas WHERE mediId=mediId");
+           $query = $this->db->connect()->query("SELECT*FROM medidas");
            
             while($row = $query->fetch()){
                 $item = new Medida();
@@ -68,5 +73,4 @@ class referenciasModel extends Model{
         }
     }
 }
-
 ?>

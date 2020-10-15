@@ -2,9 +2,12 @@
 
 class Referencias extends Controller{
 
+    public static $medidas;
+
     function __construct(){
         parent::__construct();
         $this->view->referencias = [];
+        $this->view->medidas = [];
         $this->view->mensaje = "";
         
     }
@@ -13,8 +16,10 @@ class Referencias extends Controller{
        
         $referencias = $this->model->get();
         $this->view->referencias = $referencias;
+        $medidas = $this->model->consulta_Medidas();
+        /////var_dump($medidas);
         $this->view->render('referencias/index');
-        $referencias = $this->model->consulta_Medidas();
+        
         
         
        
@@ -23,17 +28,17 @@ class Referencias extends Controller{
 
     function registrarReferencias(){
 
-        $refeId = $_POST['refeId'];
+        @$refeId = @$_POST['refeId'];
         $refeNomb    = $_POST['refeNomb'];
-        $refeMedi = $_POST['refeMedi'];
-        $refeFech  = $_POST['refeFech'];
-        $refeInact  = $_POST['refeInact'];
+        @$refeMedi = @$_POST['refeMedi'];
+        @$refeFech  = @$_POST['refeFech'];
+        @$refeInact  = @$_POST['refeInact'];
 
 
         $mensaje = "";
 
         if($this->model->insert(['refeId' => $refeId, 'refeNomb' => $refeNomb, 'refeMedi'=> $refeMedi, 'refeFech' => $refeFech, 'refeInact' => $refeInact])){
-            $mensaje = "Registro guuardado con exito";
+            $mensaje = "Registro guardado con exito";
         }else{
             $mensaje = "Registro ya existe";
         }
