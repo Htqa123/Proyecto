@@ -57,7 +57,7 @@ class referenciasModel extends Model{
 
         try{
 
-           $query = $this->db->connect()->query("SELECT*FROM medidas");
+           $query = $this->db->connect()->query("SELECT mediId, mediNomb FROM medidas WHERE mediId=mediId");
            
             while($row = $query->fetch()){
                 $item = new Medida();
