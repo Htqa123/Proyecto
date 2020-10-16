@@ -1,111 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <title>SISO</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>SISO</title>
+
 </head>
+
 <body>
-   
-    <?php require 'views/header.php'; ?>
-    
 
-</div>
-<div class="form-control">
-<button type="button" id="Btn-modal" class="btn btn-success" onClick='mostrarModal()'>Nueva Referencia</button>
+  <?php require 'views/header.php'; ?>
 
-</div>
-<h1 class="center">Ver referencias</h1>
-    <div id="main-2" class="form-control" class="aling-item-righ" align="center">
-        
-       
-        <table id="table1" align="righ" border="4" style="width:auto; height:20px;" class="table table-condensed table-bordered table-hover">
-            <thead>
-                <tr> 
-                    <th>#</th>
-                    <th>Nombre referencia</th>
-                    <th>Nombre medida</th>
-                    <th>Fecha creación</th>
-                    <th>Estado</th>
-                    <th>Operación</th> 
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    include_once 'models/referencia.php';
-                    foreach($this->referencias as $row){
-                        $referencias = new referencias();
-                        $referencias = $row; 
-                ?>
-                <tr>
-                    <td><?php echo $referencias->refeId; ?></td>
-                    <td><?php echo $referencias->refeNomb; ?></td>
-                    <td><?php echo $referencias->refeMedi; ?></td>
-                    <td><?php echo $referencias->refeFech; ?></td>
-                    <td><?php echo $referencias->refeInact; ?></td>
-                    <td>
-                    <button type="button" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-               
-                <?php } ?>
-            </tbody>
-        </table>
-       
-    </div>
-</div>
 
-     <?php require 'views/footer.php'; ?>
-     <div class="modal" tabindex="-1" id="ventana-modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Ingrese la referencia</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal" id="form1" action="<?php echo constant('URL'); ?>referencias/registrarReferencias" method="POST">
+  </div>
+  <div class="form-control">
+    <button type="button" id="Btn-modal" class="btn btn-success" onClick='mostrarModal()'>Nueva Referencia</button>
 
-            <div class="form-group"> 
-                <label for="refeNomb">Nombre de la referencia:</label><br>
-                <input type="text" name="refeNomb" id="refeNomb" required>
+  </div>
+  <h1 class="center">Ver referencias</h1>
+  <div id="main-2" class="form-control" class="aling-item-righ" align="center">
+
+
+    <table id="table1" align="righ" border="4" style="width:auto; height:20px;" class="table table-condensed table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre referencia</th>
+          <th>Nombre medida</th>
+          <th>Fecha creación</th>
+          <th>Estado</th>
+          <th>Operación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        include_once 'models/referencia.php';
+        foreach ($this->referencias as $row) {
+          $referencias = new referencias();
+          $referencias = $row;
+        ?>
+          <tr>
+            <td><?php echo $referencias->refeId; ?></td>
+            <td><?php echo $referencias->refeNomb; ?></td>
+            <td><?php echo $referencias->refeMedi; ?></td>
+            <td><?php echo $referencias->refeFech; ?></td>
+            <td><?php echo $referencias->refeInact; ?></td>
+            <td>
+              <button type="button" class="btn btn-primary">Editar</button>
+              <button type="button" class="btn btn-danger">Eliminar</button>
+            </td>
+          </tr>
+
+        <?php } ?>
+      </tbody>
+    </table>
+
+  </div>
+  </div>
+
+  <?php require 'views/footer.php'; ?>
+  <div class="modal" tabindex="-1" id="ventana-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ingrese la referencia</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="form1" action="<?php echo constant('URL'); ?>referencias/registrarReferencias" method="POST">
+
+            <div class="form-group">
+              <label for="refeNomb">Nombre de la referencia:</label><br>
+              <input type="text" name="refeNomb" id="refeNomb" required>
             </div>
 
             <div class="form-group">
-            <select class="custom-select" id="refeMedi" name="refeMedi">
-           
-            <option value="mediId">Seleccione medida:</option>
-              <?php 
-              include_once 'models/medidasModel.php';
-              $instanciamedidas = new medidasModel();
-              $objetomedidas = $instanciamedidas->consulta_Medidas();
-              foreach($objetomedidas as $p) { ?>
-             <option value="mediId"><?php echo $p->mediNomb; ?></option> 
-             
-              <?php } ?>
-            </select>
+              <select class="custom-select" id="refeMedi" name="refeMedi">
+
+                <option value="mediId">Seleccione medida:</option>
+                <?php
+                include_once 'models/medidasModel.php';
+                $instanciamedidas = new medidasModel();
+                $objetomedidas = $instanciamedidas->consulta_Medidas();
+                foreach ($objetomedidas as $p) { ?>
+                  <option value="mediId"><?php echo $p->mediId; ?></option>
+
+                <?php } ?>
+              </select>
             </div>
 
             <br>
             <div class="form-group">
-            <input type="submit" class="btn btn-default" value="Crear referencia">
+              <input type="submit" class="btn btn-default" value="Crear referencia">
             </div>
 
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+        </div>
       </div>
     </div>
   </div>
-</div>
-    
+
 </body>
+
 </html>
