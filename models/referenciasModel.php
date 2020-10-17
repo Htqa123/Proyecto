@@ -27,19 +27,19 @@ class referenciasModel extends Model{
     }
 
     
-    public function get(){
+    public function consulta_referencia(){
         $items = [];
 
         try{
 
-           $query = $this->db->connect()->query("SELECT*FROM referencias");
+           $query = $this->db->connect()->query("SELECT * FROM referencias r LEFT JOIN medidas m ON r.refeMedi=m.mediId;");
            
             while($row = $query->fetch()){
                 $item = new Referencia();
                 
                 $item->refeId = $row['refeId'];
                 $item->refeNomb    = $row['refeNomb'];
-                $item->refeMedi  = $row['refeMedi'];
+                $item->refeMedi  = $row['mediNomb'];
                 $item->refeFech  = $row['refeFech'];
                 $item->refeInact  = $row['refeInact'];
 

@@ -42,10 +42,17 @@
           $referencias = new referencias();
           $referencias = $row;
         ?>
+        <?php
+        include_once 'models/medidasModel.php';
+                $instanciamedidas = new medidasModel();
+                $objetomedidas = $instanciamedidas->consulta_Medidas();
+                foreach ($objetomedidas as $p) { ?>
+                        
+                <?php } ?>
           <tr>
             <td><?php echo $referencias->refeId; ?></td>
             <td><?php echo $referencias->refeNomb; ?></td>
-            <td><?php echo $referencias->refeMedi; ?></td>
+            <td><?php echo $referencias->refeMedi;?></td>
             <td><?php echo $referencias->refeFech; ?></td>
             <td><?php echo $referencias->refeInact; ?></td>
             <td>
@@ -88,7 +95,7 @@
                 $instanciamedidas = new medidasModel();
                 $objetomedidas = $instanciamedidas->consulta_Medidas();
                 foreach ($objetomedidas as $p) { ?>
-                  <option value="mediId"><?php echo $p->mediId; ?></option>
+                  <option value="<?php echo $p->mediId; ?>"><?php echo $p->mediNomb; ?></option>
 
                 <?php } ?>
               </select>

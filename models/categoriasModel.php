@@ -21,7 +21,7 @@ class categoriasModel extends Model{
     }
 
     
-    public function get(){
+    public function consulta_categorias(){
         $items = [];
 
         try{

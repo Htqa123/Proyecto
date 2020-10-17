@@ -29,7 +29,6 @@
           <th>#</th>
           <th>Nombre Categoría</th>
           <th>Nombre referencia</th>
-          <th>Nombre Producto</th>
           <th>Fecha creación</th>
           <th>Estado</th>
           <th>Operación</th>
@@ -46,8 +45,8 @@
             <td><?php echo $productos->prodId; ?></td>
             <td><?php echo $productos->prodCate; ?></td>
             <td><?php echo $productos->prodRefe; ?></td>
-            <td><?php echo $productos->cateFech; ?></td>
-            <td><?php echo $productos->cateInact; ?></td>
+            <td><?php echo $productos->prodFech; ?></td>
+            <td><?php echo $productos->prodInact; ?></td>
             <td>
               <button type="button" class="btn btn-primary">Editar</button>
               <button type="button" class="btn btn-danger">Eliminar</button>
@@ -72,54 +71,54 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="form-horizontal" id="form1" action="  <?php echo constant('URL'); ?>categorias/registrarCategorias" method="POST">
+          <form class="form-horizontal" id="form1" action="  <?php echo constant('URL'); ?>productos/registrarProductos" method="POST">
 
             <div class="form-group">
-              <label for="cateNomb">Nombre de la categoría:</label><br>
-              <select class="custom-select" id="refeMedi" name="refeMedi">
+              <label for="prodCate">Nombre de la categoría:</label><br>
+              <select class="custom-select input-lg" id="prodCate" name="prodCate">
 
-                <option value="mediId">Seleccione Categoria:</option>
-                <!-- <?php
-                      include_once 'models/medidasModel.php';
-                      $instanciamedidas = new medidasModel();
-                      $objetomedidas = $instanciamedidas->consulta_Medidas();
+                <option value="">Seleccione Categoria:</option>
+                <?php
+                      include_once 'models/categoriasModel.php';
+                      $instanciamedidas = new categoriasModel();
+                      $objetomedidas = $instanciamedidas->consulta_categorias();
                       foreach ($objetomedidas as $p) { ?>
-             <option value="mediId"><?php echo $p->mediId; ?></option> 
-             
-              <?php } ?> -->
+                     <option value="cateNomb"><?php echo $p->cateNomb; ?></option> 
+                     
+              <?php } ?> 
               </select>
             </div>
 
             <div class="form-group">
-              <label for="cateNomb">Nombre de la Referencia:</label><br>
-              <select class="custom-select" id="refeMedi" name="refeMedi">
+              <label for="prodRefe">Nombre de la Referencia:</label><br>
+              <select class="custom-select" id="prodRefe" name="prodRefe">
 
                 <option value="mediId">Seleccione Referencia:</option>
-                <!-- <?php
-                      include_once 'models/medidasModel.php';
-                      $instanciamedidas = new medidasModel();
-                      $objetomedidas = $instanciamedidas->consulta_Medidas();
+                <?php
+                      include_once 'models/referenciasModel.php';
+                      $instanciareferencias = new referenciasModel();
+                      $objetomedidas = $instanciareferencias->consulta_referencia();
                       foreach ($objetomedidas as $p) { ?>
-             <option value="mediId"><?php echo $p->mediId; ?></option> 
+             <option value="refeNomb"><?php echo $p->refeNomb; ?></option> 
              
-              <?php } ?> -->
+              <?php } ?>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="refeNomb">Nombre del Producto:</label><br>
-              <input type="text" name="refeNomb" id="refeNomb" required>
+              <label for="prodMedi">Medida Producto:</label><br>
+              <input type="text" name="prodMedi" id="prodMedi" required>
             </div>
 
             <div class="form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Descripción</span>
-                <textarea id="mediDesc" neme="mediDesc" class="form-control" aria-label="With textarea"></textarea>
+                <textarea id="prodDesc" name="prodDesc" class="form-control" aria-label="With textarea"></textarea>
               </div>
             </div>
 
             <div class="form-group">
-              <input type="submit" class="btn btn-default" value="Crear categoría">
+              <input type="submit" class="btn btn-default" value="Crear producto">
             </div>
 
 
@@ -134,5 +133,22 @@
   </div>
 
 </body>
+<script>
+  
+  //Cuando se hace la selección
+$("select").change(function(){
+
+//Normalmente se envía el value del select
+var cateId = $("#cateNomb").val();
+console.log(cateNomb);
+
+//Puedes capturar el texto seleccionado
+var prodCate = $("select option:selected").text();
+
+//Y asignar el texto al input
+$("#prodCate").val(cateId);
+
+});
+</script>
 
 </html>

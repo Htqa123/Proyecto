@@ -14,7 +14,7 @@ class Referencias extends Controller{
 
     function render(){
        
-        $referencias = $this->model->get();
+        $referencias = $this->model->consulta_referencia();
         $this->view->referencias = $referencias;
         $medidas = $this->model->consulta_Medidas();
         /////var_dump($medidas);

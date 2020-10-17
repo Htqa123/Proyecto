@@ -80,7 +80,7 @@
             <div class="form-group">
             <div class="input-group-prepend">
               <span class="input-group-text">Descripción</span>
-             <textarea id="mediDesc" neme="mediDesc" class="form-control" aria-label="With textarea"></textarea>
+             <textarea id="mediDesc" name="mediDesc" class="form-control" aria-label="With textarea"></textarea>
              </div>
             </div>
 

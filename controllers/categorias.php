@@ -11,7 +11,7 @@ class Categorias extends Controller{
 
     function render(){
     
-        $categorias = $this->model->get();
+        $categorias = $this->model->consulta_categorias();
         $this->view->categorias = $categorias;
         $this->view->render('categorias/index');
        
