@@ -1,11 +1,15 @@
 <?php
 include_once 'models/categoriasModel.php';
 $instanciaCategorias = new categoriasModel();
-$objetomedidas = $instanciaCategorias->consulta_categorias();
+$objetoCate = $instanciaCategorias->consulta_categorias();
 
 include_once 'models/referenciasModel.php';
-$instanciaCategorias = new referenciasModel();
-$objetomedidas = $instanciaCategorias->consulta_referencia();
+$instanciaReferencias = new referenciasModel();
+$objetoReferencias = $instanciaReferencias->consulta_referencia();
+
+include_once 'models/medidasModel.php';
+$instanciaMedidas = new medidasModel();
+$objetoMedidas = $instanciaMedidas->consulta_medidas();
 
 include_once 'models/producto.php';
 class ProductosModel extends Model{
@@ -17,9 +21,9 @@ class ProductosModel extends Model{
     public function insert($datos){
         // insertar datos en la BD
         try{
-    $query = $this->db->connect()->prepare('INSERT INTO productos (prodId, prodRefe,prodCate, prodFech, prodDesc, prodInact)
-             VALUES(:prodId, :prodRefe, :prodCate, :prodFech, :prodDesc, :prodInact)');
-            $query->execute(['prodId' => $datos['prodId'], 'prodRefe' => $datos['prodRefe'], 'prodCate'=> $datos['prodCate'], 'prodFech' => $datos['prodFech'], 'prodDesc' => $datos['prodDesc'], 'prodInact' => $datos['prodInact']]);
+    $query = $this->db->connect()->prepare('INSERT INTO productos (prodId, prodRefe,prodCate,prodMedi, prodFech, prodDesc, prodInact)
+             VALUES(:prodId, :prodRefe, :prodCate, :prodMedi, :prodFech, :prodDesc, :prodInact)');
+            $query->execute(['prodId' => $datos['prodId'], 'prodMedi' => $datos['prodMedi'], 'prodRefe' => $datos['prodRefe'], 'prodCate'=> $datos['prodCate'], 'prodFech' => $datos['prodFech'], 'prodDesc' => $datos['prodDesc'], 'prodInact' => $datos['prodInact']]);
              var_dump($datos);
             return true;
         }catch(PDOException $e){
@@ -49,6 +53,7 @@ class ProductosModel extends Model{
                 $item->prodId = $row['prodId'];
                 $item->prodRefe    = $row['prodRefe'];
                 $item->prodCate  = $row['prodCate'];
+                $item->prodMedi  = $row['prodMedi'];
                 $item->prodFech  = $row['prodFech'];
                 $item->prodDesc  = $row['prodDesc'];
                 $item->prodInact  = $row['prodInact'];

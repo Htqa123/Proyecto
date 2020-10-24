@@ -35,10 +35,11 @@
  
 </div>
 <div class="form-control">
-<button type="button" id="Btn-modal" class="btn btn-success" onClick='mostrarModal()'>Nueva Categoría</button>
+<button type="button" id="Btn-modal" class="btn btn-success" onClick='mostrarModal()'><i class="fas fa-plus"></i>Nueva Categoría</button>
 
 </div>
 <h1 class="center">Ver categorías</h1>
+<div style="background:blue" class="center"><?php echo $this->mensaje; ?></div>
     <div id="main-2" align="center" class="form-control">
         
        
@@ -89,15 +90,26 @@
       </div>
       <div class="modal-body">
         <form class="form-horizontal" id="form1" action="  <?php echo constant('URL'); ?>categorias/registrarCategorias" method="POST">
+             
+             <div class="form-group"> 
+                <label for="cateNomb"></label><br>
+                <input type="hidden" name="cateId" id="cateId" required>
+            </div>
 
             <div class="form-group"> 
                 <label for="cateNomb">Nombre de la categoría</label><br>
-                <input type="text" name="cateNomb" id="" required>
+                <input type="text" name="cateNomb" id="cateNomb" required>
             </div>
             
             <div class="form-group">
             <input type="submit" class="btn btn-default" value="Crear categoría">
             </div>
+
+            <div class="form-group">
+                <label>Imagen de producto</label>
+                <input type="file" name="img">
+                <p class="help-block">Formato de imagenes admitido png, jpg, gif, jpeg</p>
+             </div>
 
         </form>
       </div>

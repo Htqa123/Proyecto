@@ -19,6 +19,7 @@
 
 </div>
 <h1 class="center">Ver Medidas</h1>
+<div style="background:blue" class="center"><?php echo $this->mensaje; ?></div>
     <div id="main-2" class="form-control" align="center">
         
        

@@ -22,14 +22,17 @@ body{
 #header ul li a{
     color: white;
     text-decoration: none;
-    padding: 10px;
+    padding: 1px;
 }
 
 #footer{
     background-color:black;
-    padding: 20px;
+    margin: 0%;
+    padding: 1ch;
+    border-radius: 0;
     
 }
+
 
 #main{
     padding: 20px 0;

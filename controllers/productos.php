@@ -27,6 +27,7 @@ class Productos extends Controller{
         @$prodId = @$_POST['prodId'];
         @$prodRefe    = @$_POST['prodRefe'];
         @$prodCate = @$_POST['prodCate'];
+        @$prodMedi = @$_POST['prodMedi'];
         @$prodFech  = @$_POST['prodFech'];
         @$prodDesc  = @$_POST['prodDesc'];
         @$prodInact  = @$_POST['prodInact'];
@@ -34,8 +35,8 @@ class Productos extends Controller{
 
         $mensaje = "";
 
-        if($this->model->insert(['prodId' => $prodId, 'prodRefe' => $prodRefe, 'prodCate'=> $prodCate, 'prodFech' => $prodFech, 'prodDesc' => $prodDesc, 'prodInact' => $prodInact])){
-            $mensaje = "Registro guuardado con exito";
+        if($this->model->insert(['prodId' => $prodId, 'prodRefe' => $prodRefe, 'prodCate'=> $prodCate, 'prodMedi' => $prodMedi, 'prodFech' => $prodFech, 'prodDesc' => $prodDesc, 'prodInact' => $prodInact])){
+            $mensaje = "Registro guardado con exito";
         }else{
             $mensaje = "Registro ya existe";
         }

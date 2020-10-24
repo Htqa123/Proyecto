@@ -20,6 +20,7 @@
 
   </div>
   <h1 class="center">Ver Producto</h1>
+  <div style="background:blue" class="center"><?php echo $this->mensaje; ?></div>
   <div id="main-2" align="center" class="form-control">
 
 
@@ -27,8 +28,9 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Nombre Categoría</th>
-          <th>Nombre referencia</th>
+          <th>Categorías</th>
+          <th>Referencias</th>
+          <th>Medidas</th>
           <th>Fecha creación</th>
           <th>Estado</th>
           <th>Operación</th>
@@ -45,6 +47,7 @@
             <td><?php echo $productos->prodId; ?></td>
             <td><?php echo $productos->prodCate; ?></td>
             <td><?php echo $productos->prodRefe; ?></td>
+            <td><?php echo $productos->prodMedi; ?></td>
             <td><?php echo $productos->prodFech; ?></td>
             <td><?php echo $productos->prodInact; ?></td>
             <td>
@@ -77,13 +80,13 @@
               <label for="prodCate">Nombre de la categoría:</label><br>
               <select class="custom-select input-lg" id="prodCate" name="prodCate">
 
-                <option value="">Seleccione Categoria:</option>
+                <option value="prodCate">Seleccione Categoria:</option>
                 <?php
                       include_once 'models/categoriasModel.php';
-                      $instanciamedidas = new categoriasModel();
-                      $objetomedidas = $instanciamedidas->consulta_categorias();
-                      foreach ($objetomedidas as $p) { ?>
-                     <option value="cateNomb"><?php echo $p->cateNomb; ?></option> 
+                      $instanciaCategorias = new categoriasModel();
+                      $objetoCate = $instanciaCategorias->consulta_categorias();
+                      foreach ($objetoCate as $p) { ?>
+                      <option value="<?php echo $p->cateId; ?>"><?php echo $p->cateNomb; ?></option> 
                      
               <?php } ?> 
               </select>
@@ -93,21 +96,32 @@
               <label for="prodRefe">Nombre de la Referencia:</label><br>
               <select class="custom-select" id="prodRefe" name="prodRefe">
 
-                <option value="mediId">Seleccione Referencia:</option>
+                <option value="prodRefe">Seleccione Referencia:</option>
                 <?php
                       include_once 'models/referenciasModel.php';
-                      $instanciareferencias = new referenciasModel();
-                      $objetomedidas = $instanciareferencias->consulta_referencia();
-                      foreach ($objetomedidas as $p) { ?>
-             <option value="refeNomb"><?php echo $p->refeNomb; ?></option> 
+                      $instanciaReferencias = new referenciasModel();
+                      $objetoReferencias = $instanciaReferencias->consulta_referencia();
+                      foreach ($objetoReferencias as $p) { ?>
+                      <option value="<?php echo $p->refeId; ?>"><?php echo $p->refeNomb; ?></option> 
              
               <?php } ?>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="prodMedi">Medida Producto:</label><br>
-              <input type="text" name="prodMedi" id="prodMedi" required>
+              <label for="prodRefe">Medida:</label><br>
+              <select class="custom-select" id="prodMedi" name="prodMedi">
+
+                <option value="prodMedi">Seleccione Referencia:</option>
+                <?php
+                      include_once 'models/medidasModel.php';
+                      $instanciaMedidas = new medidasModel();
+                      $objetoMedidas = $instanciaMedidas->consulta_medidas();
+                      foreach ($objetoMedidas as $p) { ?>
+                      <option value="<?php echo $p->mediId; ?>"><?php echo $p->mediNomb; ?></option> 
+             
+              <?php } ?>
+              </select>
             </div>
 
             <div class="form-group">

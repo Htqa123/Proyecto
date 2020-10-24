@@ -20,13 +20,43 @@ class categoriasModel extends Model{
         
     }
 
+    public function filtrarCategorias()
+    {
+        {
+            $items = [];
     
-    public function consulta_categorias(){
+            try{
+    
+               $query = $this->db->connect()->query("SELECT *FROM categorias WHERE cateNomb LIKE % 
+               :buscar % ");
+               
+                while($row = $query->fetch()){
+                    $item = new Categoria();
+                    
+                    $item->cateId = $row['cateId'];
+                    $item->cateNomb    = $row['cateNomb'];
+                    $item->cateFech  = $row['cateFech'];
+                    $item->cateInact  = $row['cateInact'];
+    
+                    array_push($items, $item);
+                }
+    
+                return $items;
+            }catch(PDOException $e){
+                return [];
+            }
+        }
+
+    }
+
+    
+    public function consulta_categorias()
+    {
         $items = [];
 
         try{
 
-           $query = $this->db->connect()->query("SELECT*FROM categorias");
+           $query = $this->db->connect()->query("SELECT *FROM categorias");
            
             while($row = $query->fetch()){
                 $item = new Categoria();
