@@ -22,15 +22,15 @@ class Categorias extends Controller{
     function registrarCategorias(){
         
  
-        @$cateId = @$_POST['cateId'];
+        @$cateCodi = @$_POST['cateCodi'];
         $cateNomb    = $_POST['cateNomb'];
         @$cateFech  =@$_POST['cateFech'];
-        @$cateInact  = @$_POST['cateInact'];
+        @$cateDesc  = @$_POST['cateDesc'];
 
       
         $mensaje = "";
 
-        if($this->model->insert(['cateId' => $cateId, 'cateNomb' => $cateNomb, 'cateFech' => $cateFech, 'cateInact' => $cateInact])){
+        if($this->model->insert(['cateCodi' => $cateCodi, 'cateNomb' => $cateNomb, 'cateFech' => $cateFech, 'cateDesc' => $cateDesc])){
             $mensaje = "Registro guardado con éxito";
         }else{
             $mensaje = "Registro ya existe";

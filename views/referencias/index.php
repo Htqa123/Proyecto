@@ -21,7 +21,6 @@
 
   </div>
   <h1 class="center">Ver referencias</h1>
-  <div style="background:blue" class="center"><?php echo $this->mensaje; ?></div>
   <div id="main-2" class="form-control" class="aling-item-righ" align="center">
 
 
@@ -90,7 +89,7 @@
             <div class="form-group">
               <select class="custom-select" id="refeMedi" name="refeMedi">
 
-                <option value="refeMedi">Seleccione medida:</option>
+                <option value="mediId">Seleccione medida:</option>
                 <?php
                 include_once 'models/medidasModel.php';
                 $instanciamedidas = new medidasModel();
@@ -104,14 +103,14 @@
 
             <br>
             <div class="form-group">
-              <input type="submit" class="btn btn-default" value="Crear referencias">
+              <input type="submit" class="btn btn-default" value="Crear referencia">
             </div>
 
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-             
+
         </div>
       </div>
     </div>

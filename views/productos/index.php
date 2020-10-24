@@ -27,12 +27,12 @@
     <table id="table1" align="center" border="4" style="width:auto; height:20px;" class="table table-condensed table-bordered table-hover">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Categorías</th>
-          <th>Referencias</th>
-          <th>Medidas</th>
-          <th>Fecha creación</th>
-          <th>Estado</th>
+          <th>Codigo</th>
+          <th>Producto</th>
+          <th>Categoria</th>
+          <th>Detalle</th>
+          <th>Marca</th>
+          <th>Stock</th>
           <th>Operación</th>
         </tr>
       </thead>
@@ -44,12 +44,13 @@
           $productos = $row;
         ?>
           <tr>
-            <td><?php echo $productos->prodId; ?></td>
-            <td><?php echo $productos->prodCate; ?></td>
-            <td><?php echo $productos->prodRefe; ?></td>
-            <td><?php echo $productos->prodMedi; ?></td>
-            <td><?php echo $productos->prodFech; ?></td>
-            <td><?php echo $productos->prodInact; ?></td>
+            <td><?php echo $productos->prodCodi; ?></td>
+            <td><?php echo $productos->prodNomb; ?></td>
+            <td><?php echo $productos->prodCodiCant; ?></td>
+            <td><?php echo $productos->prodMode; ?></td>
+            <td><?php echo $productos->prodMarc; ?></td>
+            <td><?php echo $productos->prodStock; ?></td>
+            
             <td>
               <button type="button" class="btn btn-primary">Editar</button>
               <button type="button" class="btn btn-danger">Eliminar</button>
@@ -77,26 +78,26 @@
           <form class="form-horizontal" id="form1" action="  <?php echo constant('URL'); ?>productos/registrarProductos" method="POST">
 
             <div class="form-group">
-              <label for="prodCate">Nombre de la categoría:</label><br>
-              <select class="custom-select input-lg" id="prodCate" name="prodCate">
+              <label for="prodCodiCant">Nombre de la categoría:</label><br>
+              <select class="custom-select input-lg" id="prodCodiCant" name="prodCodiCant">
 
-                <option value="prodCate">Seleccione Categoria:</option>
+                <option value="prodCodiCant">Seleccione Categoria:</option>
                 <?php
                       include_once 'models/categoriasModel.php';
                       $instanciaCategorias = new categoriasModel();
                       $objetoCate = $instanciaCategorias->consulta_categorias();
                       foreach ($objetoCate as $p) { ?>
-                      <option value="<?php echo $p->cateId; ?>"><?php echo $p->cateNomb; ?></option> 
+                      <option value="<?php echo $p->cateCodi; ?>"><?php echo $p->cateNomb; ?></option> 
                      
               <?php } ?> 
               </select>
             </div>
 
             <div class="form-group">
-              <label for="prodRefe">Nombre de la Referencia:</label><br>
-              <select class="custom-select" id="prodRefe" name="prodRefe">
+              <label for="prodNomb">Nombre de la Referencia:</label><br>
+              <select class="custom-select" id="prodNomb" name="prodNomb">
 
-                <option value="prodRefe">Seleccione Referencia:</option>
+                <option value="prodNomb">Seleccione Referencia:</option>
                 <?php
                       include_once 'models/referenciasModel.php';
                       $instanciaReferencias = new referenciasModel();
@@ -109,10 +110,10 @@
             </div>
 
             <div class="form-group">
-              <label for="prodRefe">Medida:</label><br>
-              <select class="custom-select" id="prodMedi" name="prodMedi">
+              <label for="prodNomb">Medida:</label><br>
+              <select class="custom-select" id="prodFech" name="prodFech">
 
-                <option value="prodMedi">Seleccione Referencia:</option>
+                <option value="prodFech">Seleccione Referencia:</option>
                 <?php
                       include_once 'models/medidasModel.php';
                       $instanciaMedidas = new medidasModel();
@@ -153,14 +154,14 @@
 $("select").change(function(){
 
 //Normalmente se envía el value del select
-var cateId = $("#cateNomb").val();
+var cateCodi = $("#cateNomb").val();
 console.log(cateNomb);
 
 //Puedes capturar el texto seleccionado
-var prodCate = $("select option:selected").text();
+var prodCodiCant = $("select option:selected").text();
 
 //Y asignar el texto al input
-$("#prodCate").val(cateId);
+$("#prodCodiCant").val(cateCodi);
 
 });
 </script>

@@ -19,10 +19,10 @@ class ConsultaModel extends Model{
 
             while($row = $query->fetch()){
                 $item = new Categorias();
-                $item->cateId = $row['cateId'];
+                $item->cateCodi = $row['cateCodi'];
                 $item->cateNomb    = $row['cateNomb'];
                 $item->cateFech  = $row['cateFech'];
-                $item->cateInact  = $row['cateInact'];
+                $item->cateDesc  = $row['cateDesc'];
 
                 array_push($items, $item);
             }

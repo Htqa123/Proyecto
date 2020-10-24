@@ -46,10 +46,10 @@
         <table id="table1" align="center" border="4" style="width:auto; height:20px;" class="table table-condensed table-bordered table-hover">
             <thead>
                 <tr> 
-                    <th>#</th>
+                    <th>codigo</th>
                     <th>Nombre categoria</th>
                     <th>Fecha creación</th>
-                    <th>Estado</th>
+                    <th>Descripción</th>
                     <th>Operación</th> 
                 </tr>
             </thead>
@@ -61,10 +61,10 @@
                         $categorias = $row; 
                 ?>
                 <tr>
-                    <td><?php echo $categorias->cateId; ?></td>
+                    <td><?php echo $categorias->cateCodi; ?></td>
                     <td><?php echo $categorias->cateNomb; ?></td>
                     <td><?php echo $categorias->cateFech; ?></td>
-                    <td><?php echo $categorias->cateInact; ?></td>
+                    <td><?php echo $categorias->cateDesc; ?></td>
                     <td>
                     <button type="button" class="btn btn-primary">Editar</button>
                     <button type="button" class="btn btn-danger">Eliminar</button>
@@ -93,16 +93,21 @@
              
              <div class="form-group"> 
                 <label for="cateNomb"></label><br>
-                <input type="hidden" name="cateId" id="cateId" required>
+                <input type="text" name="cateCodi" id="cateCodi" required>
             </div>
 
             <div class="form-group"> 
                 <label for="cateNomb">Nombre de la categoría</label><br>
                 <input type="text" name="cateNomb" id="cateNomb" required>
             </div>
+            <div class="form-group"> 
+                <label for="cateNomb">Descripcion</label><br>
+                <input type="text" name="cateDesc" id="cateDesc" required>
+            </div>
             
             <div class="form-group">
             <input type="submit" class="btn btn-default" value="Crear categoría">
+           
             </div>
 
             <div class="form-group">

@@ -30,10 +30,10 @@
                         $categorias = $row; 
                 ?>
                 <tr>
-                    <td><?php echo $categorias->cateId; ?></td>
+                    <td><?php echo $categorias->cateCodi; ?></td>
                     <td><?php echo $categorias->cateNomb; ?></td>
                     <td><?php echo $categorias->cateFech; ?></td>
-                    <td><?php echo $categorias->cateInact; ?></td>
+                    <td><?php echo $categorias->cateDesc; ?></td>
                     <td>
                     <button type="button" class="btn btn-primary">Editar</button>
                     <button type="button" class="btn btn-danger">Eliminar</button>

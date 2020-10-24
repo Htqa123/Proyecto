@@ -2,14 +2,17 @@
 
 class Producto {
 
-  public $prodId; 
-  public $prodRefe; 
-  public $prodCate; 
-  public $prodMedi; 
+  public $prodCodi; 
+  public $prodNomb; 
+  public $prodCodiCant; 
   public $prodFech; 
-  public $prodDesc;
-  public $prodInact; 
-
+  public $prodPrec; 
+  public $prodMode;
+  public $prodMarc; 
+  public $prodStock; 
+  public $prodNitProv;
+  public $prodImag;
+  public $admiNomb; 
     
 }
 

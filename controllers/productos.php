@@ -24,18 +24,36 @@ class Productos extends Controller{
 
     function registrarProductos(){
 
-        @$prodId = @$_POST['prodId'];
-        @$prodRefe    = @$_POST['prodRefe'];
-        @$prodCate = @$_POST['prodCate'];
-        @$prodMedi = @$_POST['prodMedi'];
-        @$prodFech  = @$_POST['prodFech'];
-        @$prodDesc  = @$_POST['prodDesc'];
-        @$prodInact  = @$_POST['prodInact'];
+        @$prodCodi = @$_POST['prodCodi'];
+        @$prodNomb    = @$_POST['prodNomb'];
+        @$prodCodiCant = @$_POST['prodCodiCant'];
+        @$prodFech = @$_POST['prodFech'];
+        @$prodPrec  = @$_POST['prodPrec'];
+        @$prodMode  = @$_POST['prodMode'];
+        @$prodMarc  = @$_POST['prodMarc'];
+        @$prodStock  = @$_POST['prodStock'];
+        @$prodNitProv  = @$_POST['prodNitProv'];
+        @$prodImag  = @$_POST['prodImag'];
+        @$admiNomb  = @$_POST['admiNomb'];
 
 
         $mensaje = "";
 
-        if($this->model->insert(['prodId' => $prodId, 'prodRefe' => $prodRefe, 'prodCate'=> $prodCate, 'prodMedi' => $prodMedi, 'prodFech' => $prodFech, 'prodDesc' => $prodDesc, 'prodInact' => $prodInact])){
+        if($this->model->insert([
+
+            'prodCodi' => $prodCodi,
+            'prodNomb' => $prodNomb,
+            'prodCodiCant'=> $prodCodiCant,
+            'prodFech' => $prodFech,
+            'prodPrec' => $prodPrec,
+            'prodMode' => $prodMode,
+            'prodMarc' => $prodMarc,
+            'prodStock' => $prodStock,
+            'prodNitProv' => $prodNitProv,
+            'prodImag' => $prodImag,
+            'admiNomb' => $admiNomb,
+            ]))
+            {
             $mensaje = "Registro guardado con exito";
         }else{
             $mensaje = "Registro ya existe";

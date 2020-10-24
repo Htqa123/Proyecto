@@ -21,9 +21,23 @@ class ProductosModel extends Model{
     public function insert($datos){
         // insertar datos en la BD
         try{
-    $query = $this->db->connect()->prepare('INSERT INTO productos (prodId, prodRefe,prodCate,prodMedi, prodFech, prodDesc, prodInact)
-             VALUES(:prodId, :prodRefe, :prodCate, :prodMedi, :prodFech, :prodDesc, :prodInact)');
-            $query->execute(['prodId' => $datos['prodId'], 'prodMedi' => $datos['prodMedi'], 'prodRefe' => $datos['prodRefe'], 'prodCate'=> $datos['prodCate'], 'prodFech' => $datos['prodFech'], 'prodDesc' => $datos['prodDesc'], 'prodInact' => $datos['prodInact']]);
+    $query = $this->db->connect()->prepare('INSERT INTO productos (prodCodi, prodNomb, prodCodiCant,
+             prodFech, prodPrec, prodMode, prodMarc,prodStock,prodNitProv, prodImag,admiNomb)
+             VALUES(:prodCodi, :prodNomb, :prodCodiCant, :prodFech, :prodPrec, :prodMode, :prodMarc,
+             :prodStock, :prodNitProv, :prodImag, :admiNomb)');
+            $query->execute([
+                'prodCodi' => $datos['prodCodi'],
+                'prodNomb' => $datos['prodNomb'],
+                'prodCodiCant' => $datos['prodCodiCant'],
+                'prodFech'=> $datos['prodFech'],
+                'prodPrec' => $datos['prodPrec'],
+                'prodMode' => $datos['prodMode'],
+                'prodMarc' => $datos['prodMarc'],
+                'prodStock' => $datos['prodStock'],
+                'prodNitProv' => $datos['prodNitProv'],
+                'prodImag' => $datos['prodImag'],
+                'admiNomb' => $datos['admiNomb']
+                ]);
              var_dump($datos);
             return true;
         }catch(PDOException $e){
@@ -39,24 +53,22 @@ class ProductosModel extends Model{
 
         try{
 
-           $query = $this->db->connect()->query("SELECT * FROM referencias r 
-           LEFT JOIN medidas m 
-           ON r.refeMedi=m.mediId
-           left join productos p
-           ON p.prodId = r.refeId
-           left join categorias c
-           ON c.cateId = p.prodId");
+           $query = $this->db->connect()->query("SELECT * FROM productos");
            
             while($row = $query->fetch()){
                 $item = new Producto();
                 
-                $item->prodId = $row['prodId'];
-                $item->prodRefe    = $row['prodRefe'];
-                $item->prodCate  = $row['prodCate'];
-                $item->prodMedi  = $row['prodMedi'];
+                $item->prodCodi = $row['prodCodi'];
+                $item->prodNomb    = $row['prodNomb'];
+                $item->prodCodiCant  = $row['prodCodiCant'];
                 $item->prodFech  = $row['prodFech'];
-                $item->prodDesc  = $row['prodDesc'];
-                $item->prodInact  = $row['prodInact'];
+                $item->prodPrec  = $row['prodPrec'];
+                $item->prodMode  = $row['prodMode'];
+                $item->prodMarc  = $row['prodMarc']; 
+                $item->prodStock  = $row['prodStock'];
+                $item->prodNitProv  = $row['prodNitProv'];
+                $item->prodImag  = $row['prodImag'];
+                $item->admiNomb  = $row['admiNomb'];
 
                 array_push($items, $item);
             }
@@ -89,31 +101,32 @@ class ProductosModel extends Model{
     }
 
 
-public function consulta_referencia(){
-    $items = [];
+    public function consulta_referencia()
+    {
+        $items = [];
 
-    try{
+        try{
 
-       $query = $this->db->connect()->query("SELECT * FROM referencias r LEFT JOIN medidas m ON r.refeMedi=m.mediId;");
-       
-        while($row = $query->fetch()){
-            $item = new Referencia();
-            
-            $item->refeId = $row['refeId'];
-            $item->refeNomb    = $row['refeNomb'];
-            $item->refeMedi  = $row['mediNomb'];
-            $item->refeFech  = $row['refeFech'];
-            $item->refeInact  = $row['refeInact'];
+        $query = $this->db->connect()->query("SELECT * FROM referencias r LEFT JOIN medidas m ON r.refeMedi=m.mediId;");
+        
+            while($row = $query->fetch()){
+                $item = new Referencia();
+                
+                $item->refeId = $row['refeId'];
+                $item->refeNomb    = $row['refeNomb'];
+                $item->refeMedi  = $row['mediNomb'];
+                $item->refeFech  = $row['refeFech'];
+                $item->refeInact  = $row['refeInact'];
 
-            array_push($items, $item);
-        }
+                array_push($items, $item);
+            }
 
-        return $items;   
+            return $items;   
 
-    }catch(PDOException $e){
-        return [];
-    }  
- }
+        }catch(PDOException $e){
+            return [];
+        }  
+    }
 
 }
 

@@ -2,10 +2,11 @@
 
 class Categoria{
 
-    public $cateId;
+    
+    public $cateCodi;
     public $cateNomb;
     public $cateFech;
-    public $cateInact;
+    public $cateDesc;
 }
 
 ?>
