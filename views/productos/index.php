@@ -53,7 +53,7 @@
             
             <td>
               <button type="button" class="btn btn-primary">Editar</button>
-              <button type="button" class="btn btn-danger">Eliminar</button>
+              <!-- <button type="button" class="btn btn-danger">Eliminar</button> -->
             </td>
           </tr>
 
@@ -75,10 +75,16 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="form-horizontal" id="form1" action="  <?php echo constant('URL'); ?>productos/registrarProductos" method="POST">
+          <form class="form-horizontal" id="form1" action="<?php echo constant('URL'); ?>productos/registrarProductos" method="POST">
+           
+          <div class="form-group"> 
+                <label for="prodCodi">Código Producto</label><br>
+                <input type="text"  name="prodCodi" id="prodCodi" required>
+            </div>
+          
 
             <div class="form-group">
-              <label for="prodCodiCant">Nombre de la categoría:</label><br>
+              <label for="prodCodiCant">Categoría:</label><br>
               <select class="custom-select input-lg" id="prodCodiCant" name="prodCodiCant">
 
                 <option value="prodCodiCant">Seleccione Categoria:</option>
@@ -93,27 +99,35 @@
               </select>
             </div>
 
+            <div class="form-group"> 
+                <label for="prodNomb">Nombre Producto</label><br>
+                <input type="text" name="prodNomb" id="prodNomb" required>
+            </div>
+            <div class="form-group"> 
+                <label for="prodPrec">Precio</label><br>
+                <input type="text" name="prodPrec" id="prodPrec" required>
+            </div>
             <div class="form-group">
-              <label for="prodNomb">Nombre de la Referencia:</label><br>
-              <select class="custom-select" id="prodNomb" name="prodNomb">
-
-                <option value="prodNomb">Seleccione Referencia:</option>
-                <?php
-                      include_once 'models/referenciasModel.php';
-                      $instanciaReferencias = new referenciasModel();
-                      $objetoReferencias = $instanciaReferencias->consulta_referencia();
-                      foreach ($objetoReferencias as $p) { ?>
-                      <option value="<?php echo $p->refeId; ?>"><?php echo $p->refeNomb; ?></option> 
-             
-              <?php } ?>
-              </select>
+              <div class="input-group-prepend">
+                <span class="input-group-text">Detalle</span>
+                <textarea id="prodMode" name="prodMode" class="form-control" aria-label="With textarea"></textarea>
+              </div>
+            </div>
+            <div class="form-group"> 
+                <label for="prodMarc">Marca</label><br>
+                <input type="text" name="prodMarc" id="prodMarc" required>
+            </div>
+            <div class="form-group"> 
+                <label for="prodStock">Unidades Disponibles</label><br>
+                <input type="text" name="prodStock" id="prodStock" required>
             </div>
 
-            <div class="form-group">
-              <label for="prodNomb">Medida:</label><br>
-              <select class="custom-select" id="prodFech" name="prodFech">
 
-                <option value="prodFech">Seleccione Referencia:</option>
+            <div class="form-group">
+              <label for="prodNitProv">Proveedor:</label><br>
+              <select class="custom-select" id="prodNitProv" name="prodNitProv">
+
+                <option value="prodFech">Seleccione Proveedor:</option>
                 <?php
                       include_once 'models/medidasModel.php';
                       $instanciaMedidas = new medidasModel();
@@ -123,13 +137,6 @@
              
               <?php } ?>
               </select>
-            </div>
-
-            <div class="form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Descripción</span>
-                <textarea id="prodDesc" name="prodDesc" class="form-control" aria-label="With textarea"></textarea>
-              </div>
             </div>
 
             <div class="form-group">

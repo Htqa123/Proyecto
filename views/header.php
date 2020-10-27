@@ -31,7 +31,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>categorias">Categorias</a>
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>medidas">Medidas</a>
-          <a class="dropdown-item" href="<?php echo constant('URL'); ?>referencias">Referencias</a>
+          <a class="dropdown-item" href="<?php echo constant('URL'); ?>proveedores">Proveedores</a>
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>productos">Productos</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Inventarios</a>
@@ -59,17 +59,6 @@
           <div class="dropdown-divider"></div>
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Proveedores
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?php echo constant('URL'); ?>categorias">Consulta</a>
-          <a class="dropdown-item" href="#">Creae proveedores</a>
-        </div>
-      </li>
-      
-      
     </ul>
     <form class="form-inline my-2 my-lg-0" action="<?php echo constant('URL') ?>categoriasModel/filtrarCategorias" method="POST">
       <input class="form-control mr-sm-2" type="search" name="cateNomb" id="cateNomb" placeholder="" aria-label="Search">

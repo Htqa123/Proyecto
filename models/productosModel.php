@@ -3,13 +3,9 @@ include_once 'models/categoriasModel.php';
 $instanciaCategorias = new categoriasModel();
 $objetoCate = $instanciaCategorias->consulta_categorias();
 
-include_once 'models/referenciasModel.php';
-$instanciaReferencias = new referenciasModel();
-$objetoReferencias = $instanciaReferencias->consulta_referencia();
-
-include_once 'models/medidasModel.php';
-$instanciaMedidas = new medidasModel();
-$objetoMedidas = $instanciaMedidas->consulta_medidas();
+include_once 'models/proveedoresModel.php';
+$instanciaReferencias = new proveedoresModel();
+$objetoReferencias = $instanciaReferencias->consulta_proveedores();
 
 include_once 'models/producto.php';
 class ProductosModel extends Model{
@@ -110,7 +106,7 @@ class ProductosModel extends Model{
         $query = $this->db->connect()->query("SELECT * FROM referencias r LEFT JOIN medidas m ON r.refeMedi=m.mediId;");
         
             while($row = $query->fetch()){
-                $item = new Referencia();
+                $item = new Proveedor();
                 
                 $item->refeId = $row['refeId'];
                 $item->refeNomb    = $row['refeNomb'];

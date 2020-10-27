@@ -67,7 +67,7 @@
                     <td><?php echo $categorias->cateDesc; ?></td>
                     <td>
                     <button type="button" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
+                    <!-- <button type="button" class="btn btn-danger">Eliminar</button> -->
                     </td>
                 </tr>
 
@@ -100,6 +100,7 @@
                 <label for="cateNomb">Nombre de la categoría</label><br>
                 <input type="text" name="cateNomb" id="cateNomb" required>
             </div>
+            
             <div class="form-group"> 
                 <label for="cateNomb">Descripcion</label><br>
                 <input type="text" name="cateDesc" id="cateDesc" required>
