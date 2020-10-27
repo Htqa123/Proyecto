@@ -1,6 +1,7 @@
 <?php
 
 include_once 'models/categoria.php';
+
 class categoriasModel extends Model{
 
     public function __construct(){

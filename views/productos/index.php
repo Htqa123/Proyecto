@@ -16,7 +16,7 @@
 
   </div>
   <div class="form-control">
-    <button type="button" id="Btn-modal" class="btn btn-success" onClick='mostrarModal()'>Nueva Producto</button>
+    <button type="button" id="Btn-modal" class="btn btn-success" onClick='mostrarModal()'>Nuevo Producto</button>
 
   </div>
   <h1 class="center">Ver Producto</h1>
@@ -84,10 +84,10 @@
           
 
             <div class="form-group">
-              <label for="prodCodiCant">Categoría:</label><br>
-              <select class="custom-select input-lg" id="prodCodiCant" name="prodCodiCant">
+              <label for="prodCodiCant">Categorías:</label><br>
+              <select class="custom-select" id="prodCodiCant" name="prodCodiCant">
 
-                <option value="prodCodiCant">Seleccione Categoria:</option>
+                <option value="cateCodi">Seleccione Categoria:</option>
                 <?php
                       include_once 'models/categoriasModel.php';
                       $instanciaCategorias = new categoriasModel();
@@ -129,18 +129,18 @@
 
                 <option value="prodFech">Seleccione Proveedor:</option>
                 <?php
-                      include_once 'models/medidasModel.php';
-                      $instanciaMedidas = new medidasModel();
-                      $objetoMedidas = $instanciaMedidas->consulta_medidas();
-                      foreach ($objetoMedidas as $p) { ?>
-                      <option value="<?php echo $p->mediId; ?>"><?php echo $p->mediNomb; ?></option> 
+                      include_once 'models/proveedoresModel.php';
+                      $instanciaProv = new proveedoresModel();
+                      $objetoProv = $instanciaProv->consulta_proveedores();
+                      foreach ($objetoProv as $p) { ?>
+                      <option value="<?php echo $p->provNit; ?>"><?php echo $p->provNomb; ?></option> 
              
               <?php } ?>
               </select>
             </div>
 
             <div class="form-group">
-              <input type="submit" class="btn btn-default" value="Crear producto">
+              <input type="submit" class="btn btn-default" value="Guardar">
             </div>
 
 

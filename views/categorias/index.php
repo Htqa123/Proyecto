@@ -107,7 +107,7 @@
             </div>
             
             <div class="form-group">
-            <input type="submit" class="btn btn-default" value="Crear categoría">
+            <input type="submit" class="btn btn-default" value="Guardar">
            
             </div>
 

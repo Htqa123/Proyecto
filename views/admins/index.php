@@ -15,10 +15,10 @@
  
 </div>
 <div class="form-control">
-<button type="button" id="Btn-modal" class="btn btn-success" onClick='mostrarModal()'>Nueva Medida</button>
+<button type="button" id="Btn-modal" class="btn btn-success" onClick='mostrarModal()'>Nuevo administrador</button>
 
 </div>
-<h1 class="center">Ver Medidas</h1>
+<h1 class="center">Ver administradores</h1>
 <div style="background:blue" class="center"><?php echo $this->mensaje; ?></div>
     <div id="main-2" class="form-control" align="center">
         
@@ -26,27 +26,23 @@
         <table id="table1" align="center" border="4" style="width:auto; height:20px;" class="table table-condensed table-bordered table-hover">
             <thead>
                 <tr> 
-                    <th>#</th>
-                    <th>Medidas</th>
-                    <th>Descripción</th>
-                    <th>Fecha de creación</th>
-                    <th>Estado</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Contraseña</th>
                     <th>Operación</th> 
                 </tr>
             </thead>
             <tbody>
                 <?php
-                    include_once 'models/medida.php';
-                    foreach($this->medidas as $row){
-                        $medidas = new medidas();
-                        $medidas = $row; 
+                    include_once 'models/admin.php';
+                    foreach($this->admins as $row){
+                        $admins = new Admin();
+                        $admins = $row; 
                 ?>
                 <tr>
-                    <td><?php echo $medidas->mediId; ?></td>
-                    <td><?php echo $medidas->mediNomb; ?></td>
-                    <td><?php echo $medidas->mediDesc; ?></td>
-                    <td><?php echo $medidas->mediFech; ?></td>
-                    <td><?php echo $medidas->mediInact; ?></td>
+                    <td><?php echo $admins->admiNomb; ?></td>
+                    <td><?php echo $admins->admiFech; ?></td>
+                    <td><?php echo $admins->admiClav; ?></td>
                     <td>
                     <button type="button" class="btn btn-primary">Editar</button>
                     <button type="button" class="btn btn-danger">Eliminar</button>
@@ -65,28 +61,29 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Ingrese la medida</h5>
+        <h5 class="modal-title">Ingrese Administrador</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" id="form1" action=" <?php echo constant('URL'); ?>medidas/registrarMedidas" method="POST">
+        <form class="form-horizontal" id="form1" action=" <?php echo constant('URL'); ?>admins/registrar_Admins" method="POST">
            
             <div class="form-group"> 
-                <label for="mediNomb">Nombre de la medida</label><br>
-                <input type="text" name="mediNomb" id="mediNomb" required>
+                <label for="admiNomb">Nombre</label><br>
+                <input type="text" name="admiNomb" id="admiNomb" required>
             </div>
 
-            <div class="form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Descripción</span>
-             <textarea id="mediDesc" name="mediDesc" class="form-control" aria-label="With textarea"></textarea>
-             </div>
+
+            <div class="form-group"> 
+                <label for="admiClav">Passwor</label><br>
+                <input type="text" name="admiClav" id="admiClav" required>
             </div>
 
+            
+
             <div class="form-group">
-            <input type="submit" class="btn btn-default" value="Crear medida">
+            <input type="submit" class="btn btn-default" value="Guardar">
             </div>
            
         </form>

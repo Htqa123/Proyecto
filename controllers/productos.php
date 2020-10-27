@@ -6,7 +6,7 @@ class Productos extends Controller{
         parent::__construct();
         $this->view->Productos = [];
         $this->view->categorias = [];
-        $this->view->referencias = [];
+        $this->view->proveedores = [];
         $this->view->mensaje = "";
         
     }
@@ -16,7 +16,7 @@ class Productos extends Controller{
         $productos = $this->model->get();
         $this->view->productos = $productos;
         $categorias = $this->model->consulta_categorias();
-        $referencias = $this->model->consulta_referencia();
+        $proveedores = $this->model->consulta_proveedores();
         $this->view->render('productos/index');
        
         

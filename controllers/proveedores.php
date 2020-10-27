@@ -15,7 +15,6 @@ class Proveedores extends Controller
        
         $proveedores = $this->model->consulta_proveedores();
         $this->view->proveedores = $proveedores;
-        $proveedores = $this->model->consulta_proveedores();
         /////var_dump($medidas);
         $this->view->render('proveedores/index');
             

@@ -29,8 +29,8 @@
         <tr>
           <th>Nit</th>
           <th>Nombre</th>
-          <th>Dirección</th>
           <th>Fecha</th>
+          <th>Dirección</th>
           <th>Teléfono</th>
           <th>Pagina</th>
           <th>Operación</th>
@@ -45,8 +45,8 @@
         ?>
           <tr>
             <td><?php echo $proveedores->provNit; ?></td>
-            <td><?php echo $proveedores->provFech; ?></td>
             <td><?php echo $proveedores->provNomb;?></td>
+            <td><?php echo $proveedores->provFech; ?></td>  
             <td><?php echo $proveedores->provDire; ?></td>
             <td><?php echo $proveedores->provTele; ?></td>
             <td><?php echo $proveedores->provPagi; ?></td>
@@ -68,7 +68,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Ingrese la referencia</h5>
+          <h5 class="modal-title">Nuevo Proveedor</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -103,7 +103,7 @@
  
             <br>
             <div class="form-group">
-              <input type="submit" class="btn btn-default" value="Crear referencia">
+              <input type="submit" class="btn btn-default" value="Guardar">
             </div>
 
           </form>

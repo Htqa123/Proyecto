@@ -1,11 +1,12 @@
 <?php
+
 include_once 'models/categoriasModel.php';
 $instanciaCategorias = new categoriasModel();
 $objetoCate = $instanciaCategorias->consulta_categorias();
 
 include_once 'models/proveedoresModel.php';
-$instanciaReferencias = new proveedoresModel();
-$objetoReferencias = $instanciaReferencias->consulta_proveedores();
+$instanciaProv = new proveedoresModel();
+$objetoProv = $instanciaProv->consulta_proveedores();
 
 include_once 'models/producto.php';
 class ProductosModel extends Model{
@@ -34,7 +35,7 @@ class ProductosModel extends Model{
                 'prodImag' => $datos['prodImag'],
                 'admiNomb' => $datos['admiNomb']
                 ]);
-             var_dump($datos);
+            /// var_dump($datos);
             return true;
         }catch(PDOException $e){
             
@@ -80,13 +81,13 @@ class ProductosModel extends Model{
 
         try{
 
-           $query = $this->db->connect()->query("SELECT mediId, mediNomb FROM medidas WHERE mediId=mediId");
+           $query = $this->db->connect()->query("SELECT * FROM categorias WHERE cateCodi=cateCodi");
            
             while($row = $query->fetch()){
                 $item = new categoria();
                 
-                $item->mediId = $row['mediId'];
-                $item->mediNomb    = $row['mediNomb'];
+                $item->cateCodi = $row['cateCodi'];
+                $item->cateNomb    = $row['cateNomb'];
                 array_push($items, $item);
             }
 
@@ -97,22 +98,20 @@ class ProductosModel extends Model{
     }
 
 
-    public function consulta_referencia()
+    public function consulta_proveedores()
     {
         $items = [];
 
         try{
 
-        $query = $this->db->connect()->query("SELECT * FROM referencias r LEFT JOIN medidas m ON r.refeMedi=m.mediId;");
+        $query = $this->db->connect()->query("SELECT * FROM proveedores WHERE provNit= provNit");
         
             while($row = $query->fetch()){
                 $item = new Proveedor();
                 
-                $item->refeId = $row['refeId'];
-                $item->refeNomb    = $row['refeNomb'];
-                $item->refeMedi  = $row['mediNomb'];
-                $item->refeFech  = $row['refeFech'];
-                $item->refeInact  = $row['refeInact'];
+                $item->provNit = $row['provNit'];
+                $item->provNomb    = $row['provNomb'];
+               
 
                 array_push($items, $item);
             }

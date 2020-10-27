@@ -30,7 +30,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>categorias">Categorias</a>
-          <a class="dropdown-item" href="<?php echo constant('URL'); ?>medidas">Medidas</a>
+          <a class="dropdown-item" href="<?php echo constant('URL'); ?>admins">admin</a>
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>proveedores">Proveedores</a>
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>productos">Productos</a>
           <div class="dropdown-divider"></div>
