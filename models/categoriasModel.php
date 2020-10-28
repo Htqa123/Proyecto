@@ -30,7 +30,7 @@ class categoriasModel extends Model{
     
                $query = $this->db->connect()->query("SELECT *FROM categorias WHERE cateNomb LIKE % 
                :buscar % ");
-               
+                var_dump($query);
                 while($row = $query->fetch()){
                     $item = new Categoria();
                     
@@ -40,6 +40,7 @@ class categoriasModel extends Model{
                     $item->cateDesc  = $row['cateDesc'];
     
                     array_push($items, $item);
+                    var_dump($item);
                 }
     
                 return $items;

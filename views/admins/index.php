@@ -76,7 +76,7 @@
 
 
             <div class="form-group"> 
-                <label for="admiClav">Passwor</label><br>
+                <label for="admiClav">Password</label><br>
                 <input type="text" name="admiClav" id="admiClav" required>
             </div>
 

@@ -42,14 +42,15 @@ body{
     margin: 50px;
 }
 
-.center{
+.center {
     text-align: center
 }
 
 
 
-.error{
+.errores {
     color: #ac2323;
+    align-content: center;
 }
 
 #form1
@@ -144,11 +145,12 @@ body{
           cursor: pointer;
         
       }
-      #login1 input[type=text] {
+      #login1 input[type=text] 
+      {
         color: white;
       }
+    
     }
-
 @media (min-width: 1024px) {
       *{
         padding: 0;

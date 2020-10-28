@@ -43,7 +43,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?php echo constant('URL'); ?>categorias">Consultas</a>
-          <a class="dropdown-item" href="#">Nuevo</a>
+          <a class="dropdown-item" href="<?php echo constant('URL'); ?>main">Nuevo</a>
           <a class="dropdown-item" href="#">Reporte diario</a>
           <a class="dropdown-item" href="#">Reporte mensual</a>
           <div class="dropdown-divider"></div>
