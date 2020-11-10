@@ -1,49 +1,49 @@
 <?php
 
-include_once 'models/admin.php';
-class AdminsModel extends Model{
+class HomeModel extends Mysql
+{
+	
+	public function __construct()
+	{
+		parent::__construct();
+	}
 
-    public function __construct(){
-        parent::__construct();
-    }
+	// public function setUser(string $nombre, int $edad)
+	// {
+	// 	$query_insert = "INSERT INTO usuario(nombre,edad) VALUES(?,?)";
+	// 	$arrData =  array($nombre, $edad);
+	// 	$request_insert = $this->insert($query_insert,$arrData);
+	// 	return $request_insert;
+	// }
+	// public function getUser($id)
+	// {
+	// 	$sql= "SELECT * FROM usuario WHERE id = $id";
+	// 	$request = $this->select($sql);
+	// 	return $request;
+	// }
 
-    public function insert($datos){
-        // insertar datos en la BD
-        try{
-        $query = $this->db->connect()->prepare('INSERT INTO administrador (admiNomb, admiFech, admiClav)
-             VALUES(:admiNomb,:admiFech, :admiClav)');
-            $query->execute(['admiNomb' => $datos['admiNomb'], 'admiFech' => $datos['admiFech'], 'admiClav' => $datos['admiClav']]);
-            return true;
-        }catch(PDOException $e){
-            
-            return false;
-        }
-        
-    }
+	// public function updateUser(int $id, string $nombre, int $edad)
+	// {
+	// 	$sql= "UPDATE usuario SET nombre =?, edad = ?  WHERE id = $id";
+	// 	$arrData =  array($nombre, $edad);
+	// 	$request = $this->update($sql, $arrData);
+	// 	return $request;
+	// }
 
-    
-    public function consulta_Admins(){
-        $items = [];
+	// public function getUsers()
+	// {
+	// 	$sql = "SELECT * FROM usuario";
+	// 	$request = $this->select_all($sql);
+	// 	return $request;
+	// }
 
-        try{
+	// public function delUser($id)
+	// {
+	// 	$sql = "DELETE  FROM usuario WHERE id = $id";
+	// 	$request = $this->delete($sql);
+	// 	return $request;
+	// }
 
-           $query = $this->db->connect()->query("SELECT*FROM administrador");
-           
-            while($row = $query->fetch()){
-                $item = new Admin();
-                
-                $item->admiNomb = $row['admiNomb'];
-                $item->admiFech    = $row['admiFech'];
-                $item->admiClav  = $row['admiClav'];
-
-                array_push($items, $item);
-            }
-
-            return $items;
-        }catch(PDOException $e){
-            return [];
-        }
-    }
+	
 }
-
-?>
+  ?>

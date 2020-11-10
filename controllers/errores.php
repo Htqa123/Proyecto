@@ -1,15 +1,22 @@
 <?php
 
-class Errores extends Controller{
+/**
+ * 
+ */
+class Errores extends Controllers
+{
+	
+	public function __construct()
+	{
+		parent::__construct();
 
-    function __construct(){
+	}
+	public function notFound()
+	{
+		$this->views->getView($this,"Errores");
+	}	
+}
+$notFound = new Errores();
+$notFound->notFound();
 
-        parent::__construct();
-
-        $this->view->mensaje = "Lo sentimos hubo un error al tratar de cargar el sitio";
-        $this->view->render('errores/index');
-        }
-    }
-
-
-?>
+  ?>
