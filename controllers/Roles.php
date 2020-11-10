@@ -44,12 +44,12 @@ class Roles extends Controllers
 
               public function getRol( int $idrol)
               {
-                  $intIdrol = intval(strClean($idrol));
+                  $roleCodi = intval(strClean($idrol));
 
-                   if($intIdrol > 0)
+                   if($roleCodi > 0)
                       {
 
-       $arrData = $this->model->selectRol($intIdrol);
+       $arrData = $this->model->selectRol($roleCodi);
        if(empty($arrData))
            { 
 
@@ -69,18 +69,18 @@ class Roles extends Controllers
             public function setRol()
             {
                    
-                      $intIdrol = intval($_POST['idRol']);
-                            $strRol = strClean($_POST['txtNombre']);
-                            $strDescripcion = strClean($_POST['txtDescripcion']);
+                      $roleCodi = intval($_POST['idRol']);
+                            $roleNomb = strClean($_POST['txtNombre']);
+                            $roleDesc = strClean($_POST['txtDescripcion']);
                             $intStatus = intval($_POST['listStatus']);
                             
-                            if($intIdrol == 0)
+                            if($roleCodi == 0)
                             {
-                                $request_rol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
+                                $request_rol = $this->model->insertRol($roleNomb, $roleDesc, $intStatus);
                                 $option = 1;
 
                             }else{
-                                $request_rol = $this->model->updateRol($intIdrol, $strRol, $strDescripcion, $intStatus);
+                                $request_rol = $this->model->updateRol($roleCodi, $roleNomb, $roleDesc, $intStatus);
                                 $option = 2;
 
                             }
@@ -115,8 +115,8 @@ class Roles extends Controllers
             {
                 if($_POST){
 
-                    $intIdrol = intval($_POST['idrol']);
-                    $requestDelete =  $this->model->deleteRol($intIdrol);
+                    $roleCodi = intval($_POST['idrol']);
+                    $requestDelete =  $this->model->deleteRol($roleCodi);
                     if($requestDelete == 'ok'){
 
                         $arrResponse = array('status' => true, 'msg' => 'se ha eliminado con exito el rol');

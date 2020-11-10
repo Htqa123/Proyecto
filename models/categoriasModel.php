@@ -1,81 +1,104 @@
 <?php
 
-include_once 'models/categoria.php';
+    class CategoriasModel extends Mysql
+	{
+		public $intIdcate;
+		public $strcateNomb;
+		public $strcateDesc;
+		public $strcateFech;
+		public $intStatus;
+		
+		public function __construct()
+		{
+			parent::__construct();
+		}
 
-class categoriasModel extends Model{
+		 public function selectCategorias()
+		 {
+		 	$sql = "SELECT * FROM categorias WHERE status != 0";
+		 	$request = $this->select_all($sql);
+	        
+		 	return $request;
+		 }
 
-    public function __construct(){
-        parent::__construct();
-    }
+		 public function selectRol(int $cateCodi)
+		 {
+		 	$this->intIdcate = $cateCodi;
+		 	$sql = "SELECT * FROM categorias WHERE cateCodi = $this->intIdcate";
+		 	$request = $this->select($sql);
+		 	return $request;
 
-    public function insert($datos){
-        // insertar datos en la BD
-        try{
-            $query = $this->db->connect()->prepare('INSERT INTO categorias (cateCodi, cateNomb, cateFech, cateDesc) VALUES(:cateCodi, :cateNomb, :cateFech, :cateDesc)');
-            $query->execute(['cateCodi' => $datos['cateCodi'], 'cateNomb' => $datos['cateNomb'], 'cateFech' => $datos['cateFech'], 'cateDesc' => $datos['cateDesc']]);
-            return true;
-        }catch(PDOException $e){
-            
-            return false;
-        }
-        
-    }
+		 }
 
-    public function filtrarCategorias()
-    {
-        {
-            $items = [];
-    
-            try{
-    
-               $query = $this->db->connect()->query("SELECT *FROM categorias WHERE cateNomb LIKE % 
-               :buscar % ");
-                var_dump($query);
-                while($row = $query->fetch()){
-                    $item = new Categoria();
-                    
-                    $item->cateCodi = $row['cateCodi'];
-                    $item->cateNomb    = $row['cateNomb'];
-                    $item->cateFech  = $row['cateFech'];
-                    $item->cateDesc  = $row['cateDesc'];
-    
-                    array_push($items, $item);
-                    var_dump($item);
-                }
-    
-                return $items;
-            }catch(PDOException $e){
-                return [];
-            }
-        }
+		 public function insertRol(string $cateNomb, string $cateDesc, int $status, string $cateFech)
+		 {
+		 	$return = "";
+		 	$this->strcateNomb = $cateNomb;
+			$this->strcateDesc = $cateDesc;
+			$this->strcateFech = $cateFech;
+		 	$this->intStatus = $status;
 
-    }
+		 	$sql ="SELECT * FROM categorias WHERE cateCodi = '{$this->strcateNomb}' ";
+		 	$request = $this->select_all($sql);
 
-    
-    public function consulta_categorias()
-    {
-        $items = [];
+		 	if(empty($request))
+		 	{
 
-        try{
+		 	$query_insert = "INSERT INTO categorias (cateNomb,cateDesc,status, cateFech) VALUES(?,?,?,?)";
+		 	$arrData =  array($this->strcateNomb, $this->strcateDesc, $this->intStatus, $this->strcateFech);
+		 	$request_insert = $this->insert($query_insert,$arrData);
+		 	$return = $request_insert;
+		    }else{
+		    	$return = "exist";
 
-           $query = $this->db->connect()->query("SELECT *FROM categorias");
-           
-            while($row = $query->fetch()){
-                $item = new Categoria();
-                
-                $item->cateCodi = $row['cateCodi'];
-                $item->cateNomb    = $row['cateNomb'];
-                $item->cateFech  = $row['cateFech'];
-                $item->cateDesc  = $row['cateDesc'];
+		    }
+		    return $return;
+		 }
 
-                array_push($items, $item);
-            }
 
-            return $items;
-        }catch(PDOException $e){
-            return [];
-        }
-    }
-}
+		 public function updateRol(int $cateCodi, string $cateNomb, string $cateDesc, int $status, string $cateFech)
+		 {
+		 	$this->intIdcate = $cateCodi;
+		 	$this->strcateNomb = $cateNomb;
+			$this->strcateDesc = $cateDesc;
+			$this->strcateFech = $cateFech;
+		 	$this->intStatus = $status;
+
+		 	$sql ="SELECT * FROM categorias WHERE cateNomb = '$this->strcateNomb' AND cateCodi !=  $this->intIdcate ";
+		 	$request = $this->select_all($sql);
+
+		 	if(empty($request))
+		 	{
+
+		 	$sql = "UPDATE categorias SET cateNomb = ?, cateDesc = ?, status= ? WHERE cateCodi = $this->intIdcate";
+		 	$arrData =  array($this->strcateNomb, $this->strcateDesc, $this->intStatus);
+		 	$request = $this->update($sql,$arrData);
+		    }else{
+		    	$request = "exist";
+
+		    }
+		    return $request;
+		 }
+
+		 public function deleteRol(int $idrol)
+		 {
+		 	$this->intIdrol = $idrol;
+		 	$sql = "SELECT * FROM categorias WHERE cateCodi = $this->intIdcate ";
+		 	$request = $this->select_all($sql);
+		 	if(empty($request)){
+		 		$sql= "UPDATE categorias SET status = ? WHERE cateCodi = $this->intIdcate";
+		 		$arrData = array(0);
+		 		$request = $this->update($sql, $arrData);
+		 		if($request){
+		 			$request = 'ok';
+		 		}else{
+		 			$request = 'error';
+		 		}
+		 	}else{
+		 		$request = 'exist';
+		 	}
+		 	return $request;
+		 }	
+	}
 
 ?>

@@ -16,13 +16,14 @@
         <li class="treeview">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-users" aria-hidden="true"></i>
-                <span class="app-menu__label">Usuarios</span>
+                <span class="app-menu__label">Configuración</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="<?= base_url(); ?>/usuarios"><i class="icon fa fa-circle-o"></i>Usuarios</a></li>
             <li><a class="treeview-item" href="<?= base_url(); ?>/roles"><i class="icon fa fa-circle-o"></i>roles</a></li>
             <li><a class="treeview-item" href="<?= base_url(); ?>/permisos"><i class="icon fa fa-circle-o"></i>Permisos</a></li>
+            <li><a class="treeview-item" href="<?= base_url(); ?>/categorias"><i class="icon fa fa-circle-o"></i>Categorias</a></li>
           </ul>
         </li>
         
