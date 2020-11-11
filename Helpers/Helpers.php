@@ -6,29 +6,29 @@
     }
     function media()
     {
-      return BASE_URL."Assets/";
+      return BASE_URL."Public/";
     }
 
     function headerAdmin($data="")
     {
-      $view_header = "Views/Template/header_admin.php";
+      $view_header = "Views/Plantillas/header_admin.php";
       require_once ($view_header);
     }
 
     function footerAdmin($data="")
     {
-      $view_footer = "Views/Template/footer_admin.php";
+      $view_footer = "Views/Plantillas/footer_admin.php";
       require_once ($view_footer);
     }
     function navAdmin($data="")
     {
-      $view_nav = "Views/Template/nav_admin.php";
+      $view_nav = "Views/Plantillas/nav_admin.php";
       require_once ($view_nav);
     }
 
     function getModal(string $nameModal, $data)
     {
-      $view_modal = "Views/Template/Modal/{$nameModal}.php";
+      $view_modal = "Views/Plantillas/Modal/{$nameModal}.php";
       require_once ($view_modal);
     }
 

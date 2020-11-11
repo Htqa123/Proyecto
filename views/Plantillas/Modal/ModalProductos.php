@@ -1,5 +1,5 @@
 
-<div class="modal fade" id="ModalUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="ModalProductos" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header headerRegister">
@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">  
-        <form id="formUsuarios" name="formUsuarios">
+        <form id="formProductos" name="formProductos">
             <input type="hidden" id="idUsuario" name="idUsuario" class="form-horizontal" value="">
             <p class="text-primary">Todos los campos son obligatorios.</p>
              
@@ -40,14 +40,14 @@
                      <input type="email" class="form-control" id="txtEmail" name="txtEmail" required="">
                  </div>
              </div>
-             <div class="form-row">
-                 <div class="form-group col-md-4">
+             <div class="row">
+                 <div class="form-group col-md-6">
                      <label for="listRolid">Tipo usuarios</label>
-                     <select class="form-control" data-live-search="true" name="listRolid" id="listRolid" required></select>
+                     <select class="form-control" name="listRolid" id="listRolid" required></select>
                  </div>
-                 <div class="form-group col-md-4">
+                 <div class="form-group col-md-6">
                      <label for="listStatus">Status</label>
-                     <select class="form-control selectpicker"  id="listStatus" name="listStatus" required>
+                     <select class="form-control" id="listStatus" name="listStatus" required>
                          <option value="1">Activo</option>
                          <option value="2">Inactivo</option>
                      </select>
