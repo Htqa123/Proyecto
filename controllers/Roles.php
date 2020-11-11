@@ -12,7 +12,7 @@ class Roles extends Controllers
             {
                 $data['page_id'] = 3;
                 $data['page_tag'] = "Roles";
-                $data['page_title'] ="Roles <small> Tienda</small>";
+                $data['page_title'] ="Roles <small></small>";
                 $data['page_name'] = "Roles";
                 ///$data['page_content'] = "Informacion de la pagina";
                 $this->views->getView($this,"roles", $data);

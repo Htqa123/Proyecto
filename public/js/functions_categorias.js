@@ -1,6 +1,5 @@
-
+////cargar la tabla de la categoria
 var tableCategorias;
-
 
 document.addEventListener('DOMContentLoaded', function() {
 	tableCategorias = $('#tableCategorias').DataTable({
@@ -27,23 +26,24 @@ document.addEventListener('DOMContentLoaded', function() {
 		"order":[[0,"desc"]]
 	});
 
+////fin cargar la tabla de la categoria
 
-var formRol = document.querySelector("#formRol");
-formRol.onsubmit = function(e) {
+var formCategorias = document.querySelector("#formCategorias");
+formCategorias.onsubmit = function(e) {
 	e.preventDefault();
 
-   var intIdRol = document.querySelector('#idRol').value;
-	var strNombre = document.querySelector('#txtNombre').value;
-	var strDescripcion = document.querySelector('#txtDescripcion').value;
+    var intIdcate = document.querySelector('#cateCodi').value;
+	var strcateNomb = document.querySelector('#txtcateNomb').value;
+	var strcateDesc = document.querySelector('#txtcateDesc').value;
 	var intStatus = document.querySelector('#listStatus').value;
-	if(strNombre == '' || strDescripcion == '' || intStatus == '')
+	if(strcateNomb == '' || strcateDesc == '' || intStatus == '')
 	{
 		swal("Atención", "Todos los campos son obligatorios", "error");
 		return false;
 	}
 	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	var ajaxUrl =  base_url+'/Roles/setRol';
-	var formData = new FormData(formRol);
+	var ajaxUrl =  base_url+'/Categorias/setCategoria';
+	var formData = new FormData(formCategorias);
 	request.open("POST", ajaxUrl,true);
 	request.send(formData);
 	request.onreadystatechange = function() {
@@ -54,10 +54,10 @@ formRol.onsubmit = function(e) {
            
            if(objData.status)
            {
-           	$('#modalRol').modal("hide");
-           	formRol.reset();
-           	swal("Roles de usuario", objData.msg ,"success");
-           	tableRoles.api().ajax.reload(function() {
+           	$('#modalCategorias').modal("hide");
+           	formCategorias.reset();
+           	swal("Categoria de producto", objData.msg ,"success");
+           	tableCategorias.api().ajax.reload(function() {
              fntEditRol();
            	});
            }else{
@@ -70,18 +70,18 @@ formRol.onsubmit = function(e) {
 
 });
 
-$('#tableRoles').DataTable();
+$('#tableCategorias').DataTable();
 
 function openModal()
 {
-	document.querySelector('#idRol').value="";
+	document.querySelector('#cateCodi').value="";
 	document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister"); 
 	document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary"); 
 	document.querySelector('#btnText').innerHTML = "Guardar";
-	document.querySelector('#titleModal').innerHTML = "Nuevo Rol";
-	document.querySelector("#formRol").reset();
+	document.querySelector('#titleModal').innerHTML = "Nueva Categoría";
+	document.querySelector("#formCategorias").reset();
 
-	$('#modalRol').modal('show');
+	$('#modalCategorias').modal('show');
 }
 
 
@@ -92,18 +92,18 @@ window.addEventListener('load', function(){
 
 function fntEditRol(){
 
-	var btnEditRol = document.querySelectorAll(".btnEditRol");
-	 btnEditRol.forEach(function(btnEditRol) {
-		btnEditRol.addEventListener('click', function(){
+	var btnEditCate = document.querySelectorAll(".btnEditCate");
+	btnEditCate.forEach(function(btnEditCate) {
+		btnEditCate.addEventListener('click', function(){
 
-			document.querySelector('#titleModal').innerHTML = "Actualizar Rol";
+			document.querySelector('#titleModal').innerHTML = "Actualizar Categoría";
 			document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate"); 
 			document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
 			document.querySelector('#btnText').innerHTML = "Actualizar";
 
-         var idrol = this.getAttribute("rl");
+         var cateCodi = this.getAttribute("rl");
          var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	      var ajaxUrl =  base_url+'/Roles/getRol/'+idrol;
+	      var ajaxUrl =  base_url+'/Categorias/getCategoria/'+cateCodi;
 	      request.open("GET", ajaxUrl,true);
 	      request.send();
 
@@ -115,9 +115,9 @@ function fntEditRol(){
             var objData = JSON.parse(request.responseText);
             if(objData.status)
             {
-              document.querySelector("#idRol").value = objData.data.idrol;
-              document.querySelector("#txtNombre").value = objData.data.nombrerol;
-              document.querySelector("#txtDescripcion").value = objData.data.descripcion;
+              document.querySelector("#cateCodi").value = objData.data.cateCodi;
+              document.querySelector("#txtcateNomb").value = objData.data.cateNomb;
+              document.querySelector("#txtcateDesc").value = objData.data.cateDesc;
             
             if(objData.data.status == 1)
             {
@@ -131,7 +131,7 @@ function fntEditRol(){
                                <option value="2">Inactivo</option>
                                `;
            document.querySelector("#listStatus").innerHTML = htmlSelect;
-           $('#modalRol').modal('show');
+           $('#modalCategorias').modal('show');
            }else{
            	swal("Error", objData.msg , "Error");
            }
@@ -160,8 +160,8 @@ function fntDelRol(){
           	if(isConfirm)
           	{
        		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-       		var ajaxUrl = base_url+'/Roles/delRol/';
-       		var strData = "idrol="+idrol;
+       		var ajaxUrl = base_url+'/Categorias/delCategorias/';
+       		var strData = "cateCodi="+cateCodi;
        		request.open("POST", ajaxUrl, true);
        		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
        		request.sent(strData);
@@ -171,7 +171,7 @@ function fntDelRol(){
        				if(objData.status)
        				{
        					swal("Eliminar", objData.msg , "success");
-       					tableRoles.api().ajax.reload(function(){
+       					tableCategorias.api().ajax.reload(function(){
        						fntEditRol();
        						fntDelRol();
 

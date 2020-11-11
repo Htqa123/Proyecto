@@ -21,7 +21,7 @@
 		 	return $request;
 		 }
 
-		 public function selectRol(int $cateCodi)
+		 public function selectCategoria(int $cateCodi)
 		 {
 		 	$this->intIdcate = $cateCodi;
 		 	$sql = "SELECT * FROM categorias WHERE cateCodi = $this->intIdcate";
@@ -30,22 +30,21 @@
 
 		 }
 
-		 public function insertRol(string $cateNomb, string $cateDesc, int $status, string $cateFech)
+		 public function insertCategoria(string $cateNomb, string $cateDesc, int $status)
 		 {
 		 	$return = "";
 		 	$this->strcateNomb = $cateNomb;
 			$this->strcateDesc = $cateDesc;
-			$this->strcateFech = $cateFech;
 		 	$this->intStatus = $status;
 
-		 	$sql ="SELECT * FROM categorias WHERE cateCodi = '{$this->strcateNomb}' ";
+		 	$sql ="SELECT * FROM categorias WHERE cateNomb = '{$this->strcateNomb}' ";
 		 	$request = $this->select_all($sql);
 
 		 	if(empty($request))
 		 	{
 
-		 	$query_insert = "INSERT INTO categorias (cateNomb,cateDesc,status, cateFech) VALUES(?,?,?,?)";
-		 	$arrData =  array($this->strcateNomb, $this->strcateDesc, $this->intStatus, $this->strcateFech);
+		 	$query_insert = "INSERT INTO categorias (cateNomb,cateDesc,status) VALUES(?,?,?)";
+		 	$arrData =  array($this->strcateNomb, $this->strcateDesc, $this->intStatus);
 		 	$request_insert = $this->insert($query_insert,$arrData);
 		 	$return = $request_insert;
 		    }else{
@@ -56,12 +55,11 @@
 		 }
 
 
-		 public function updateRol(int $cateCodi, string $cateNomb, string $cateDesc, int $status, string $cateFech)
+		 public function updateCategoria(int $cateCodi, string $cateNomb, string $cateDesc, int $status)
 		 {
 		 	$this->intIdcate = $cateCodi;
 		 	$this->strcateNomb = $cateNomb;
 			$this->strcateDesc = $cateDesc;
-			$this->strcateFech = $cateFech;
 		 	$this->intStatus = $status;
 
 		 	$sql ="SELECT * FROM categorias WHERE cateNomb = '$this->strcateNomb' AND cateCodi !=  $this->intIdcate ";
