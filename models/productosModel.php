@@ -1,128 +1,102 @@
 <?php
 
-include_once 'models/categoriasModel.php';
-$instanciaCategorias = new categoriasModel();
-$objetoCate = $instanciaCategorias->consulta_categorias();
+    class ProductosModel extends Mysql
+	{
+		public $intIdcate;
+		public $strcateNomb;
+		public $strcateDesc;
+		public $strcateFech;
+		public $intStatus;
+		
+		public function __construct()
+		{
+			parent::__construct();
+		}
 
-include_once 'models/proveedoresModel.php';
-$instanciaProv = new proveedoresModel();
-$objetoProv = $instanciaProv->consulta_proveedores();
+		 public function selectCategorias()
+		 {
+		 	$sql = "SELECT * FROM categorias WHERE status != 0";
+		 	$request = $this->select_all($sql);
+	        
+		 	return $request;
+		 }
 
-include_once 'models/producto.php';
-class ProductosModel extends Model{
+		 public function selectCategoria(int $cateCodi)
+		 {
+		 	$this->intIdcate = $cateCodi;
+		 	$sql = "SELECT * FROM categorias WHERE cateCodi = $this->intIdcate";
+		 	$request = $this->select($sql);
+		 	return $request;
 
-    public function __construct(){
-        parent::__construct();
-    }
+		 }
 
-    public function insert($datos){
-        // insertar datos en la BD
-        try{
-    $query = $this->db->connect()->prepare('INSERT INTO productos (prodCodi, prodNomb, prodCodiCant,
-             prodFech, prodPrec, prodMode, prodMarc,prodStock,prodNitProv, prodImag,admiNomb)
-             VALUES(:prodCodi, :prodNomb, :prodCodiCant, :prodFech, :prodPrec, :prodMode, :prodMarc,
-             :prodStock, :prodNitProv, :prodImag, :admiNomb)');
-            $query->execute([
-                'prodCodi' => $datos['prodCodi'],
-                'prodNomb' => $datos['prodNomb'],
-                'prodCodiCant' => $datos['prodCodiCant'],
-                'prodFech'=> $datos['prodFech'],
-                'prodPrec' => $datos['prodPrec'],
-                'prodMode' => $datos['prodMode'],
-                'prodMarc' => $datos['prodMarc'],
-                'prodStock' => $datos['prodStock'],
-                'prodNitProv' => $datos['prodNitProv'],
-                'prodImag' => $datos['prodImag'],
-                'admiNomb' => $datos['admiNomb']
-                ]);
-            /// var_dump($datos);
-            return true;
-        }catch(PDOException $e){
-            
-            return false;
-        }
-        
-    }
+		 public function insertCategoria(string $cateNomb, string $cateDesc, int $status)
+		 {
+		 	$return = "";
+		 	$this->strcateNomb = $cateNomb;
+			$this->strcateDesc = $cateDesc;
+		 	$this->intStatus = $status;
 
-    
-    public function get(){
-        $items = [];
+		 	$sql ="SELECT * FROM categorias WHERE cateNomb = '{$this->strcateNomb}' ";
+		 	$request = $this->select_all($sql);
 
-        try{
+		 	if(empty($request))
+		 	{
 
-           $query = $this->db->connect()->query("SELECT * FROM productos");
-           
-            while($row = $query->fetch()){
-                $item = new Producto();
-                
-                $item->prodCodi = $row['prodCodi'];
-                $item->prodNomb    = $row['prodNomb'];
-                $item->prodCodiCant  = $row['prodCodiCant'];
-                $item->prodFech  = $row['prodFech'];
-                $item->prodPrec  = $row['prodPrec'];
-                $item->prodMode  = $row['prodMode'];
-                $item->prodMarc  = $row['prodMarc']; 
-                $item->prodStock  = $row['prodStock'];
-                $item->prodNitProv  = $row['prodNitProv'];
-                $item->prodImag  = $row['prodImag'];
-                $item->admiNomb  = $row['admiNomb'];
+		 	$query_insert = "INSERT INTO categorias (cateNomb,cateDesc,status) VALUES(?,?,?)";
+		 	$arrData =  array($this->strcateNomb, $this->strcateDesc, $this->intStatus);
+		 	$request_insert = $this->insert($query_insert,$arrData);
+		 	$return = $request_insert;
+		    }else{
+		    	$return = "exist";
 
-                array_push($items, $item);
-            }
-
-            return $items;
-        }catch(PDOException $e){
-            return [];
-        }
-    }
-
-    public function consulta_categorias(){
-        $items = [];
-
-        try{
-
-           $query = $this->db->connect()->query("SELECT * FROM categorias WHERE cateCodi=cateCodi");
-           
-            while($row = $query->fetch()){
-                $item = new categoria();
-                
-                $item->cateCodi = $row['cateCodi'];
-                $item->cateNomb    = $row['cateNomb'];
-                array_push($items, $item);
-            }
-
-            return $items;
-        }catch(PDOException $e){
-            return [];
-        }
-    }
+		    }
+		    return $return;
+		 }
 
 
-    public function consulta_proveedores()
-    {
-        $items = [];
+		 public function updateCategoria(int $cateCodi, string $cateNomb, string $cateDesc, int $status)
+		 {
+		 	$this->intIdcate = $cateCodi;
+		 	$this->strcateNomb = $cateNomb;
+			$this->strcateDesc = $cateDesc;
+		 	$this->intStatus = $status;
 
-        try{
+		 	$sql ="SELECT * FROM categorias WHERE cateNomb = '$this->strcateNomb' AND cateCodi !=  $this->intIdcate ";
+		 	$request = $this->select_all($sql);
 
-        $query = $this->db->connect()->query("SELECT * FROM proveedores WHERE provNit= provNit");
-        
-            while($row = $query->fetch()){
-                $item = new Proveedor();
-                
-                $item->provNit = $row['provNit'];
-                $item->provNomb    = $row['provNomb'];
-               
+		 	if(empty($request))
+		 	{
 
-                array_push($items, $item);
-            }
+		 	$sql = "UPDATE categorias SET cateNomb = ?, cateDesc = ?, status= ? WHERE cateCodi = $this->intIdcate";
+		 	$arrData =  array($this->strcateNomb, $this->strcateDesc, $this->intStatus);
+		 	$request = $this->update($sql,$arrData);
+		    }else{
+		    	$request = "exist";
 
-            return $items;   
+		    }
+		    return $request;
+		 }
 
-        }catch(PDOException $e){
-            return [];
-        }  
-    }
-
-}
+		 public function deleteRol(int $idrol)
+		 {
+		 	$this->intIdrol = $idrol;
+		 	$sql = "SELECT * FROM categorias WHERE cateCodi = $this->intIdcate ";
+		 	$request = $this->select_all($sql);
+		 	if(empty($request)){
+		 		$sql= "UPDATE categorias SET status = ? WHERE cateCodi = $this->intIdcate";
+		 		$arrData = array(0);
+		 		$request = $this->update($sql, $arrData);
+		 		if($request){
+		 			$request = 'ok';
+		 		}else{
+		 			$request = 'error';
+		 		}
+		 	}else{
+		 		$request = 'exist';
+		 	}
+		 	return $request;
+		 }	
+	}
 
 ?>
