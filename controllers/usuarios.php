@@ -17,6 +17,11 @@ class Usuarios extends Controllers
 		$this->views->getView($this,"usuarios", $data);
 	}
 	
+	public function setUsuario(){
+		dep($_POST);
+		die();
+	}
+	
 }
 
   ?>

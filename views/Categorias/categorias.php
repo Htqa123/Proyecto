@@ -41,4 +41,5 @@
           </div>
         </div>
     </main>
+    <script src="<?= media(); ?>/js/functions_categorias.js"></script>
   <?php footerAdmin($data); ?>

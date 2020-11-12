@@ -55,4 +55,5 @@
           </div>
         </div>
     </main>
+    <script src="<?= media(); ?>/js/functions_usuarios.js"></script>
   <?php footerAdmin($data); ?>

@@ -1,5 +1,34 @@
 ////cargar la tabla de la categoria
 
+window.addEventListener('DOMContentLoaded',function(){
+	var formUsuarios = document.querySelector("formUsuarios");
+	formUsuarios.onsubmit = function(e) {
+	  e.preventDefault();
+	  
+	  var strIdentificacion = document.querySelector('#txtIdentificacion').value;
+	  var strNombre = document.querySelector('#txtNombre').value;
+	  var strApellido = document.querySelector('#txtApellido').value;
+	  var strEmail = document.querySelector('#txtEmail').value;
+	  var strTelefono = document.querySelector('#txtTelefono').value;
+	  var intTipousuario = document.querySelector('#txtlistRolid').value;
+	  var strPassword = document.querySelector('#txtPassword').value;
+
+	  if(strIdentificacion =='' || strNombre== '' || strApellido =='' || strEmail =='' || strTelefono == '' || intTipousuario == '')
+	  {
+		  swal("Atencion", "Todos los campos son obligatorios", "error");
+		  return false;
+	  }
+		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+		var ajaxUrl = base_url+'/Usuarios/setUsuario';
+		var formData = new FormData(formUsuarios);
+		request.open("POST", ajaxUrl, true);
+		request.send(formData);
+	}
+
+}, false);
+
+
+
 window.addEventListener('load',function(){
 	fntRolesUsuarios();
 
@@ -17,7 +46,8 @@ function fntRolesUsuarios(){
 		if(request.readyState == 4 && request.status == 200){
 			document.querySelector('#listRolid').innerHTML = request.responseText;
 			document.querySelector('#listRolid').value = 1;
-			$('#listRolid').selectpicker('render');
+			$('#listRolid').selectpicker('refresh');
+			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
 		}
 	}
 }
@@ -36,180 +66,3 @@ function openModal()
 
 
 
-// var tableCategorias;
-
-// document.addEventListener('DOMContentLoaded', function() {
-// 	tableCategorias = $('#tableCategorias').DataTable({
-// 		"aProcessing":true,
-// 		"aServerSide":true,
-// 		"language": {
-// 			"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-// 		},
-// 		"ajax":{
-// 			"url": " "+base_url+"/Categorias/getCategorias",
-// 			"dataSrc":""
-// 		},
-// 		"columns":[
-// 		{"data":"cateCodi"},
-// 		{"data":"cateNomb"},
-// 		{"data":"cateFech"},
-// 		{"data":"cateDesc"},
-// 		{"data":"status"},
-// 		{"data":"options"}
-// 		],
-// 		"resonsieve":"true",
-// 		"bDestroy":true,
-// 		"iDisplayLength": 10,
-// 		"order":[[0,"desc"]]
-// 	});
-
-// ////fin cargar la tabla de la categoria
-
-// var formCategorias = document.querySelector("#formCategorias");
-// formCategorias.onsubmit = function(e) {
-// 	e.preventDefault();
-
-//     var intIdcate = document.querySelector('#cateCodi').value;
-// 	var strcateNomb = document.querySelector('#txtcateNomb').value;
-// 	var strcateDesc = document.querySelector('#txtcateDesc').value;
-// 	var intStatus = document.querySelector('#listStatus').value;
-// 	if(strcateNomb == '' || strcateDesc == '' || intStatus == '')
-// 	{
-// 		swal("Atención", "Todos los campos son obligatorios", "error");
-// 		return false;
-// 	}
-// 	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-// 	var ajaxUrl =  base_url+'/Categorias/setCategoria';
-// 	var formData = new FormData(formCategorias);
-// 	request.open("POST", ajaxUrl,true);
-// 	request.send(formData);
-
-// 	request.onreadystatechange = function() {
-		
-// 		if(request.readyState == 4 && request.status == 200)
-// 		{
-//            var objData = JSON.parse(request.responseText);
-           
-//            if(objData.status)
-//            {
-//            	$('#modalCategorias').modal("hide");
-//            	formCategorias.reset();
-//            	swal("Categoria de producto", objData.msg ,"success");
-//            	tableCategorias.api().ajax.reload(function() {
-//              fntEditRol();
-//            	});
-//            }else{
-//            	swal("Error", objData.msg , "Error");
-//            }
-// 		}
-		
-// 	}
-// }
-
-// });
-
-// $('#tableCategorias').DataTable();
-
-
-// window.addEventListener('load', function(){
-// 	fntEditRol();
-// 	fntDelRol();
-// }, false);
-
-// function fntEditRol(){
-
-// 	var btnEditCate = document.querySelectorAll(".btnEditCate");
-// 	btnEditCate.forEach(function(btnEditCate) {
-// 		btnEditCate.addEventListener('click', function(){
-
-// 			document.querySelector('#titleModal').innerHTML = "Actualizar Categoría";
-// 			document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate"); 
-// 			document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
-// 			document.querySelector('#btnText').innerHTML = "Actualizar";
-
-//          var cateCodi = this.getAttribute("rl");
-//          var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-// 	      var ajaxUrl =  base_url+'/Categorias/getCategoria/'+cateCodi;
-// 	      request.open("GET", ajaxUrl,true);
-// 	      request.send();
-
-// 	      request.onreadystatechange = function() {
-		
-// 			if(request.readyState == 4 && request.status == 200)
-// 			{
-            
-//             var objData = JSON.parse(request.responseText);
-//             if(objData.status)
-//             {
-//               document.querySelector("#cateCodi").value = objData.data.cateCodi;
-//               document.querySelector("#txtcateNomb").value = objData.data.cateNomb;
-//               document.querySelector("#txtcateDesc").value = objData.data.cateDesc;
-            
-//             if(objData.data.status == 1)
-//             {
-//             	var optionSelect = '<option value="1" selected class="notBlock">Activo</option>';
-//             }else{
-
-//             	var optionSelect = '<option value="2" selected class="notBlock">Inactivo</option>';
-//             }
-//             var htmlSelect = `${optionSelect}
-//                                <option value="1">activo</option>
-//                                <option value="2">Inactivo</option>
-//                                `;
-//            document.querySelector("#listStatus").innerHTML = htmlSelect;
-//            $('#modalCategorias').modal('show');
-//            }else{
-//            	swal("Error", objData.msg , "Error");
-//            }
-// 		   }
-//       }
-//    });
-// });
-// }
-
-// function fntDelRol(){
-// 	var btnDelRol = document.querySelectorAll(".btnDelRol");
-// 	btnDelRol.forEach(function(btnDelRol) {
-// 		btnDelRol.addEventListener('click', function(){
-//           var idrol = this.getAttribute("rl");
-          
-//           swal({
-//           	title: "Eliminar rol",
-//           	text: "¡Quieres eliminar realmente el rol",
-//           	type: "warning",
-//           	showCancelButton: true,
-//           	confirmButtonText: "Si eliminar",
-//           	cancelButtonText: "No cancelar",
-//           	closeOnConfirm: false,
-//           	closeOnCancel: true
-//           }, function(isConfirm){
-//           	if(isConfirm)
-//           	{
-//        		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-//        		var ajaxUrl = base_url+'/Categorias/delCategorias/';
-//        		var strData = "cateCodi="+cateCodi;
-//        		request.open("POST", ajaxUrl, true);
-//        		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//        		request.sent(strData);
-//        		request.onreadystatechange = function(){
-//        			if(request.readyState == 4 && request.status == 200){
-//        				var objData = JSON.parse(responseText);
-//        				if(objData.status)
-//        				{
-//        					swal("Eliminar", objData.msg , "success");
-//        					tableCategorias.api().ajax.reload(function(){
-//        						fntEditRol();
-//        						fntDelRol();
-
-//        					});
-//        				}else{
-//        					swal("Atencion", objData.msg , "error");
-//        				}
-//        			}
-//        		}
-//           }
-
-//           });
-// 		});
-// 	});
-// }

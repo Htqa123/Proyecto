@@ -41,13 +41,15 @@
                  </div>
              </div>
              <div class="form-row">
-                 <div class="form-group col-md-4">
+                 <div class="form-group col-md-6">
                      <label for="listRolid">Tipo usuarios</label>
-                     <select class="form-control" data-live-search="true" name="listRolid" id="listRolid" required></select>
+                     <select class="form-control" data-live-search="true"  name="listRolid" id="listRolid" required>
+                     <option value=""></option>
+                     </select>
                  </div>
-                 <div class="form-group col-md-4">
+                 <div class="form-group col-md-6">
                      <label for="listStatus">Status</label>
-                     <select class="form-control selectpicker"  id="listStatus" name="listStatus" required>
+                     <select class="form-control" class="selectpicker" data-style="btn-success"  id="listStatus" name="listStatus" required>
                          <option value="1">Activo</option>
                          <option value="2">Inactivo</option>
                      </select>
@@ -59,6 +61,7 @@
                      <input type="password" class="form-control" id="txtPassword" name="txtPassword" required="">
                  </div>
              </div>
+             
             <div class="tile-footer">
             <button class="btn btn-primary" id="btnActionForm" type="submit">
                 <span id="btnText">Guardar</span>

@@ -10,6 +10,8 @@
     <link rel="shortcut icon" href="<?= media();?>/images/favicon.ico">
     <title><?= $data['page_tag'] ?></title>
     <!-- Main CSS-->
+    
+
     <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/main.css">
     <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/bootstrap-select-main.css">
     <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/style.css">
