@@ -1,8 +1,6 @@
 <?php
 
-/**
- * 
- */
+
 class Errores extends Controllers
 {
 	
@@ -11,10 +9,12 @@ class Errores extends Controllers
 		parent::__construct();
 
 	}
+	
 	public function notFound()
 	{
 		$this->views->getView($this,"Errores");
-	}	
+	}
+
 }
 $notFound = new Errores();
 $notFound->notFound();

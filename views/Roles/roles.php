@@ -41,5 +41,7 @@
           </div>
         </div>
     </main>
-    <script src="<?= media(); ?>/js/functions_roles.js"></script>
+   
   <?php footerAdmin($data); ?>
+
+  <script src="<?= media(); ?>/js/functions_roles.js"></script>

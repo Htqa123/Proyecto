@@ -1,7 +1,8 @@
 ////cargar la tabla de la categoria
+var tableUsuarios;
 
-window.addEventListener('DOMContentLoaded',function(){
-	var formUsuarios = document.querySelector("formUsuarios");
+document.addEventListener('DOMContentLoaded',function(){
+	////var formUsuarios = document.querySelector("formUsuarios");
 	formUsuarios.onsubmit = function(e) {
 	  e.preventDefault();
 	  
@@ -9,11 +10,11 @@ window.addEventListener('DOMContentLoaded',function(){
 	  var strNombre = document.querySelector('#txtNombre').value;
 	  var strApellido = document.querySelector('#txtApellido').value;
 	  var strEmail = document.querySelector('#txtEmail').value;
-	  var strTelefono = document.querySelector('#txtTelefono').value;
-	  var intTipousuario = document.querySelector('#txtlistRolid').value;
+	  var intTelefono = document.querySelector('#txtTelefono').value;
+	  var intTipousuario = document.querySelector('#listRolid').value;
 	  var strPassword = document.querySelector('#txtPassword').value;
 
-	  if(strIdentificacion =='' || strNombre== '' || strApellido =='' || strEmail =='' || strTelefono == '' || intTipousuario == '')
+	  if(strIdentificacion == '' || strNombre  == '' || strApellido == '' || strEmail == '' || intTelefono == '' || intTipousuario == '')
 	  {
 		  swal("Atencion", "Todos los campos son obligatorios", "error");
 		  return false;
@@ -23,6 +24,22 @@ window.addEventListener('DOMContentLoaded',function(){
 		var formData = new FormData(formUsuarios);
 		request.open("POST", ajaxUrl, true);
 		request.send(formData);
+
+		request.onreadystatechange = function(){
+			if(request.readyState == 4 && request.status == 200){
+				var objData = JSON.parse(request.responseText);
+				if(objData.status){
+					$('#ModalUsuarios').modal('hide');
+					formElement.reset();
+					swal("Usuarios", objData.msg ,"success");
+					tableUsuarios.api().ajax.reload(function(){
+
+					});
+				}else{
+					swal("Error", objData.msg , "error");
+				}
+			}
+		}
 	}
 
 }, false);
@@ -46,7 +63,7 @@ function fntRolesUsuarios(){
 		if(request.readyState == 4 && request.status == 200){
 			document.querySelector('#listRolid').innerHTML = request.responseText;
 			document.querySelector('#listRolid').value = 1;
-			$('#listRolid').selectpicker('refresh');
+			// $('#listRolid').selectpicker('refresh');
 			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
 		}
 	}

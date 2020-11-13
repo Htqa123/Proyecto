@@ -53,7 +53,7 @@ formRol.onsubmit = function(e) {
            
            if(objData.status)
            {
-           	$('#modalRol').modal("hide");
+           	$('#ModalRoles').modal("hide");
            	formRol.reset();
            	swal("Roles de usuario", objData.msg ,"success");
            	tableRoles.api().ajax.reload(function() {
@@ -130,7 +130,7 @@ function fntEditRol(){
                                <option value="2">Inactivo</option>
                                `;
            document.querySelector("#listStatus").innerHTML = htmlSelect;
-           $('#modalRol').modal('show');
+           $('#ModalRoles').modal('show');
            }else{
            	swal("Error", objData.msg , "Error");
            }

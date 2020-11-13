@@ -1,11 +1,9 @@
-<?php
-
-class Admin {
-
-  public $admiNomb; 
-  public $admiFech; 
-  public $admiClav; 
-    
+<?php 
+class HomeModel extends Mysql
+{
+  public function __construct()
+  {
+    parent::__construct();
+  }
 }
-
 ?>

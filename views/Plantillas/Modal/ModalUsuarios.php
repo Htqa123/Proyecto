@@ -1,5 +1,5 @@
 
-<div class="modal fade" id="ModalUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="ModalUsuarios" name="ModalUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header headerRegister">
@@ -43,8 +43,7 @@
              <div class="form-row">
                  <div class="form-group col-md-6">
                      <label for="listRolid">Tipo usuarios</label>
-                     <select class="form-control" data-live-search="true"  name="listRolid" id="listRolid" required>
-                     <option value=""></option>
+                     <select class="form-control" data-live-search="true"  id="listRolid"  name="listRolid"  required> 
                      </select>
                  </div>
                  <div class="form-group col-md-6">
