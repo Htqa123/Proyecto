@@ -10,7 +10,7 @@ class Categorias extends Controllers
             }
             public function Categorias()
             {
-                $data['page_id'] = 4;
+               
                 $data['page_tag'] = "Categorias";
                 $data['page_title'] ="Categorias <small></small>";
                 $data['page_name'] = "Categorias";
@@ -32,9 +32,9 @@ class Categorias extends Controllers
                              }
 
                              $arrData[$i]['options'] = '<div class="text-center">
-                             <button class="btn btn-secondary btn-sm btnPermisoRol" rl="'.$arrData[$i]['cateCodi'].'" title="Permisos"><i class="fa fa-user-secret" aria-hidden="true"></i></button> 
-                             <button class="btn btn-primary btn-sm btnEditCate" rl="'.$arrData[$i]['cateCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                             <button class="btn btn-danger btn-sm btnDelCate" rl="'.$arrData[$i]['cateCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                             <button class="btn btn-secondary btn-sm btnPermisoRol" cc="'.$arrData[$i]['cateCodi'].'" title="Permisos"><i class="fa fa-user-secret" aria-hidden="true"></i></button> 
+                             <button class="btn btn-primary btn-sm btnEditCate" cc="'.$arrData[$i]['cateCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                             <button class="btn btn-danger btn-sm btnDelCate" cc="'.$arrData[$i]['cateCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
                              </div>';
                      }
 

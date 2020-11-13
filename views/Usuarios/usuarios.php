@@ -25,28 +25,15 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Nombre</th>
+                        <th>Nombres</th>
                         <th>Apellidos</th>
-                        <th>Eamil</th>
-                        <th>Teléfono</th>
                         <th>Rol</th>
-                        <th>Fecha</th>
                         <th>Status</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody> 
-                        <tr>
-                            <td>1</td>
-                            <td>Harold</td>
-                            <td>urueña</td>
-                            <td>haroldqyahoo.com</td>
-                            <td>646454</td>
-                            <td>adminisrador</td>
-                            <td>11/11/20202</td>
-                            <td>activo</td>
-                            <td></td>
-                        </tr>     
+                            
                     </tbody>
                   </table>
                 </div>

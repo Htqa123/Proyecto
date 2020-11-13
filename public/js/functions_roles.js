@@ -1,7 +1,6 @@
 
 var tableRoles;
 
-
 document.addEventListener('DOMContentLoaded', function() {
 	tableRoles = $('#tableRoles').DataTable({
 		"aProcessing":true,

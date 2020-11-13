@@ -3,6 +3,29 @@ var tableUsuarios;
 
 document.addEventListener('DOMContentLoaded',function(){
 	////var formUsuarios = document.querySelector("formUsuarios");
+	tableUsuarios = $('#tableUsuarios').DataTable({
+		"aProcessing":true,
+		"aServerSide":true,
+		"language": {
+			"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+		},
+		"ajax":{
+			"url": " "+base_url+"/Usuarios/getUsuarios",
+			"dataSrc":""
+		},
+		"columns":[
+		{"data":"idpersona"},
+		{"data":"nombres"},
+		{"data":"apellidos"},
+		{"data":"nombrerol"},
+		{"data":"status"},
+		{"data":"options"}
+		],
+		"resonsieve":"true",
+		"bDestroy":true,
+		"iDisplayLength": 10,
+		"order":[[0,"desc"]]
+	});
 	formUsuarios.onsubmit = function(e) {
 	  e.preventDefault();
 	  
@@ -48,7 +71,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 window.addEventListener('load',function(){
 	fntRolesUsuarios();
-
+    fntViewUsuario();
 }, false);
 
 
@@ -67,6 +90,21 @@ function fntRolesUsuarios(){
 			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
 		}
 	}
+}
+
+function fntViewUsuario() {
+	var btnViewUsuario = document.querySelectorAll(".btnViewUsuario");
+	btnViewUsuario.forEach(function(btnViewUsuario){
+		btnViewUsuario.addEventListener('click', function(){
+		var idpersona = this.getAttribute("us");
+		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+		var ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
+		request.open("GET", ajaxUrl, true);
+		request.send();
+		$('#ModalViewUser').modal('show');
+		});
+
+	});
 }
 
 function openModal()

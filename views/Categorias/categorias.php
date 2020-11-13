@@ -8,7 +8,7 @@
           <h1><i class="fa fa-user-plus" aria-hidden="true"></i> <?= $data['page_title'] ?>
           <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fa fa-plus-square" aria-hidden="true"></i>Nuevo</button>
           </h1>
-          <p>Aqui puedes crear un nuevo categoría</p>
+          <p>Aqui puedes crear un nueva categoría</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -26,7 +26,6 @@
                       <tr>
                         <th>#</th>
                         <th>Nombre</th>
-                        <th>Fecha</th> 
                         <th>Descripción</th>
                         <th>Status</th>
                         <th>Acciones</th>

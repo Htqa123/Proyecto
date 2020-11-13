@@ -53,7 +53,6 @@
 		    return $return;
 		 }
 
-
 		 public function updateRol(int $idrol, string $rol, string $descripcion, int $status)
 		 {
 		 	$this->intIdrol = $idrol;

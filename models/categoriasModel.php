@@ -30,10 +30,10 @@
 
 		 }
 
-		 public function insertCategoria(string $cateNomb, string $cateDesc, int $status)
+		 public function insertCategoria(string $cate, string $cateDesc, int $status)
 		 {
 		 	$return = "";
-		 	$this->strcateNomb = $cateNomb;
+		 	$this->strcateNomb = $cate;
 			$this->strcateDesc = $cateDesc;
 		 	$this->intStatus = $status;
 
@@ -53,7 +53,6 @@
 		    }
 		    return $return;
 		 }
-
 
 		 public function updateCategoria(int $cateCodi, string $cateNomb, string $cateDesc, int $status)
 		 {

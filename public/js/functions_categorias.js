@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		"columns":[
 		{"data":"cateCodi"},
 		{"data":"cateNomb"},
-		{"data":"cateFech"},
 		{"data":"cateDesc"},
 		{"data":"status"},
 		{"data":"options"}
@@ -101,7 +100,7 @@ function fntEditCate(){
 			document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
 			document.querySelector('#btnText').innerHTML = "Actualizar";
 
-         var cateCodi = this.getAttribute("rl");
+         var cateCodi = this.getAttribute("cc");
          var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	      var ajaxUrl =  base_url+'/Categorias/getCategoria/'+cateCodi;
 	      request.open("GET", ajaxUrl,true);
@@ -145,11 +144,11 @@ function fntDelCate(){
 	var btnDelCate = document.querySelectorAll(".btnDelCate");
 	btnDelCate.forEach(function(btnDelCate) {
 		btnDelCate.addEventListener('click', function(){
-          var idrol = this.getAttribute("rl");
+          var cateCodi = this.getAttribute("cc");
           
           swal({
-          	title: "Eliminar rol",
-          	text: "¡Quieres eliminar realmente el rol",
+          	title: "Eliminar Categoría",
+          	text: "¡Quieres eliminar realmente la categoría",
           	type: "warning",
           	showCancelButton: true,
           	confirmButtonText: "Si eliminar",
