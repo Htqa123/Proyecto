@@ -54,11 +54,11 @@ formCategorias.onsubmit = function(e) {
            
            if(objData.status)
            {
-           	$('#modalCategorias').modal("hide");
+           	$('#ModalCategorias').modal("hide");
            	formCategorias.reset();
            	swal("Categoria de producto", objData.msg ,"success");
            	tableCategorias.api().ajax.reload(function() {
-             fntEditRol();
+             fntEditCate();
            	});
            }else{
            	swal("Error", objData.msg , "Error");
@@ -81,16 +81,16 @@ function openModal()
 	document.querySelector('#titleModal').innerHTML = "Nueva Categoría";
 	document.querySelector("#formCategorias").reset();
 
-	$('#modalCategorias').modal('show');
+	$('#ModalCategorias').modal('show');
 }
 
 
 window.addEventListener('load', function(){
-	fntEditRol();
-	fntDelRol();
+	fntEditCate();
+	fntDelCate();
 }, false);
 
-function fntEditRol(){
+function fntEditCate(){
 
 	var btnEditCate = document.querySelectorAll(".btnEditCate");
 	btnEditCate.forEach(function(btnEditCate) {
@@ -131,7 +131,7 @@ function fntEditRol(){
                                <option value="2">Inactivo</option>
                                `;
            document.querySelector("#listStatus").innerHTML = htmlSelect;
-           $('#modalCategorias').modal('show');
+           $('#ModalCategorias').modal('show');
            }else{
            	swal("Error", objData.msg , "Error");
            }
@@ -141,10 +141,10 @@ function fntEditRol(){
 });
 }
 
-function fntDelRol(){
-	var btnDelRol = document.querySelectorAll(".btnDelRol");
-	btnDelRol.forEach(function(btnDelRol) {
-		btnDelRol.addEventListener('click', function(){
+function fntDelCate(){
+	var btnDelCate = document.querySelectorAll(".btnDelCate");
+	btnDelCate.forEach(function(btnDelCate) {
+		btnDelCate.addEventListener('click', function(){
           var idrol = this.getAttribute("rl");
           
           swal({
@@ -172,8 +172,8 @@ function fntDelRol(){
        				{
        					swal("Eliminar", objData.msg , "success");
        					tableCategorias.api().ajax.reload(function(){
-       						fntEditRol();
-       						fntDelRol();
+       						fntEditCate();
+       						fntDelCate();
 
        					});
        				}else{

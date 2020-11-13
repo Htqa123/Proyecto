@@ -34,7 +34,7 @@ class Categorias extends Controllers
                              $arrData[$i]['options'] = '<div class="text-center">
                              <button class="btn btn-secondary btn-sm btnPermisoRol" rl="'.$arrData[$i]['cateCodi'].'" title="Permisos"><i class="fa fa-user-secret" aria-hidden="true"></i></button> 
                              <button class="btn btn-primary btn-sm btnEditCate" rl="'.$arrData[$i]['cateCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                             <button class="btn btn-danger btn-sm btnDelRol" rl="'.$arrData[$i]['cateCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                             <button class="btn btn-danger btn-sm btnDelCate" rl="'.$arrData[$i]['cateCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
                              </div>';
                      }
 
