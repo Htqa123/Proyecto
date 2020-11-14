@@ -8,7 +8,7 @@
           <h1><i class="fa fa-user-plus" aria-hidden="true"></i> <?= $data['page_title'] ?>
           <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fa fa-plus-square" aria-hidden="true"></i>Nuevo</button>
           </h1>
-          <p>Aqui puedes crear un nuevo categoría</p>
+          <p>Aqui puedes crear un nuevo producto</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -21,14 +21,14 @@
             <div class="tile">
               <div class="tile-body">
                 <div class="table-responsive">
-                  <table class="table table-hover table-bordered" id="tableCategorias">
+                  <table class="table table-hover table-bordered" id="tableProductos">
                     <thead>
                       <tr>
                         <th>#</th>
+                        <th>Categoría</th> 
                         <th>Nombre</th>
-                        <th>Fecha</th> 
-                        <th>Descripción</th>
-                        <th>Status</th>
+                        <th>medida</th>
+                        <th>Cantidad</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
@@ -41,5 +41,6 @@
           </div>
         </div>
     </main>
-    <script src="<?= media(); ?>/js/functions_productos.js"></script>
+    
   <?php footerAdmin($data); ?>
+  <script src="<?= media(); ?>/js/functions_productos.js"></script>

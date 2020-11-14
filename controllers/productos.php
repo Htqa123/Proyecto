@@ -2,27 +2,75 @@
 
 class Productos extends Controllers
 {
+	
+	public function __construct()
+	{
+		parent::__construct();
 
-public function __construct()
-{
-    parent::__construct();
+	}
+	public function Productos()
+	{
+		$data['page_tag'] = "Productos";
+		$data['page_title'] ="Productos";
+		$data['page_name'] = "Productos";
+		////$data['page_content'] = "Informacion de la pagina"; sirve para dar informacion.
+		$this->views->getView($this,"Productos", $data);
+	}
+	
+	public function setProducto(){
+		///dep($_POST);
+		if($_POST) {
+		if(empty($_POST['listProd']) || empty($_POST['txtprodNomb']) ||
+		empty($_POST['txtprodPrec']) || empty($_POST['txtprodMode']) || empty($_POST['txtprodMarc']) ||
+		empty($_POST['txtprodStock']) || empty($_POST['listNitprov']) || empty($_POST['listStatus']) ) 
+		{
+			$arrResponse = array("status" => false, "msg" => 'Datos incorrectos');
 
-}
-public function Productos()
-{
-    $data['page_id'] = 4;
-    $data['page_tag'] = "Productos";
-    $data['page_title'] ="Productos <small></small>";
-    $data['page_name'] = "Productos";
-    ///$data['page_content'] = "Informacion de la pagina";
-    $this->views->getView($this,"productos", $data);
-}
+		}else{
+			$intlistProd = intval(strClean($_POST['listProd']));
+			$strprodNomb = ucwords (strClean($_POST['txtprodNomb']));
+			$intprodPrec = intval (strClean($_POST['txtprodPrec']));
+			$strprodMode = ucwords(strClean($_POST['txtprodMode']));
+			$strprodMarc = ucwords (strClean($_POST['txtprodMarc']));
+            $intprodStock = intval(strClean($_POST['txtprodStock']));
+            $intlistNitprov = intval(strClean($_POST['listNitprov']));
+			$intStatus = intval(strClean($_POST['listStatus']));
 
-    public function getCategorias()
-        {
-                $arrData = $this->model->selectCategorias();
+		
+			$request_user = $this->model->insertProductos(
+            $intlistProd,
+			$strprodNomb,
+			$intprodPrec,
+			$strprodMode,
+			$strprodMarc,
+			$intprodStock,
+			$intlistNitprov,
+			$intStatus);
 
-                for($i = 0; $i < count($arrData); $i++)
+			if($request_user > 1)
+			{
+				
+				$arrResponse = array('status' => true, 'msg' => 'Datos Guardados con éxito');
+
+			}else if($request_user == 'exist')
+			{
+				$arrResponse = array('status' => false, 'msg' => 'El Email o la identificacion ya existe, ingrese otro');
+
+			}else{
+
+				$arrResponse = array("status" => false, "msg" => 'No es posible guardar los datos');
+			}
+
+		}
+		echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+
+		}
+		die();
+	}
+	public function getProductos()
+	{
+		$arrData =$this->model->selectProductos();
+		for($i = 0; $i < count($arrData); $i++)
                 {
                     if($arrData[$i]['status'] == 1)
                     {
@@ -32,111 +80,33 @@ public function Productos()
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnPermisoRol" rl="'.$arrData[$i]['cateCodi'].'" title="Permisos"><i class="fa fa-user-secret" aria-hidden="true"></i></button> 
-                    <button class="btn btn-primary btn-sm btnEditCate" rl="'.$arrData[$i]['cateCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger btn-sm btnDelRol" rl="'.$arrData[$i]['cateCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['prodCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['prodCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['prodCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
                     </div>';
             }
 
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         die();
-    }
+	}
 
-    public function getCategoria( int $cateCodi)
-    {
-        $intIdcate = intval(strClean($cateCodi));
-
-        if($intIdcate > 0)
-            {
-
-$arrData = $this->model->selectCategoria($intIdcate);
-if(empty($arrData))
-{ 
-
-$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
-
-}else{
-
-$arrResponse = array('status' => true, 'data' => $arrData);
-
+	public function getUsuario(int $idpersona){
+	 $idpersona = intval($idpersona);
+	 if($idpersona > 0)
+	 {
+	  $arrData = $this->model->selectUsuario($idpersona);
+	  //dep($arrData);
+	  if(empty($arrData))
+	  {
+		  $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos');
+	  }else{
+		  $arrResponse = array('status' => true,  'data' => $arrData);
+	  }
+	  echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+	 }
+	 die();
+	}
+	
 }
 
-echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-                    }
-            die();
-    }
-
-public function setCategoria()
-{
-        
-        $intIdcate = intval($_POST['cateCodi']);
-        $strcateNomb = strClean($_POST['txtcateNomb']);
-        $strcateDesc = strClean($_POST['txtcateDesc']);
-        $intStatus = intval($_POST['listStatus']);
-        
-        if($intIdcate == 0)
-        {
-            $request_cate = $this->model->insertCategoria($strcateNomb, $strcateDesc, $intStatus);
-            $option = 1;
-
-        }else{
-            $request_cate = $this->model->updateCategoria($intIdcate, $strcateNomb, $strcateDesc, $intStatus);
-            $option = 2;
-
-        }
-
-        if($request_cate > 0)
-        {
-            if($option == 1)
-            {
-
-                $arrResponse = array('status' => true, 'msg' => 'Datos guardados con exito.');
-            }else{
-
-                $arrResponse = array('status' => true, 'msg' => 'Datos Actualizado con exito.');
-            }
-
-            }else if ($request_cate == 'exist') 
-            {
-
-            $arrResponse = array('status' => false, 'msg' => 'La categoía ya existe.');
-
-        }else{
-
-            $arrResponse = array("status" => false, "msg" => 'No se pueden guardar los datos.');
-
-        }
-
-    echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
-        die();
-}
-
-public function delCategoria()
-{
-    if($_POST){
-
-        $intIdcate = intval($_POST['cateCodi']);
-        $requestDelete =  $this->model->deleteCategoria($intIdcate);
-        if($requestDelete == 'ok'){
-
-            $arrResponse = array('status' => true, 'msg' => 'se ha eliminado con exito la categoría');
-
-        }elseif ($requestDelete == 'exist') {
-
-            $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar el categoría');
-
-        }else{
-
-            $arrResponse = array('status' => false, 'msg' => 'Error al tratar de eliminar la categoría');
-
-        }
-
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-    }
-
-    die();
-}
-
-}
-
-?>
+  ?>

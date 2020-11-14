@@ -47,6 +47,12 @@
             </a>
         </li>
         <li>
+            <a class="app-menu__item" href="<?= base_url(); ?>/proveedores">
+                <i class="app-menu__icon fa fa-check-circle" aria-hidden="true"></i>
+                <span class="app-menu__label">Proveedores</span>
+            </a>
+        </li>
+        <li>
             <a class="app-menu__item" href="<?= base_url(); ?>/logout">
                 <i class="app-menu__icon fa fa-sign-in" aria-hidden="true"></i>
                 <span class="app-menu__label">Logout</span>

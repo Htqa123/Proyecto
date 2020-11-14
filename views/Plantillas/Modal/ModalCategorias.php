@@ -12,7 +12,7 @@
         <div class="tile">
               <div class="tile-body">
                 <form id="formCategorias" name="formCategorias">
-                  <input type="hidden" id="cateCodi" name="cateCodi" value="">
+                  <input type="hidden" id="idCategoria" name="idCategoria" value="">
                   <div class="form-group">
                     <label for="control-label">Nombre</label>
                     <input class="form-control" id="txtcateNomb" name="txtcateNomb" type="text"  placeholder="Nombre de la cotegoría" required=""/>

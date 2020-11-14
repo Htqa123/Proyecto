@@ -1,6 +1,6 @@
 <?php
  headerAdmin($data); 
- getModal('ModalCategorias', $data);
+ getModal('ModalUsuarios', $data);
  ?>
     <main class="app-content">
       <div class="app-title">
@@ -8,11 +8,11 @@
           <h1><i class="fa fa-user-plus" aria-hidden="true"></i> <?= $data['page_title'] ?>
           <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fa fa-plus-square" aria-hidden="true"></i>Nuevo</button>
           </h1>
-          <p>Aqui puedes crear un nueva categoría</p>
+          <p>Aqui puedes crear un nuevo proveedor</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="<?= base_url(); ?>/categorias"><?= $data['page_title'] ?></a></li>
+          <li class="breadcrumb-item"><a href="<?= base_url(); ?>/proveedores"><?= $data['page_title'] ?></a></li>
         </ul>
       </div>
       
@@ -21,17 +21,19 @@
             <div class="tile">
               <div class="tile-body">
                 <div class="table-responsive">
-                  <table class="table table-hover table-bordered" id="tableCategorias">
+                  <table class="table table-hover table-bordered" id="tableUsuarios">
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Rol</th>
                         <th>Status</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
-                    <tbody>      
+                    <tbody> 
+                            
                     </tbody>
                   </table>
                 </div>
@@ -40,6 +42,6 @@
           </div>
         </div>
     </main>
-  
+    
   <?php footerAdmin($data); ?>
-  <script src="<?= media(); ?>/js/functions_categorias.js"></script>
+  <script src="<?= media(); ?>/js/functions_usuarios.js"></script>

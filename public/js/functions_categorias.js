@@ -1,4 +1,4 @@
-////cargar la tabla de la categoria
+
 var tableCategorias;
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -25,13 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		"order":[[0,"desc"]]
 	});
 
-////fin cargar la tabla de la categoria
 
 var formCategorias = document.querySelector("#formCategorias");
 formCategorias.onsubmit = function(e) {
 	e.preventDefault();
 
-    var intIdcate = document.querySelector('#cateCodi').value;
+    var intIdRol = document.querySelector('#idCategoria').value;
 	var strcateNomb = document.querySelector('#txtcateNomb').value;
 	var strcateDesc = document.querySelector('#txtcateDesc').value;
 	var intStatus = document.querySelector('#listStatus').value;
@@ -55,9 +54,9 @@ formCategorias.onsubmit = function(e) {
            {
            	$('#ModalCategorias').modal("hide");
            	formCategorias.reset();
-           	swal("Categoria de producto", objData.msg ,"success");
+           	swal("Roles de usuario", objData.msg ,"success");
            	tableCategorias.api().ajax.reload(function() {
-             fntEditCate();
+             fntEditCategorias();
            	});
            }else{
            	swal("Error", objData.msg , "Error");
@@ -73,7 +72,7 @@ $('#tableCategorias').DataTable();
 
 function openModal()
 {
-	document.querySelector('#cateCodi').value="";
+	document.querySelector('#idCategoria').value="";
 	document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister"); 
 	document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary"); 
 	document.querySelector('#btnText').innerHTML = "Guardar";
@@ -85,24 +84,24 @@ function openModal()
 
 
 window.addEventListener('load', function(){
-	fntEditCate();
-	fntDelCate();
+	fntEditCategorias();
+	fntDelCategoria();
 }, false);
 
-function fntEditCate(){
+function fntEditCategorias(){
 
-	var btnEditCate = document.querySelectorAll(".btnEditCate");
-	btnEditCate.forEach(function(btnEditCate) {
-		btnEditCate.addEventListener('click', function(){
+	var btnEditCategorias = document.querySelectorAll(".btnEditCategorias");
+	btnEditCategorias.forEach(function(btnEditCategorias) {
+		btnEditCategorias.addEventListener('click', function(){
 
 			document.querySelector('#titleModal').innerHTML = "Actualizar Categoría";
 			document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate"); 
 			document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
 			document.querySelector('#btnText').innerHTML = "Actualizar";
 
-         var cateCodi = this.getAttribute("cc");
+         var idCategorias = this.getAttribute("cc");
          var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	      var ajaxUrl =  base_url+'/Categorias/getCategoria/'+cateCodi;
+	      var ajaxUrl =  base_url+'/categorias/getCategoria/'+idCategorias;
 	      request.open("GET", ajaxUrl,true);
 	      request.send();
 
@@ -114,9 +113,10 @@ function fntEditCate(){
             var objData = JSON.parse(request.responseText);
             if(objData.status)
             {
-              document.querySelector("#cateCodi").value = objData.data.cateCodi;
+              document.querySelector("#idCategoria").value = objData.data.cateCodi;
               document.querySelector("#txtcateNomb").value = objData.data.cateNomb;
-              document.querySelector("#txtcateDesc").value = objData.data.cateDesc;
+			  document.querySelector("#txtcateDesc").value = objData.data.cateDesc;
+			  document.querySelector("#listStatus").value = objData.data.status;
             
             if(objData.data.status == 1)
             {
@@ -140,15 +140,15 @@ function fntEditCate(){
 });
 }
 
-function fntDelCate(){
-	var btnDelCate = document.querySelectorAll(".btnDelCate");
-	btnDelCate.forEach(function(btnDelCate) {
-		btnDelCate.addEventListener('click', function(){
-          var cateCodi = this.getAttribute("cc");
+function fntDelCategoria(){
+	var btnDelcategoria = document.querySelectorAll(".btnDelcategoria");
+	btnDelcategoria.forEach(function(btnDelcategoria) {
+		btnDelcategoria.addEventListener('click', function(){
+          var idCategoria = this.getAttribute("rl");
           
           swal({
-          	title: "Eliminar Categoría",
-          	text: "¡Quieres eliminar realmente la categoría",
+          	title: "Eliminar rol",
+          	text: "¡Quieres eliminar realmente el rol",
           	type: "warning",
           	showCancelButton: true,
           	confirmButtonText: "Si eliminar",
@@ -160,7 +160,7 @@ function fntDelCate(){
           	{
        		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
        		var ajaxUrl = base_url+'/Categorias/delCategorias/';
-       		var strData = "cateCodi="+cateCodi;
+       		var strData = "iidCategoriadrol="+idCategoria;
        		request.open("POST", ajaxUrl, true);
        		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
        		request.sent(strData);
@@ -170,9 +170,9 @@ function fntDelCate(){
        				if(objData.status)
        				{
        					swal("Eliminar", objData.msg , "success");
-       					tableCategorias.api().ajax.reload(function(){
-       						fntEditCate();
-       						fntDelCate();
+       					tableRoles.api().ajax.reload(function(){
+       						fntEditCategorias();
+       						fntDelCategoria();
 
        					});
        				}else{

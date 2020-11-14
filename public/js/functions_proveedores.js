@@ -1,24 +1,24 @@
 ////cargar la tabla de la categoria
-var tableProductos;
+var tableUsuarios;
 
 document.addEventListener('DOMContentLoaded',function(){
 	////var formUsuarios = document.querySelector("formUsuarios");
-	tableProductos = $('#tableProductos').DataTable({
+	tableUsuarios = $('#tableUsuarios').DataTable({
 		"aProcessing":true,
 		"aServerSide":true,
 		"language": {
 			"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
 		},
 		"ajax":{
-			"url": " "+base_url+"/Productos/getProductos",
+			"url": " "+base_url+"/Usuarios/getUsuarios",
 			"dataSrc":""
 		},
 		"columns":[
-		{"data":"prodCodi"},
-		{"data":"prodCodiCate"},
-		{"data":"prodNomb"},
-		{"data":"prodMode"},
-		{"data":"prodStock"},
+		{"data":"idpersona"},
+		{"data":"nombres"},
+		{"data":"apellidos"},
+		{"data":"nombrerol"},
+		{"data":"status"},
 		{"data":"options"}
 		],
 		"resonsieve":"true",
@@ -26,29 +26,24 @@ document.addEventListener('DOMContentLoaded',function(){
 		"iDisplayLength": 10,
 		"order":[[0,"desc"]]
 	});
-
-	////insertar productos
-	
 	formUsuarios.onsubmit = function(e) {
 	  e.preventDefault();
 	  
-	  var intlistProd = document.querySelector('#listProd').value;
-	  var strprodNomb = document.querySelector('#txtprodNomb').value;
-	  var intprodPrec = document.querySelector('#txtprodPrec').value;
-	  var strprodMode = document.querySelector('#txtprodMode').value;
-	  var strprodMarc = document.querySelector('#txtprodMarc').value;
-	  var intprodStock = document.querySelector('#txtprodStock').value;
-	  var intlistNitprov = document.querySelector('#listNitprov').value;
-	  var intStatus = document.querySelector('#listStatus').value;
+	  var strIdentificacion = document.querySelector('#txtIdentificacion').value;
+	  var strNombre = document.querySelector('#txtNombre').value;
+	  var strApellido = document.querySelector('#txtApellido').value;
+	  var strEmail = document.querySelector('#txtEmail').value;
+	  var intTelefono = document.querySelector('#txtTelefono').value;
+	  var intTipousuario = document.querySelector('#listRolid').value;
+	  var strPassword = document.querySelector('#txtPassword').value;
 
-	  if(intlistProd == '' || strprodNomb  == '' || intprodPrec == '' || 
-	  strprodMode == '' || strprodMarc =='' || intprodStock == '' || intlistNitprov == ''|| intStatus== '')
+	  if(strIdentificacion == '' || strNombre  == '' || strApellido == '' || strEmail == '' || intTelefono == '' || intTipousuario == '')
 	  {
 		  swal("Atencion", "Todos los campos son obligatorios", "error");
 		  return false;
 	  }
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-		var ajaxUrl = base_url+'/Productos/setProducto';
+		var ajaxUrl = base_url+'/Usuarios/setUsuario';
 		var formData = new FormData(formUsuarios);
 		request.open("POST", ajaxUrl, true);
 		request.send(formData);
@@ -57,7 +52,7 @@ document.addEventListener('DOMContentLoaded',function(){
 			if(request.readyState == 4 && request.status == 200){
 				var objData = JSON.parse(request.responseText);
 				if(objData.status){
-					$('#ModalUsuarios').modal('hide');
+					$('#ModalProveedor').modal('hide');
 					formElement.reset();
 					swal("Usuarios", objData.msg ,"success");
 					tableUsuarios.api().ajax.reload(function(){
@@ -80,10 +75,9 @@ window.addEventListener('load', function(){
 	fntEditUsuario();
 }, false);
 
-///funcion para cargar select 
 
 function fntRolesUsuarios(){
-	var ajaxUrl = base_url+'/Categorias/getSelectCategorias';
+	var ajaxUrl = base_url+'/Roles/getSelectRoles';
 	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	request.open("GET", ajaxUrl, true);
 	request.send();
@@ -91,8 +85,8 @@ function fntRolesUsuarios(){
 	request.onreadystatechange = function() {
 		
 		if(request.readyState == 4 && request.status == 200){
-			document.querySelector('#listProd').innerHTML = request.responseText;
-			document.querySelector('#listProd').value = 1;
+			document.querySelector('#listRolid').innerHTML = request.responseText;
+			document.querySelector('#listRolid').value = 1;
 			// $('#listRolid').selectpicker('refresh');
 			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
 		}
@@ -169,7 +163,7 @@ function fntEditUsuario() {
 		}
 	}
 		
-	$('#ModalUsuarios').modal('show');
+	$('#ModalProveedor').modal('show');
 
 			
 	}
@@ -189,7 +183,7 @@ function openModal()
 	document.querySelector('#titleModal').innerHTML = "Nuevo usuario";
 	document.querySelector("#formUsuarios").reset();
 
-	$('#ModalUsuarios').modal('show');
+	$('#ModalProveedor').modal('show');
 }
 
 

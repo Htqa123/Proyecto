@@ -29,3 +29,10 @@
 .notBlock{
 	display: none;
 }
+.app-header__logo{
+	color: black;
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: 200%;
+}
+
+

@@ -1,9 +1,9 @@
 
-<div class="modal fade" id="ModalUsuarios" name="ModalUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="ModalProveedor" name="ModalProveedor" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header headerRegister">
-        <h5 class="modal-title" id="titleModal">Nuevo producto</h5>
+        <h5 class="modal-title" id="titleModal">Nuevo Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -14,41 +14,36 @@
             <p class="text-primary">Todos los campos son obligatorios.</p>
              
              <div class="form-row">
-              <div class="form-group col-md-6">
-                     <label for="listProd">Categoía</label>
-                     <select class="form-control" data-live-search="true"  id="listProd"  name="listProd"  required> 
-                     </select>
-                 </div>
                  <div class="form-group col-md-6">
-                     <label for="txtprodNomb">Nombre producto</label>
-                     <input type="text" class="form-control" id="txtprodNomb" name="txtprodNomb" required="">
+                     <label for="txtIdentificacion">Identificacion</label>
+                     <input type="text" class="form-control" id="txtIdentificacion" name="txtIdentificacion" required="">
                  </div>
              </div>
 
              <div class="form-row">
                  <div class="form-group col-md-6">
-                     <label for="txtprodPrec">Precio</label>
-                     <input type="text" class="form-control" id="txtprodPrec" name="txtprodPrec" required="">
+                     <label for="txtNombre">Nombre</label>
+                     <input type="text" class="form-control" id="txtNombre" name="txtNombre" required="">
                  </div>
                  <div class="form-group col-md-6">
-                     <label for="txtprodMode">Detalle</label>
-                     <input type="text" class="form-control" id="txtprodMode" name="txtprodMode" required="">
-                 </div>
-             </div>
-             <div class="form-row">
-                 <div class="form-group col-md-6">
-                     <label for="txtprodMarc">Marca</label>
-                     <input type="text" class="form-control" id="txtprodMarc" name="txtprodMarc" required="">
-                 </div>
-                 <div class="form-group col-md-6">
-                     <label for="txtprodStock">Cantidad</label>
-                     <input type="text" class="form-control" id="txtprodStock" name="txtprodStock" required="">
+                     <label for="txtApellido">Apellidos</label>
+                     <input type="text" class="form-control" id="txtApellido" name="txtApellido" required="">
                  </div>
              </div>
              <div class="form-row">
                  <div class="form-group col-md-6">
-                     <label for="listNitprov">Nit proveedor</label>
-                     <select class="form-control" data-live-search="true"  id="listNitprov"  name="listNitprov"  required> 
+                     <label for="txtTelefono">Teléfono</label>
+                     <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" required="">
+                 </div>
+                 <div class="form-group col-md-6">
+                     <label for="txtEmail">Email</label>
+                     <input type="email" class="form-control" id="txtEmail" name="txtEmail" required="">
+                 </div>
+             </div>
+             <div class="form-row">
+                 <div class="form-group col-md-6">
+                     <label for="listRolid">Tipo usuarios</label>
+                     <select class="form-control" data-live-search="true"  id="listRolid"  name="listRolid"  required> 
                      </select>
                  </div>
                  <div class="form-group col-md-6">
@@ -58,7 +53,14 @@
                          <option value="2">Inactivo</option>
                      </select>
                  </div>
-             </div> 
+             </div>
+             <div class="form-row">
+                 <div class="form-group col-md-6">
+                     <label for="txtPassword">Password</label>
+                     <input type="password" class="form-control" id="txtPassword" name="txtPassword" required="">
+                 </div>
+             </div>
+             
             <div class="tile-footer">
             <button class="btn btn-primary" id="btnActionForm" type="submit">
                 <span id="btnText">Guardar</span>

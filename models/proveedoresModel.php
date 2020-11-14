@@ -1,71 +1,83 @@
-<?php
+<?php 
+class ProveedoresModel extends Mysql
+{
+  private $intIdUsuario;
+  private $strIdentificacion;
+  private $strNombre;
+  private $strApellido;
+  private $intTelefono;
+  private $strEmail;
+  private $strPassword;
+  private $strToken;
+  private $intTipoId;
+  private $intStatus;
+  
+  public function __construct()
+  {
+    parent::__construct();
+  }
+  public function insertUsuario(string $identificacion, string $nombre, 
+  string $apellido, int $telefono, string $email, string $password, int $tipoid, int $status){
+   
+    $this->strIdentificacion = $identificacion;
+    $this->strNombre = $nombre;
+    $this->strApellido = $apellido;
+    $this->intTelefono = $telefono;
+    $this->strEmail = $email;
+    $this->strPassword = $password;
+    $this->intTipoId = $tipoid;
+    $this->intStatus = $status;
+    $return = 0;
 
-/////var_dump($objetomedidas);
-include_once 'models/proveedor.php';
-
-class proveedoresModel extends Model{
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function insert($datos)
-    {
-        // insertar datos en la BD
-        try{
-            $query = $this->db->connect()->prepare('INSERT INTO proveedores (provNit, provFech, 
-            provNomb, provDire, provTele,provPagi)
-             VALUES(:provNit, :provFech, :provNomb, :provDire, :provTele, :provPagi)');
-            $query->execute([
-                'provNit' => $datos['provNit'],
-                'provFech' => $datos['provFech'],
-                'provNomb' => $datos['provNomb'],
-                'provDire' => $datos['provDire'],
-                'provTele' => $datos['provTele'],
-                'provPagi' => $datos['provPagi']
-                    ]);
-            return true;
-           /// echo $_POST['refeMedi'];
-        }catch(PDOException $e)
-        {
-            
-            return false;
-        }
-        
-    }
-
+    $sql = "SELECT * FROM personas WHERE email_user =
+    '{$this->strEmail}' OR identificacion = '{$this->strIdentificacion}' ";
+    $request = $this->select_all($sql);
     
-    public function consulta_proveedores()
-    {
-        $items = [];
-
-        try
-        {
-
-           $query = $this->db->connect()->query("SELECT * FROM proveedores");
-           
-            while($row = $query->fetch()){
-                $item = new Proveedor();
-                
-                $item->provNit = $row['provNit'];
-                $item->provFech    = $row['provFech'];
-                $item->provNomb  = $row['provNomb'];
-                $item->provDire  = $row['provDire'];
-                $item->provTele  = $row['provTele'];
-                $item->provPagi  = $row['provPagi'];
-
-                array_push($items, $item);
-            }
-
-            return $items;   
-
-        }
-        catch(PDOException $e)
-        {
-            return [];
-        } 
+    if(empty($request)){
+      $query_insert = "INSERT INTO personas (identificacion, nombres, apellidos,telefono,
+      email_user, password, rolid, status) value(?,?,?,?,?,?,?,?)";
+      $arrData = array(
+        $this->strIdentificacion,
+        $this->strNombre,
+        $this->strApellido,
+        $this->intTelefono,
+        $this->strEmail,
+        $this->strPassword,
+        $this->intTipoId,
+        $this->intStatus
+      );
+      $request_insert = $this->insert($query_insert, $arrData);
+      $return = $request_insert;
+    }else{
+      $return ="exist";
     }
-    
+    return $return;
+  } 
+
+  public function selectUsuarios()
+  {
+    $sql ="SELECT p.idpersona, p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user,
+    p.status, r.nombrerol
+    FROM personas p
+    INNER JOIN roles r
+    ON p.rolid = r.idrol
+    WHERE p.status != 0";
+    $request = $this->select_all($sql);
+    return $request;
+
+  }
+  public function selectUsuario(int $idpersona)
+  {
+    $this->intIdUsuario = $idpersona;
+    $sql ="SELECT p.idpersona, p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user,
+    p.status, r.nombrerol, r.idrol, DATE_FORMAT(p.Fech, '%d-%m-%Y') as fechaRegistro
+    FROM personas p
+    INNER JOIN roles r
+    ON p.rolid = r.idrol
+    WHERE p.idpersona = $this->intIdUsuario";
+    ///echo $sql;exit; 
+    $request = $this->select($sql);
+    return $request;
+  }
 }
 ?>
