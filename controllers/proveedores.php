@@ -65,9 +65,9 @@ class Proveedores extends Controllers
 		}
 		die();
 	}
-	public function getUsuarios()
+	public function getProveedores()
 	{
-		$arrData =$this->model->selectUsuarios();
+		$arrData =$this->model->selectProveedores();
 		for($i = 0; $i < count($arrData); $i++)
                 {
                     if($arrData[$i]['status'] == 1)
@@ -78,9 +78,9 @@ class Proveedores extends Controllers
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['idpersona'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
-                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['idpersona'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['idpersona'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['provCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['provCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['provCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
                     </div>';
             }
 
@@ -104,6 +104,21 @@ class Proveedores extends Controllers
 	 }
 	 die();
 	}
+
+/////metodo para extraer provedores	
+
+	public function getSelectProveedores(){
+        $htmlOptions = "";
+        $arrData = $this->model->selectProveedores();
+        if(count($arrData) > 0){
+            for($i=0; $i < count($arrData); $i++){
+                $htmlOptions .= '<option value="'.$arrData[$i]['provCodi'].'">'.$arrData[$i]['provNomb'].'</option>';
+            }
+        }
+        echo $htmlOptions;
+        die();
+    }
+    
 	
 }
 

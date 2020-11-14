@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded',function(){
 		},
 		"columns":[
 		{"data":"prodCodi"},
-		{"data":"prodCodiCate"},
+		{"data":"cateNomb"},
 		{"data":"prodNomb"},
 		{"data":"prodMode"},
 		{"data":"prodStock"},
@@ -75,14 +75,15 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 window.addEventListener('load', function(){
-	fntRolesUsuarios();
+	fntSelectCategoria();
 	fntViewUsuario();
 	fntEditUsuario();
+	fntSelectProveedores();
 }, false);
 
-///funcion para cargar select 
+///funcion para cargar select categorias
 
-function fntRolesUsuarios(){
+function fntSelectCategoria(){
 	var ajaxUrl = base_url+'/Categorias/getSelectCategorias';
 	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	request.open("GET", ajaxUrl, true);
@@ -93,6 +94,24 @@ function fntRolesUsuarios(){
 		if(request.readyState == 4 && request.status == 200){
 			document.querySelector('#listProd').innerHTML = request.responseText;
 			document.querySelector('#listProd').value = 1;
+			// $('#listRolid').selectpicker('refresh');
+			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
+		}
+	}
+}
+///funcion para cargar select  provvedores
+
+function fntSelectProveedores(){
+	var ajaxUrl = base_url+'/Proveedores/getSelectProveedores';
+	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+	request.open("GET", ajaxUrl, true);
+	request.send();
+
+	request.onreadystatechange = function() {
+		
+		if(request.readyState == 4 && request.status == 200){
+			document.querySelector('#listNitprov').innerHTML = request.responseText;
+			document.querySelector('#listNitprov').value = 1;
 			// $('#listRolid').selectpicker('refresh');
 			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
 		}
@@ -178,6 +197,10 @@ function fntEditUsuario() {
 		});
 	});
 }
+
+
+
+
 
 
 function openModal()

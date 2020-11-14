@@ -63,7 +63,7 @@ class ProductosModel extends Mysql
     FROM productos p
     INNER JOIN categorias c
     ON p.prodCodiCate = c.cateCodi
-    WHERE p.status != 0";
+    WHERE p.status != 0" ;
     $request = $this->select_all($sql);
     return $request;
   }

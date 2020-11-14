@@ -3,48 +3,42 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header headerRegister">
-        <h5 class="modal-title" id="titleModal">Nuevo Usuario</h5>
+        <h5 class="modal-title" id="titleModal">Nuevo proveedor</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">  
-        <form id="formUsuarios" name="formUsuarios">
-            <input type="hidden" id="idUsuario" name="idUsuario" class="form-horizontal" value="">
+        <form id="formProveedor" name="formProveedor">
+            <input type="hidden" id="idproveedor" name="idproveedor" class="form-horizontal" value="">
             <p class="text-primary">Todos los campos son obligatorios.</p>
              
              <div class="form-row">
                  <div class="form-group col-md-6">
-                     <label for="txtIdentificacion">Identificacion</label>
-                     <input type="text" class="form-control" id="txtIdentificacion" name="txtIdentificacion" required="">
+                     <label for="txtprovNit">Nit proveedor</label>
+                     <input type="text" class="form-control" id="txtprovNit" name="txtprovNit" required="">
+                 </div>
+                 <div class="form-group col-md-6">
+                     <label for="txtprovNomb">Nombre proveedor</label>
+                     <input type="text" class="form-control" id="txtprovNomb" name="txtprovNomb" required="">
                  </div>
              </div>
 
-             <div class="form-row">
+             <div class="form-row">       
                  <div class="form-group col-md-6">
-                     <label for="txtNombre">Nombre</label>
-                     <input type="text" class="form-control" id="txtNombre" name="txtNombre" required="">
+                     <label for="txtprovDire">Dirección</label>
+                     <input type="text" class="form-control" id="txtprovDire" name="txtprovDire" required="">
                  </div>
                  <div class="form-group col-md-6">
-                     <label for="txtApellido">Apellidos</label>
-                     <input type="text" class="form-control" id="txtApellido" name="txtApellido" required="">
-                 </div>
-             </div>
-             <div class="form-row">
-                 <div class="form-group col-md-6">
-                     <label for="txtTelefono">Teléfono</label>
-                     <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" required="">
-                 </div>
-                 <div class="form-group col-md-6">
-                     <label for="txtEmail">Email</label>
-                     <input type="email" class="form-control" id="txtEmail" name="txtEmail" required="">
+                     <label for="txtprovTele">Teléfono</label>
+                     <input type="text" class="form-control" id="txtprovTele" name="txtprovTele" required="">
                  </div>
              </div>
              <div class="form-row">
+                 
                  <div class="form-group col-md-6">
-                     <label for="listRolid">Tipo usuarios</label>
-                     <select class="form-control" data-live-search="true"  id="listRolid"  name="listRolid"  required> 
-                     </select>
+                     <label for="txtprovEmail">Email</label>
+                     <input type="email" class="form-control" id="txtprovEmail" name="txtprovEmail" required="">
                  </div>
                  <div class="form-group col-md-6">
                      <label for="listStatus">Status</label>
@@ -54,12 +48,13 @@
                      </select>
                  </div>
              </div>
-             <div class="form-row">
-                 <div class="form-group col-md-6">
-                     <label for="txtPassword">Password</label>
-                     <input type="password" class="form-control" id="txtPassword" name="txtPassword" required="">
-                 </div>
-             </div>
+             <div class="form-row">     
+             <div class="form-group col-md-6">
+                    <label for="control-label">Descripción</label>
+                    <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="2" placeholder="Descripción del rol" required="">
+                    </textarea>
+            </div>  
+            </div>  
              
             <div class="tile-footer">
             <button class="btn btn-primary" id="btnActionForm" type="submit">

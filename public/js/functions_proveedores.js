@@ -1,23 +1,22 @@
 ////cargar la tabla de la categoria
-var tableUsuarios;
+var tableproveedores;
 
 document.addEventListener('DOMContentLoaded',function(){
 	////var formUsuarios = document.querySelector("formUsuarios");
-	tableUsuarios = $('#tableUsuarios').DataTable({
+	tableproveedores = $('#tableproveedores').DataTable({
 		"aProcessing":true,
 		"aServerSide":true,
 		"language": {
 			"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
 		},
 		"ajax":{
-			"url": " "+base_url+"/Usuarios/getUsuarios",
+			"url": " "+base_url+"/Proveedores/getProveedores",
 			"dataSrc":""
 		},
 		"columns":[
-		{"data":"idpersona"},
-		{"data":"nombres"},
-		{"data":"apellidos"},
-		{"data":"nombrerol"},
+		{"data":"provNit"},
+		{"data":"provNomb"},
+		{"data":"provTele"},
 		{"data":"status"},
 		{"data":"options"}
 		],
@@ -26,6 +25,9 @@ document.addEventListener('DOMContentLoaded',function(){
 		"iDisplayLength": 10,
 		"order":[[0,"desc"]]
 	});
+
+
+
 	formUsuarios.onsubmit = function(e) {
 	  e.preventDefault();
 	  
@@ -70,28 +72,13 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 window.addEventListener('load', function(){
-	fntRolesUsuarios();
+	fntSelectProveedores();
 	fntViewUsuario();
 	fntEditUsuario();
 }, false);
 
 
-function fntRolesUsuarios(){
-	var ajaxUrl = base_url+'/Roles/getSelectRoles';
-	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	request.open("GET", ajaxUrl, true);
-	request.send();
 
-	request.onreadystatechange = function() {
-		
-		if(request.readyState == 4 && request.status == 200){
-			document.querySelector('#listRolid').innerHTML = request.responseText;
-			document.querySelector('#listRolid').value = 1;
-			// $('#listRolid').selectpicker('refresh');
-			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
-		}
-	}
-}
 
 function fntViewUsuario() {
 	var btnViewUsuario = document.querySelectorAll(".btnViewUsuario");
@@ -173,15 +160,16 @@ function fntEditUsuario() {
 	});
 }
 
+//////abre el modal para crear provvedor
 
 function openModal()
 {
-	document.querySelector('#idUsuario').value="";
+	document.querySelector('#idproveedor').value="";
 	document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister"); 
 	document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary"); 
 	document.querySelector('#btnText').innerHTML = "Guardar";
-	document.querySelector('#titleModal').innerHTML = "Nuevo usuario";
-	document.querySelector("#formUsuarios").reset();
+	document.querySelector('#titleModal').innerHTML = "Nuevo Proveedor";
+	document.querySelector("#formProveedor").reset();
 
 	$('#ModalProveedor').modal('show');
 }

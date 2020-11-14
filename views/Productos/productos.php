@@ -26,8 +26,8 @@
                       <tr>
                         <th>#</th>
                         <th>Categoría</th> 
-                        <th>Nombre</th>
-                        <th>medida</th>
+                        <th>Nombre producto</th>
+                        <th>Detalle</th>
                         <th>Cantidad</th>
                         <th>Acciones</th>
                       </tr>

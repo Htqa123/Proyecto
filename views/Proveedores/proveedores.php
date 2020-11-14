@@ -1,6 +1,6 @@
 <?php
  headerAdmin($data); 
- getModal('ModalUsuarios', $data);
+ getModal('ModalProveedores', $data);
  ?>
     <main class="app-content">
       <div class="app-title">
@@ -21,13 +21,12 @@
             <div class="tile">
               <div class="tile-body">
                 <div class="table-responsive">
-                  <table class="table table-hover table-bordered" id="tableUsuarios">
+                  <table class="table table-hover table-bordered" id="tableproveedores">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Rol</th>
+                        <th>Nit</th>
+                        <th>Nombre Proveedor</th>
+                        <th>Teléfono</th>
                         <th>Status</th>
                         <th>Acciones</th>
                       </tr>
@@ -44,4 +43,4 @@
     </main>
     
   <?php footerAdmin($data); ?>
-  <script src="<?= media(); ?>/js/functions_usuarios.js"></script>
+  <script src="<?= media(); ?>/js/functions_proveedores.js"></script>

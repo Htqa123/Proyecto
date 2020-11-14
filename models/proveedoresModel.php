@@ -54,14 +54,9 @@ class ProveedoresModel extends Mysql
     return $return;
   } 
 
-  public function selectUsuarios()
+  public function selectProveedores()
   {
-    $sql ="SELECT p.idpersona, p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user,
-    p.status, r.nombrerol
-    FROM personas p
-    INNER JOIN roles r
-    ON p.rolid = r.idrol
-    WHERE p.status != 0";
+    $sql ="SELECT * FROM proveedores where provCodi =provCodi";
     $request = $this->select_all($sql);
     return $request;
 
