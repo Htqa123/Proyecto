@@ -78,7 +78,7 @@
 <div class="modal fade" id="ModalViewUser"  tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header primary" style="background-color:#009688" color:#FFF">
+      <div class="modal-header primary" style="background-color:#009688">
         <h5 class="modal-title" id="titleModal">Datos del usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -89,35 +89,35 @@
         <tbody>
             <tr>
                 <td>Identificacion</td>
-                <td Id=celidentificacion></td>
+                <td id=celIdentificacion></td>
             </tr>
             <tr>
                <td>Nombres</td>
-                <td Id=celNombres></td>
+                <td id=celNombres></td>
             </tr>
             <tr>
                 <td>Apellidos</td>
-                <td Id=celApellidos></td>
+                <td id=celApellidos></td>
             </tr>
             <tr>
                 <td>Teléfono</td>
-                <td Id=celidentificacion></td>
+                <td id=celTelefono></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td Id=celTeléfono></td>
+                <td id=celEmail></td>
             </tr>
             <tr>
                 <td>Tipo usuario</td>
-                <td Id=celTipoUsuario></td>
+                <td id=celTipoUsuario></td>
             </tr>
             <tr>
                 <td>Estado</td>
-                <td Id=celEstado></td>
+                <td id=celEstado></td>
             </tr>
             <tr>
                 <td>Fech registro</td>
-                <td Id=celFechRegistro></td>
+                <td id=celFechaRegistro></td>
             </tr>
         </tbody>
        </table>

@@ -18,29 +18,29 @@ class Categorias extends Controllers
                 $this->views->getView($this,"categorias", $data);
             }
             
-             public function getCategorias()
-                 {
-                         $arrData = $this->model->selectCategorias();
+    public function getCategorias()
+        {
+                $arrData = $this->model->selectCategorias();
 
-                         for($i = 0; $i < count($arrData); $i++)
-                         {
-                             if($arrData[$i]['status'] == 1)
-                             {
-                                 $arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
-                             }else{
-                                 $arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
-                             }
+                for($i = 0; $i < count($arrData); $i++)
+                {
+                    if($arrData[$i]['status'] == 1)
+                    {
+                        $arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
+                    }else{
+                        $arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
+                    }
 
-                             $arrData[$i]['options'] = '<div class="text-center">
-                             <button class="btn btn-secondary btn-sm btnPermisoRol" cc="'.$arrData[$i]['cateCodi'].'" title="Permisos"><i class="fa fa-user-secret" aria-hidden="true"></i></button> 
-                             <button class="btn btn-primary btn-sm btnEditCate" cc="'.$arrData[$i]['cateCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                             <button class="btn btn-danger btn-sm btnDelCate" cc="'.$arrData[$i]['cateCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
-                             </div>';
-                     }
+                    $arrData[$i]['options'] = '<div class="text-center">
+                    <button class="btn btn-secondary btn-sm btnPermisoRol" cc="'.$arrData[$i]['cateCodi'].'" title="Permisos"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-primary btn-sm btnEditCate" cc="'.$arrData[$i]['cateCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger btn-sm btnDelCate" cc="'.$arrData[$i]['cateCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                    </div>';
+            }
 
-                 echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
-                 die();
-             }
+        echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 
               public function getCategoria( int $cateCodi)
               {

@@ -78,7 +78,7 @@ class Usuarios extends Controllers
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['idpersona'].'" title="Ver usuario"><i class="far fa-eye" aria-hidden="true"></i></button> 
+                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['idpersona'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
                     <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['idpersona'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                     <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['idpersona'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
                     </div>';
@@ -87,10 +87,22 @@ class Usuarios extends Controllers
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         die();
 	}
-	public function getUsuario(int $idpersona){
-		echo $idpersona;
-		die();
 
+	public function getUsuario(int $idpersona){
+	 $idpersona = intval($idpersona);
+	 if($idpersona > 0)
+	 {
+	  $arrData = $this->model->selectUsuario($idpersona);
+	  //dep($arrData);
+	  if(empty($arrData))
+	  {
+		  $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos');
+	  }else{
+		  $arrResponse = array('status' => true,  'data' => $arrData);
+	  }
+	  echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+	 }
+	 die();
 	}
 	
 }

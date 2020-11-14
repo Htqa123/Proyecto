@@ -66,5 +66,18 @@ class UsuariosModel extends Mysql
     return $request;
 
   }
+  public function selectUsuario(int $idpersona)
+  {
+    $this->intIdUsuario = $idpersona;
+    $sql ="SELECT p.idpersona, p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user,
+    p.status, r.nombrerol, r.idrol, DATE_FORMAT(p.Fech, '%d-%m-%Y') as fechaRegistro
+    FROM personas p
+    INNER JOIN roles r
+    ON p.rolid = r.idrol
+    WHERE p.idpersona = $this->intIdUsuario";
+    ///echo $sql;exit; 
+    $request = $this->select($sql);
+    return $request;
+  }
 }
 ?>
