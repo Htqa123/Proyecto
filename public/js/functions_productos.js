@@ -102,7 +102,7 @@ function fntSelectCategoria(){
 ///funcion para cargar select  provvedores
 
 function fntSelectProveedores(){
-	var ajaxUrl = base_url+'/Proveedores/getSelectProveedores';
+	var ajaxUrl = base_url+'/Proveedores/getProveedores';
 	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	request.open("GET", ajaxUrl, true);
 	request.send();
@@ -183,7 +183,7 @@ function fntEditProductos() {
 		document.querySelector("#txtprodMarc").value = objData.data.prodMarc;
 		document.querySelector("#txtprodStock").value = objData.data.prodStock;
 		document.querySelector("#txtprodMode").value = objData.data.prodMode;
-		document.querySelector("#listNitProv").value = objData.data.prodNitProv;
+		document.querySelector("#listNitProv").value = objData.data.provNit;
 		document.querySelector("#listStatus").value = objData.data.status;
 		
 

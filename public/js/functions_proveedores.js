@@ -87,8 +87,8 @@ function fntSelectProveedores(){
 	request.onreadystatechange = function() {
 		
 		if(request.readyState == 4 && request.status == 200){
-			document.querySelector('#listRolid').innerHTML = request.responseText;
-			document.querySelector('#listRolid').value = 1;
+			document.querySelector('#listNitProv').innerHTML = request.responseText;
+			document.querySelector('#listNitProv').value = 1;
 			// $('#listRolid').selectpicker('refresh');
 			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
 		}

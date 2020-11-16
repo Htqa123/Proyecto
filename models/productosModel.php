@@ -58,7 +58,7 @@ class ProductosModel extends Mysql
   public function selectProductos()
   {
     $sql ="SELECT p.prodCodi, p.prodNomb, p.prodFech, p.prodPrec,
-    p.prodMode, p.prodMarc, p.prodStock, p.prodNitProv, p.adminNomb,
+    p.prodMode, p.prodMarc,  p.prodStock, p.prodNitProv, p.adminNomb,
     p.status, c.cateNomb
     FROM productos p
     INNER JOIN categorias c
@@ -72,7 +72,7 @@ class ProductosModel extends Mysql
   {
     $this->intIdproductos = $prodCodi;
     $sql ="SELECT p.prodCodi, p.prodNomb, p.prodPrec, p.prodMode, p.prodMarc, p.prodNitProv,
-    p.status, p.prodStock,  r.cateNomb, r.cateCodi, DATE_FORMAT(p.prodFech, '%d-%m-%Y') as fechaRegistro
+    p.status, p.prodStock,   r.cateNomb, r.cateCodi, DATE_FORMAT(p.prodFech, '%d-%m-%Y') as fechaRegistro
     FROM productos p
     INNER JOIN categorias r
     ON p.prodCodiCate = r.cateCodi

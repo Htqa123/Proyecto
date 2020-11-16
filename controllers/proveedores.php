@@ -112,7 +112,7 @@ class Proveedores extends Controllers
         $arrData = $this->model->selectProveedores();
         if(count($arrData) > 0){
             for($i=0; $i < count($arrData); $i++){
-                $htmlOptions .= '<option value="'.$arrData[$i]['provCodi'].'">'.$arrData[$i]['provNomb'].'</option>';
+                $htmlOptions .= '<option value="'.$arrData[$i]['provCodi'].'">'.$arrData[$i]['provNit'].'</option>';
             }
         }
         echo $htmlOptions;
