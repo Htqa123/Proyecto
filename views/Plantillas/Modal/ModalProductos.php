@@ -1,5 +1,5 @@
 
-<div class="modal fade" id="ModalUsuarios" name="ModalUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="ModalProductos" name="ModalProductos" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header headerRegister">
@@ -9,8 +9,8 @@
         </button>
       </div>
       <div class="modal-body">  
-        <form id="formUsuarios" name="formUsuarios">
-            <input type="hidden" id="idUsuario" name="idUsuario" class="form-horizontal" value="">
+        <form id="formProductos" name="formProductos">
+            <input type="hidden" id="idproductos" name="idproductos" class="form-horizontal" value="">
             <p class="text-primary">Todos los campos son obligatorios.</p>
              
              <div class="form-row">
@@ -47,8 +47,8 @@
              </div>
              <div class="form-row">
                  <div class="form-group col-md-6">
-                     <label for="listNitprov">Nit proveedor</label>
-                     <select class="form-control" data-live-search="true"  id="listNitprov"  name="listNitprov"  required> 
+                     <label for="listNitProv">Nit proveedor</label>
+                     <select class="form-control" data-live-search="true"  id="listNitProv"  name="listNitProv"  required> 
                      </select>
                  </div>
                  <div class="form-group col-md-6">

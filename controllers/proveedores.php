@@ -107,7 +107,7 @@ class Proveedores extends Controllers
 
 /////metodo para extraer provedores	
 
-	public function getSelectProveedores(){
+	public function getProveedor(){
         $htmlOptions = "";
         $arrData = $this->model->selectProveedores();
         if(count($arrData) > 0){

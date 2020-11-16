@@ -80,9 +80,9 @@ class Productos extends Controllers
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['prodCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
-                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['prodCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['prodCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-secondary btn-sm btnViewUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-primary btn-sm btnEditProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger btn-sm btnDelUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
                     </div>';
             }
 
@@ -90,11 +90,11 @@ class Productos extends Controllers
         die();
 	}
 
-	public function getUsuario(int $idpersona){
-	 $idpersona = intval($idpersona);
-	 if($idpersona > 0)
+	public function getProducto(int $prodCodi){
+	 $prodCodi = intval($prodCodi);
+	 if($prodCodi > 0)
 	 {
-	  $arrData = $this->model->selectUsuario($idpersona);
+	  $arrData = $this->model->selectProducto($prodCodi);
 	  //dep($arrData);
 	  if(empty($arrData))
 	  {
