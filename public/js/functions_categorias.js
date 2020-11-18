@@ -140,6 +140,10 @@ function fntEditCategorias(){
 });
 }
 
+
+
+
+
 function fntDelCategoria(){
 	var btnDelcategoria = document.querySelectorAll(".btnDelcategoria");
 	btnDelcategoria.forEach(function(btnDelcategoria) {

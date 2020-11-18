@@ -76,9 +76,9 @@
 
 
 <div class="modal fade" id="ModalViewUser"  tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header primary" style="background-color:#009688">
+      <div class="modal-header headerRegister">
         <h5 class="modal-title" id="titleModal">Datos del usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

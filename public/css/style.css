@@ -34,5 +34,13 @@
 	font-family: 'Times New Roman', Times, serif;
 	font-weight: 200%;
 }
+.table-bordered{
+	height: 100px;
+	padding: 100px;
+	align-content: center;
+	display: contents;
+	background-color: aqua;
+	color: #009688;
+}
 
 

@@ -11,17 +11,29 @@
         </ul>
       </div>
       <div class="row">
-        <div class="col-md-12">
-          <div class="tile">
-            <div class="tile-body"><?= $data['page_content'] ?>
-            <div>
-            <button type="button" class="btn btn-success btn-lg">
-            <span class="glyphicon glyphicon-download"></span> Download
-            </button>
+          <div class="col-md-12">
+            <div class="tile">
+              <div class="tile-body">
+                <div class="table-responsive">
+                  <table class="table table-hover table-bordered" id="tableProductos">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Nombre del producto</th>
+                        <th>Detalle</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-          </div>
         </div>
-      </div>
     </main>
   <?php footerAdmin($data); ?>
+
+  <script src="<?= media(); ?>/js/functions_home.js"></script>

@@ -67,24 +67,24 @@ class Productos extends Controllers
 		}
 		die();
 	}
-	public function getProductos()
-	{
+	public function getProductos(){
+
 		$arrData =$this->model->selectProductos();
 		for($i = 0; $i < count($arrData); $i++)
-                {
-                    if($arrData[$i]['status'] == 1)
-                    {
-                        $arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
-                    }else{
-                        $arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
-                    }
+			{
+				if($arrData[$i]['status'] == 1)
+				{
+					$arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
+				}else{
+					$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
+				}
 
-                    $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnViewUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
-                    <button class="btn btn-primary btn-sm btnEditProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger btn-sm btnDelUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
-                    </div>';
-            }
+				$arrData[$i]['options'] = '<div class="text-center">
+				<button class="btn btn-secondary btn-sm btnViewUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
+				<button class="btn btn-primary btn-sm btnEditProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+				<button class="btn btn-danger btn-sm btnDelUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+				</div>';
+		}
 
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         die();
