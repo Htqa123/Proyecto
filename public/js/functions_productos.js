@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	  var strprodMode = document.querySelector('#txtprodMode').value;
 	  var strprodMarc = document.querySelector('#txtprodMarc').value;
 	  var intprodStock = document.querySelector('#txtprodStock').value;
-	  var intlistNitProv = document.querySelector('#listNitProv').value;
+	  var listNitProv = document.querySelector('#listNitProv').value;
 	  var intStatus = document.querySelector('#listStatus').value;
 
 	  if(intlistProd == '' || strprodNomb  == '' || intprodPrec == '' ||  strprodMode == '' || strprodMarc == '' || intprodStock == '' || listNitProv == ''|| intStatus== '')
@@ -182,7 +182,7 @@ function fntEditProductos() {
 		document.querySelector("#txtprodMarc").value = objData.data.prodMarc;
 		document.querySelector("#txtprodStock").value = objData.data.prodStock;
 		document.querySelector("#txtprodMode").value = objData.data.prodMode;
-		document.querySelector("#listNitProv").value = objData.data.provNomb;
+		document.querySelector("#listNitProv").value = objData.data.prodNitProv;
 		document.querySelector("#listStatus").value = objData.data.status;
 		
 

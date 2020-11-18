@@ -18,7 +18,7 @@ class Productos extends Controllers
 	}
 	
 	public function setProducto(){
-		//dep($_POST);
+		dep($_POST);
 		if($_POST) {
 		if(empty($_POST['listProd']) || empty($_POST['txtprodNomb']) ||
 		empty($_POST['txtprodPrec']) || empty($_POST['txtprodMode']) || empty($_POST['txtprodMarc']) ||

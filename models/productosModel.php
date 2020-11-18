@@ -72,7 +72,7 @@ class ProductosModel extends Mysql
   public function selectProducto(int $prodCodi)
   {
     $this->prodCodi = $prodCodi;
-    $sql ="SELECT  p.prodNomb, p.prodPrec, p.prodMode, p.prodMarc, p.prodNitProv,
+    $sql ="SELECT  p.prodNomb,p.prodCodiCate, p.prodPrec, p.prodMode, p.prodMarc, p.prodNitProv,
     p.status, p.prodStock,   r.cateNomb, r.cateCodi, 
     DATE_FORMAT(p.prodFech, '%d-%m-%Y') 
     as fechaRegistro
