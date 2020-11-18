@@ -41,8 +41,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	  var intlistNitProv = document.querySelector('#listNitProv').value;
 	  var intStatus = document.querySelector('#listStatus').value;
 
-	  if(intlistProd == '' || strprodNomb  == '' || intprodPrec == '' || 
-	  strprodMode == '' || strprodMarc =='' || intprodStock == '' || intlistNitprov == ''|| intStatus== '')
+	  if(intlistProd == '' || strprodNomb  == '' || intprodPrec == '' ||  strprodMode == '' || strprodMarc == '' || intprodStock == '' || listNitProv == ''|| intStatus== '')
 	  {
 		  swal("Atencion", "Todos los campos son obligatorios", "error");
 		  return false;
@@ -60,7 +59,7 @@ document.addEventListener('DOMContentLoaded',function(){
 					$('#ModalProductos').modal('hide');
 					formElement.reset();
 					swal("Productos", objData.msg ,"success");
-					tableUsuarios.api().ajax.reload(function(){
+					tableProductos.api().ajax.reload(function(){
 
 					});
 				}else{
@@ -102,7 +101,7 @@ function fntSelectCategoria(){
 ///funcion para cargar select  provvedores
 
 function fntSelectProveedores(){
-	var ajaxUrl = base_url+'/Proveedores/getProveedores';
+	var ajaxUrl = base_url+'/Proveedores/getSelectProveedores';
 	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	request.open("GET", ajaxUrl, true);
 	request.send();
@@ -110,8 +109,8 @@ function fntSelectProveedores(){
 	request.onreadystatechange = function() {
 		
 		if(request.readyState == 4 && request.status == 200){
-			document.querySelector('#listNitprov').innerHTML = request.responseText;
-			document.querySelector('#listNitprov').value = 1;
+			document.querySelector('#listNitProv').innerHTML = request.responseText;
+			document.querySelector('#listNitProv').value = 1;
 			// $('#listRolid').selectpicker('refresh');
 			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
 		}
@@ -176,14 +175,14 @@ function fntEditProductos() {
 		var objData = JSON.parse(request.responseText);
 		if(objData.status)
 		{
-		document.querySelector("#idproductos").value = objData.data.idproductos;
-		document.querySelector("#listProd").value = objData.data.prodCodi;
+		document.querySelector("#idproductos").value = objData.data.prodCodi;
+		document.querySelector("#listProd").value = objData.data.prodCodiCate;
 		document.querySelector("#txtprodNomb").value = objData.data.prodNomb;
 		document.querySelector("#txtprodPrec").value = objData.data.prodPrec;
 		document.querySelector("#txtprodMarc").value = objData.data.prodMarc;
 		document.querySelector("#txtprodStock").value = objData.data.prodStock;
 		document.querySelector("#txtprodMode").value = objData.data.prodMode;
-		document.querySelector("#listNitProv").value = objData.data.provNit;
+		document.querySelector("#listNitProv").value = objData.data.provNomb;
 		document.querySelector("#listStatus").value = objData.data.status;
 		
 

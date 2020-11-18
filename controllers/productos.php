@@ -18,11 +18,11 @@ class Productos extends Controllers
 	}
 	
 	public function setProducto(){
-		///dep($_POST);
+		//dep($_POST);
 		if($_POST) {
 		if(empty($_POST['listProd']) || empty($_POST['txtprodNomb']) ||
 		empty($_POST['txtprodPrec']) || empty($_POST['txtprodMode']) || empty($_POST['txtprodMarc']) ||
-		empty($_POST['txtprodStock']) || empty($_POST['listNitprov']) || empty($_POST['listStatus']) ) 
+		empty($_POST['txtprodStock']) || empty($_POST['listNitProv']) || empty($_POST['listStatus']) ) 
 		{
 			$arrResponse = array("status" => false, "msg" => 'Datos incorrectos');
 
@@ -33,7 +33,7 @@ class Productos extends Controllers
 			$strprodMode = ucwords(strClean($_POST['txtprodMode']));
 			$strprodMarc = ucwords (strClean($_POST['txtprodMarc']));
             $intprodStock = intval(strClean($_POST['txtprodStock']));
-            $intlistNitprov = intval(strClean($_POST['listNitprov']));
+            $intlistNitProv = intval(strClean($_POST['listNitProv']));
 			$intStatus = intval(strClean($_POST['listStatus']));
 
 		
@@ -44,7 +44,7 @@ class Productos extends Controllers
 			$strprodMode,
 			$strprodMarc,
 			$intprodStock,
-			$intlistNitprov,
+			$intlistNitProv,
 			$intStatus);
 
 			if($request_user > 1)
@@ -90,12 +90,12 @@ class Productos extends Controllers
         die();
 	}
 
-	public function getProducto(int $prodCodi){
-	 $prodCodi = intval($prodCodi);
-	 if($prodCodi > 0)
+	public function getProducto(int $idproductos){
+	 $idproductos = intval($idproductos);
+	 if($idproductos > 0)
 	 {
-	  $arrData = $this->model->selectProducto($prodCodi);
-	  //dep($arrData);
+	  $arrData = $this->model->selectProducto($idproductos);
+	  ///dep($arrData);
 	  if(empty($arrData))
 	  {
 		  $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos');

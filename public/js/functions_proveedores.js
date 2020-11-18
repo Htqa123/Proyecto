@@ -79,7 +79,7 @@ window.addEventListener('load', function(){
 
 
 function fntSelectProveedores(){
-	var ajaxUrl = base_url+'/Proveedores/getproveedor';
+	var ajaxUrl = base_url+'/Proveedores/getSelectproveedores';
 	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	request.open("GET", ajaxUrl, true);
 	request.send();

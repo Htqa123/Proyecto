@@ -7,7 +7,7 @@ class ProductosModel extends Mysql
   private $strprodMode;
   private $strprodMarc;
   private $strprodStock;
-  private $intlistNitprov;
+  private $listNitProv;
   private $intStatus;
   
   public function __construct()
@@ -16,7 +16,7 @@ class ProductosModel extends Mysql
   }
   public function insertProductos(int $listProd, string $prodNomb, 
   int $prodPrec, string $prodMode, string $prodMarc, int $prodStock,
-  int $listNitprov, int $status){
+  int $listNitProv, int $status){
    
     $this->intlistProd = $listProd;
     $this->strprodNomb = $prodNomb;
@@ -24,7 +24,7 @@ class ProductosModel extends Mysql
     $this->strprodMode = $prodMode;
     $this->strprodMarc = $prodMarc;
     $this->strprodStock = $prodStock;
-    $this->intlistNitprov = $listNitprov;
+    $this->intlistNitProv = $listNitProv;
     $this->intStatus = $status;
     $return = 0;
 
@@ -42,7 +42,7 @@ class ProductosModel extends Mysql
         $this->strprodMode,
         $this->strprodMarc,
         $this->strprodStock,
-        $this->intlistNitprov,
+        $this->intlistNitProv,
         $this->intStatus
       );
       $request_insert = $this->insert($query_insert, $arrData);
@@ -63,20 +63,23 @@ class ProductosModel extends Mysql
     FROM productos p
     INNER JOIN categorias c
     ON p.prodCodiCate = c.cateCodi
-    WHERE p.status != 0" ;
+    WHERE p.status != 0"  ;
+    //echo $sql;exit;
     $request = $this->select_all($sql);
     return $request;
   }
 
   public function selectProducto(int $prodCodi)
   {
-    $this->intIdproductos = $prodCodi;
-    $sql ="SELECT p.prodCodi, p.prodNomb, p.prodPrec, p.prodMode, p.prodMarc, p.prodNitProv,
-    p.status, p.prodStock,   r.cateNomb, r.cateCodi, DATE_FORMAT(p.prodFech, '%d-%m-%Y') as fechaRegistro
+    $this->prodCodi = $prodCodi;
+    $sql ="SELECT  p.prodNomb, p.prodPrec, p.prodMode, p.prodMarc, p.prodNitProv,
+    p.status, p.prodStock,   r.cateNomb, r.cateCodi, 
+    DATE_FORMAT(p.prodFech, '%d-%m-%Y') 
+    as fechaRegistro
     FROM productos p
     INNER JOIN categorias r
     ON p.prodCodiCate = r.cateCodi
-    WHERE p.prodCodi = $this->intIdproductos";
+    WHERE p.prodCodi = $this->prodCodi";
     //echo $sql;exit; 
     $request = $this->select($sql);
     return $request;
