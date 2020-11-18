@@ -1,9 +1,9 @@
 ////cargar la tabla de la categoria
-var tableProductos;
+var tableHome;
 
 document.addEventListener('DOMContentLoaded',function(){
 	////var formUsuarios = document.querySelector("formUsuarios");
-	tableProductos = $('#tableProductos').DataTable({
+	tableHome = $('#tableHome').DataTable({
 		"aProcessing":true,
 		"aServerSide":true,
 		"language": {
