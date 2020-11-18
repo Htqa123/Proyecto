@@ -17,32 +17,31 @@ class Proveedores extends Controllers
 		$this->views->getView($this,"Proveedores", $data);
 	}
 	
-	public function setUsuario(){
+	public function setProveedor(){
 		///dep($_POST);
 		if($_POST) {
-		if(empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) ||
-		empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmail']) ||
-		empty($_POST['listRolid']) || empty($_POST['listStatus']) ) 
+		if(empty($_POST['txtprovNit']) || empty($_POST['txtprovNomb']) ||
+		empty($_POST['txtprovDire']) || empty($_POST['txtprovDire']) || empty($_POST['txtprovTele']) ||
+		empty($_POST['txtprovDeta']) || empty($_POST['listStatus']) ) 
 		{
 			$arrResponse = array("status" => false, "msg" => 'Datos incorrectos');
 
 		}else{
-			$strIdentificacion = strClean($_POST['txtIdentificacion']);
-			$strNombre = ucwords (strClean($_POST['txtNombre']));
-			$strApellido = ucwords (strClean($_POST['txtApellido']));
-			$intTelefono = intval(strClean($_POST['txtTelefono']));
-			$strEmail = strtolower (strClean($_POST['txtEmail']));
-			$intTipoId = intval(strClean($_POST['listRolid']));
+			$strIdentificacion = strClean($_POST['txtprovNit']);
+			$strNombre = ucwords (strClean($_POST['txtprovNomb']));
+			$strApellido = ucwords (strClean($_POST['txtprovDire']));
+			$intTelefono = intval(strClean($_POST['txtprovTele']));
+			$strEmail = strtolower (strClean($_POST['txtprovEmail']));
+			$strprovDeta = ucwords (strClean($_POST['txtprovDeta']));
 			$intStatus = intval(strClean($_POST['listStatus']));
 
-			$strPassword = empty($_POST['txtPassword']) ? hash("SHA256",passGenerator()) : hash("SHA256", $_POST['txtPassword']);
-			$request_user = $this->model->insertUsuario($strIdentificacion,
+			
+			$request_user = $this->model->insertProveedor($strIdentificacion,
 			$strNombre,
 			$strApellido,
 			$intTelefono,
 			$strEmail,
-			$strPassword,
-			$intTipoId,
+			$strprovDeta,
 			$intStatus);
 
 			if($request_user > 1)
@@ -52,7 +51,7 @@ class Proveedores extends Controllers
 
 			}else if($request_user == 'exist')
 			{
-				$arrResponse = array('status' => false, 'msg' => 'El Email o la identificacion ya existe, ingrese otro');
+				$arrResponse = array('status' => true, 'msg' => 'El nombre del producto ya existe, ingrese otro');
 
 			}else{
 
@@ -78,9 +77,9 @@ class Proveedores extends Controllers
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['provCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
-                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['provCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['provCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-secondary btn-sm btnViewProveedor" pv="'.$arrData[$i]['provCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-primary btn-sm btnEditProveedor" pv="'.$arrData[$i]['provCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger btn-sm btnDelUsuario" pv="'.$arrData[$i]['provCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
                     </div>';
             }
 
@@ -88,11 +87,11 @@ class Proveedores extends Controllers
         die();
 	}
 
-	public function getUsuario(int $idpersona){
-	 $idpersona = intval($idpersona);
-	 if($idpersona > 0)
+	public function getProveedor(int $provCodi){
+	 $provCodi = intval($provCodi);
+	 if($provCodi > 0)
 	 {
-	  $arrData = $this->model->selectUsuario($idpersona);
+	  $arrData = $this->model->selectProveedor($provCodi);
 	  //dep($arrData);
 	  if(empty($arrData))
 	  {
@@ -104,6 +103,7 @@ class Proveedores extends Controllers
 	 }
 	 die();
 	}
+
 
 /////metodo para extraer provedores	
 

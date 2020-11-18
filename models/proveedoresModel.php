@@ -16,26 +16,25 @@ class ProveedoresModel extends Mysql
   {
     parent::__construct();
   }
-  public function insertUsuario(string $identificacion, string $nombre, 
-  string $apellido, int $telefono, string $email, string $password, int $tipoid, int $status){
+  public function insertProveedor(string $provNit, string $provNomb, 
+  string $provDire, int $provTele, string $provEmail, string $provDeta, int $status){
    
-    $this->strIdentificacion = $identificacion;
-    $this->strNombre = $nombre;
-    $this->strApellido = $apellido;
-    $this->intTelefono = $telefono;
-    $this->strEmail = $email;
-    $this->strPassword = $password;
-    $this->intTipoId = $tipoid;
+    $this->strIdentificacion = $provNit;
+    $this->strNombre = $provNomb;
+    $this->strApellido = $provDire;
+    $this->intTelefono = $provTele;
+    $this->strEmail = $provEmail;
+    $this->strPassword = $provDeta;
     $this->intStatus = $status;
     $return = 0;
 
-    $sql = "SELECT * FROM personas WHERE email_user =
-    '{$this->strEmail}' OR identificacion = '{$this->strIdentificacion}' ";
+    $sql = "SELECT * FROM proveedores WHERE provNomb =
+    '{$this->strNombre}' OR provNit = '{$this->strIdentificacion}' ";
     $request = $this->select_all($sql);
     
     if(empty($request)){
-      $query_insert = "INSERT INTO personas (identificacion, nombres, apellidos,telefono,
-      email_user, password, rolid, status) value(?,?,?,?,?,?,?,?)";
+      $query_insert = "INSERT INTO proveedores (provNit, provNomb, provDire,provTele,
+      provEmail, provDeta,  status) value(?,?,?,?,?,?,?)";
       $arrData = array(
         $this->strIdentificacion,
         $this->strNombre,
@@ -43,7 +42,6 @@ class ProveedoresModel extends Mysql
         $this->intTelefono,
         $this->strEmail,
         $this->strPassword,
-        $this->intTipoId,
         $this->intStatus
       );
       $request_insert = $this->insert($query_insert, $arrData);
@@ -61,15 +59,14 @@ class ProveedoresModel extends Mysql
     return $request;
 
   }
-  public function selectUsuario(int $idpersona)
+
+  public function selectProveedor(int $provCodi )
   {
-    $this->intIdUsuario = $idpersona;
-    $sql ="SELECT p.idpersona, p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user,
-    p.status, r.nombrerol, r.idrol, DATE_FORMAT(p.Fech, '%d-%m-%Y') as fechaRegistro
-    FROM personas p
-    INNER JOIN roles r
-    ON p.rolid = r.idrol
-    WHERE p.idpersona = $this->intIdUsuario";
+    $this->intIdUsuario = $provCodi ;
+    $sql ="SELECT provCodi ,provNit, provNomb, provDire,provTele,provEmail,
+    status, provDeta, DATE_FORMAT(provFech, '%d-%m-%Y') as fechaRegistro
+    FROM proveedores
+    WHERE provCodi  = $this->intIdUsuario";
     ///echo $sql;exit; 
     $request = $this->select($sql);
     return $request;

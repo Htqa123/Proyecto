@@ -48,13 +48,13 @@
                      </select>
                  </div>
              </div>
-             <div class="form-row">     
-             <div class="form-group col-md-6">
-                    <label for="control-label">Descripción</label>
-                    <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="2" placeholder="Descripción del rol" required="">
-                    </textarea>
-            </div>  
-            </div>  
+                 
+                <div class="form-group col-md-6">
+                        <label for="txtprovDeta">Descripción</label>
+                        <textarea class="form-control" id="txtprovDeta" name="txtprovDeta" rows="2" placeholder="Descripción del proveedor" required="">
+                        </textarea>
+                </div>  
+             
              
             <div class="tile-footer">
             <button class="btn btn-primary" id="btnActionForm" type="submit">
@@ -70,11 +70,11 @@
 
 
 
-<div class="modal fade" id="ModalViewUser"  tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="ModalViewProveedor"  tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header primary" style="background-color:#009688">
-        <h5 class="modal-title" id="titleModal">Datos del usuario</h5>
+        <h5 class="modal-title" id="titleModal">Datos del proveedor</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -83,28 +83,28 @@
        <table class="teble table-bordered">
         <tbody>
             <tr>
-                <td>Identificacion</td>
-                <td id=celIdentificacion></td>
+                <td>Nit del proveedor</td>
+                <td id=celprovNit></td>
             </tr>
             <tr>
-               <td>Nombres</td>
-                <td id=celNombres></td>
+               <td>Nombre proveedor</td>
+                <td id=celprovNomb></td>
             </tr>
             <tr>
-                <td>Apellidos</td>
-                <td id=celApellidos></td>
+                <td>Dirección</td>
+                <td id=celprovDire></td>
             </tr>
             <tr>
                 <td>Teléfono</td>
-                <td id=celTelefono></td>
+                <td id=celprovTele></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td id=celEmail></td>
+                <td id=celprovEmail></td>
             </tr>
             <tr>
-                <td>Tipo usuario</td>
-                <td id=celTipoUsuario></td>
+                <td>Detalle proveedor</td>
+                <td id=celprovDeta></td>
             </tr>
             <tr>
                 <td>Estado</td>

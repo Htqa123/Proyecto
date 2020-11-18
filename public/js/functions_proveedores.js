@@ -27,26 +27,26 @@ document.addEventListener('DOMContentLoaded',function(){
 	});
 
 
-
-	formUsuarios.onsubmit = function(e) {
+/////insertar proveedores
+formProveedor.onsubmit = function(e) {
 	  e.preventDefault();
 	  
-	  var strIdentificacion = document.querySelector('#txtIdentificacion').value;
-	  var strNombre = document.querySelector('#txtNombre').value;
-	  var strApellido = document.querySelector('#txtApellido').value;
-	  var strEmail = document.querySelector('#txtEmail').value;
-	  var intTelefono = document.querySelector('#txtTelefono').value;
-	  var intTipousuario = document.querySelector('#listRolid').value;
-	  var strPassword = document.querySelector('#txtPassword').value;
+	  var strIdentificacion = document.querySelector('#txtprovNit').value;
+	  var strNombre = document.querySelector('#txtprovNomb').value;
+	  var strApellido = document.querySelector('#txtprovDire').value;
+	  var intTelefono = document.querySelector('#txtprovTele').value;
+	  var strEmail = document.querySelector('#txtprovEmail').value;
+	  var strprovDeta = document.querySelector('#txtprovDeta').value;
+	  var intTipousuario = document.querySelector('#listStatus').value;
 
-	  if(strIdentificacion == '' || strNombre  == '' || strApellido == '' || strEmail == '' || intTelefono == '' || intTipousuario == '')
+	  if(strIdentificacion == '' || strNombre  == '' || strApellido == '' || strEmail == '' || intTelefono == '' || strprovDeta == "" || intTipousuario == '')
 	  {
 		  swal("Atencion", "Todos los campos son obligatorios", "error");
 		  return false;
 	  }
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-		var ajaxUrl = base_url+'/Usuarios/setUsuario';
-		var formData = new FormData(formUsuarios);
+		var ajaxUrl = base_url+'/Proveedores/setProveedor';
+		var formData = new FormData(formProveedor);
 		request.open("POST", ajaxUrl, true);
 		request.send(formData);
 
@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded',function(){
 				if(objData.status){
 					$('#ModalProveedor').modal('hide');
 					formElement.reset();
-					swal("Usuarios", objData.msg ,"success");
-					tableUsuarios.api().ajax.reload(function(){
+					swal("Proveedor", objData.msg ,"success");
+					tableproveedores.api().ajax.reload(function(){
 
 					});
 				}else{
@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded',function(){
 
 window.addEventListener('load', function(){
 	fntSelectProveedores();
-	fntViewUsuario();
-	fntEditUsuario();
+	btnViewProveedor();
+	fntEditProveedor();
 }, false);
 
 
@@ -98,13 +98,13 @@ function fntSelectProveedores(){
 
 
 
-function fntViewUsuario() {
-	var btnViewUsuario = document.querySelectorAll(".btnViewUsuario");
-	btnViewUsuario.forEach(function(btnViewUsuario){
-		btnViewUsuario.addEventListener('click', function(){
-		var idpersona = this.getAttribute("us");
+function btnViewProveedor() {
+	var btnViewProveedor = document.querySelectorAll(".btnViewProveedor");
+	btnViewProveedor.forEach(function(btnViewProveedor){
+		btnViewProveedor.addEventListener('click', function(){
+		var provCodi = this.getAttribute("pv");
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
-		var ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
+		var ajaxUrl = base_url+'/Proveedores/getProveedor/'+provCodi;
 		request.open("GET",ajaxUrl,true);
 		request.send();
 		request.onreadystatechange = function(){
@@ -114,15 +114,15 @@ function fntViewUsuario() {
 					var estadoUsuario = objData.data.status == 1 ?
 					'<span class="badge badge-success">Activo</span>':
 					'<span class="badge badge-danger">Inactivo</span>';
-					document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
-					document.querySelector("#celNombres").innerHTML = objData.data.nombres;
-					document.querySelector("#celApellidos").innerHTML = objData.data.apellidos;
-					document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
-					document.querySelector("#celEmail").innerHTML = objData.data.email_user;
-					document.querySelector("#celTipoUsuario").innerHTML = objData.data.nombrerol;
+					document.querySelector("#celprovNit").innerHTML = objData.data.provNit;
+					document.querySelector("#celprovNomb").innerHTML = objData.data.provNomb;
+					document.querySelector("#celprovDire").innerHTML = objData.data.provDire;
+					document.querySelector("#celprovTele").innerHTML = objData.data.provTele;
+					document.querySelector("#celprovEmail").innerHTML = objData.data.provEmail;
+					document.querySelector("#celprovDeta").innerHTML = objData.data.provDeta;
 					document.querySelector("#celEstado").innerHTML = estadoUsuario;
 					document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
-					$('#ModalViewUser').modal('show');
+					$('#ModalViewProveedor').modal('show');
 
 				}else{
 					swal("Error", objData.msg , "error");
@@ -135,20 +135,20 @@ function fntViewUsuario() {
 }
 
 
-function fntEditUsuario() {
-	var btnEditUsuario = document.querySelectorAll(".btnEditUsuario");
-	btnEditUsuario.forEach(function(btnEditUsuario){
-	btnEditUsuario.addEventListener('click', function(){
+function fntEditProveedor() {
+	var btnEditProveedor = document.querySelectorAll(".btnEditProveedor");
+	btnEditProveedor.forEach(function(btnEditProveedor){
+		btnEditProveedor.addEventListener('click', function(){
 			
-		document.querySelector('#titleModal').innerHTML = "Actualizar usuario";
+		document.querySelector('#titleModal').innerHTML = "Actualizar Proveedor";
 		document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate"); 
 		document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
 		document.querySelector('#btnText').innerHTML = "Actualizar";
 		
 
-	var idpersona = this.getAttribute("us");
+	var provCodi = this.getAttribute("pv");
 	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
-	var ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
+	var ajaxUrl = base_url+'/Proveedores/getProveedor/'+provCodi;
 	request.open("GET",ajaxUrl,true);
 	request.send();
 	request.onreadystatechange = function(){
@@ -156,13 +156,14 @@ function fntEditUsuario() {
 		var objData = JSON.parse(request.responseText);
 		if(objData.status)
 		{
-		document.querySelector("#idUsuario").value = objData.data.idpersona;
-		document.querySelector("#txtIdentificacion").value = objData.data.identificacion;
-		document.querySelector("#txtNombre").value = objData.data.nombres;
-		document.querySelector("#txtApellido").value = objData.data.apellidos;
-		document.querySelector("#txtTelefono").value = objData.data.telefono;
-		document.querySelector("#txtEmail").value = objData.data.email_user;
-		document.querySelector("#listRolid").value = objData.data.idrol;
+		document.querySelector("#idproveedor").value = objData.data.provCodi;
+		document.querySelector("#txtprovNit").value = objData.data.provNit;
+		document.querySelector("#txtprovNomb").value = objData.data.provNomb;
+		document.querySelector("#txtprovDire").value = objData.data.provDire;
+		document.querySelector("#txtprovTele").value = objData.data.provTele;
+		document.querySelector("#txtprovEmail").value = objData.data.provEmail;
+		document.querySelector("#txtprovDeta").value = objData.data.provDeta;
+		document.querySelector("#listStatus").value = objData.data.status;
 		
 
 		}
