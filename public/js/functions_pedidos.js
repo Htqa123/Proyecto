@@ -1,16 +1,16 @@
 ////cargar la tabla de la categoria
-var tableHome;
+var tablepedidos;
 
 document.addEventListener('DOMContentLoaded',function(){
 	////var formUsuarios = document.querySelector("formUsuarios");
-	tableHome = $('#tableHome').DataTable({
+	tablepedidos = $('#tablepedidos').DataTable({
 		"aProcessing":true,
 		"aServerSide":true,
 		"language": {
 			"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
 		},
 		"ajax":{
-			"url": " "+base_url+"/Productos/getProductos",
+			"url": " "+base_url+"/Pedidos/getPedidos",
 			"dataSrc":""
 		},
 		"columns":[
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 window.addEventListener('load', function(){
 	fntSelectCategoria();
-	fntViewUsuario();
+	///fntViewUsuario();
 	fntEditProductos();
 	fntSelectProveedores();
 }, false);

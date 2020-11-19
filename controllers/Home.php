@@ -10,7 +10,7 @@ class Home extends Controllers
 	}
 	public function home()
 	{
-		$data['page_id'] = 1;
+		
 		$data['page_tag'] = "Home";
 		$data['page_title'] ="Bienvenido al Sistema de Información Surti Osorio";
 		$data['page_name'] = "home";
@@ -31,7 +31,7 @@ class Home extends Controllers
 				}
 
 				$arrData[$i]['options'] = '<div class="text-center">
-				<button class="btn btn-secondary btn-sm btnCarrito" pr="'.$arrData[$i]['prodCodi'].'" title="Ver usuario"><i class="fa fa-shopping-cart"></i>&nbsp; Añadir</button> 
+				<button class="btn btn-secondary btn-sm btnCarrito" pr="'.$arrData[$i]['prodCodi'].'" title="Ver productos"><i class="fa fa-shopping-cart"></i>&nbsp; Añadir</button> 
 				<button class="btn btn-primary btn-sm btnEditProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Editar"><i class="fa fa-shopping-cart aria-hidden="true"></i></button>
 				<button class="btn btn-danger btn-sm btnDelUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
 				</div>';
