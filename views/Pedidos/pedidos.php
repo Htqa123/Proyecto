@@ -1,6 +1,6 @@
 <?php
  headerAdmin($data); 
- getModal('ModalProductos', $data);
+ ////getModal('ModalProductos', $data);
  ?>
     <main class="app-content">
       <div class="app-title">
@@ -12,7 +12,7 @@
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="<?= base_url(); ?>/productos"><?= $data['page_title'] ?></a></li>
+          <li class="breadcrumb-item"><a href="<?= base_url(); ?>/pedidos"><?= $data['page_title'] ?></a></li>
         </ul>
       </div>
       

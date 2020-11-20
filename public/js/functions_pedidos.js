@@ -74,9 +74,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 window.addEventListener('load', function(){
 	fntSelectCategoria();
-	///fntViewUsuario();
-	fntEditProductos();
-	fntSelectProveedores();
+	fntViewPedidos();
 }, false);
 
 ///funcion para cargar select categorias
@@ -99,30 +97,15 @@ function fntSelectCategoria(){
 }
 ///funcion para cargar select  provvedores
 
-function fntSelectProveedores(){
-	var ajaxUrl = base_url+'/Proveedores/getSelectProveedores';
-	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	request.open("GET", ajaxUrl, true);
-	request.send();
 
-	request.onreadystatechange = function() {
-		
-		if(request.readyState == 4 && request.status == 200){
-			document.querySelector('#listNitProv').innerHTML = request.responseText;
-			document.querySelector('#listNitProv').value = 1;
-			// $('#listRolid').selectpicker('refresh');
-			// $('.selectpicker').addClass('col-lg-13').selectpicker('setStyle');
-		}
-	}
-}
 
-function fntViewUsuario() {
-	var btnViewUsuario = document.querySelectorAll(".btnViewUsuario");
-	btnViewUsuario.forEach(function(btnViewUsuario){
-		btnViewUsuario.addEventListener('click', function(){
-		var idpersona = this.getAttribute("us");
+function fntViewPedidos() {
+	var btnViewPedidos = document.querySelectorAll(".btnViewPedidos");
+	btnViewPedidos.forEach(function(btnViewPedidos){
+		btnViewPedidos.addEventListener('click', function(){
+		var prodCodi = this.getAttribute("pr");
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
-		var ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
+		var ajaxUrl = base_url+'/Pedidos/getPedido/'+prodCodi;
 		request.open("GET",ajaxUrl,true);
 		request.send();
 		request.onreadystatechange = function(){
@@ -132,15 +115,14 @@ function fntViewUsuario() {
 					var estadoUsuario = objData.data.status == 1 ?
 					'<span class="badge badge-success">Activo</span>':
 					'<span class="badge badge-danger">Inactivo</span>';
-					document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
-					document.querySelector("#celNombres").innerHTML = objData.data.nombres;
-					document.querySelector("#celApellidos").innerHTML = objData.data.apellidos;
-					document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
-					document.querySelector("#celEmail").innerHTML = objData.data.email_user;
-					document.querySelector("#celTipoUsuario").innerHTML = objData.data.nombrerol;
+					document.querySelector("#celTipoUsuario").innerHTML = objData.data.cateNomb;
+					document.querySelector("#celIdentificacion").innerHTML = objData.data.prodNomb;
+					document.querySelector("#celNombres").innerHTML = objData.data.prodMode;
+					document.querySelector("#celApellidos").innerHTML = objData.data.prodStock;
+					document.querySelector("#celTelefono").innerHTML = objData.data.prodPrec;
 					document.querySelector("#celEstado").innerHTML = estadoUsuario;
-					document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
-					$('#ModalViewUser').modal('show');
+					
+					$('#ModalViewPedidos').modal('show');
 
 				}else{
 					swal("Error", objData.msg , "error");
@@ -153,50 +135,7 @@ function fntViewUsuario() {
 }
 
 
-function fntEditProductos() {
-	var btnEditProductos = document.querySelectorAll(".btnEditProductos");
-	btnEditProductos.forEach(function(btnEditProductos){
-		btnEditProductos.addEventListener('click', function(){
-			
-		document.querySelector('#titleModal').innerHTML = "Actualizar producto";
-		document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate"); 
-		document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
-		document.querySelector('#btnText').innerHTML = "Actualizar";
-		
 
-	var prodCodi = this.getAttribute("pr");
-	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
-	var ajaxUrl = base_url+'/Productos/getProducto/'+prodCodi;
-	request.open("GET",ajaxUrl,true);
-	request.send();
-	request.onreadystatechange = function(){
-	if(request.status == 200){
-		var objData = JSON.parse(request.responseText);
-		if(objData.status)
-		{
-		document.querySelector("#idproductos").value = objData.data.prodCodi;
-		document.querySelector("#listProd").value = objData.data.prodCodiCate;
-		document.querySelector("#txtprodNomb").value = objData.data.prodNomb;
-		document.querySelector("#txtprodPrec").value = objData.data.prodPrec;
-		document.querySelector("#txtprodMarc").value = objData.data.prodMarc;
-		document.querySelector("#txtprodStock").value = objData.data.prodStock;
-		document.querySelector("#txtprodMode").value = objData.data.prodMode;
-		document.querySelector("#listNitProv").value = objData.data.prodNitProv;
-		document.querySelector("#listStatus").value = objData.data.status;
-		
-
-		}
-	}
-		
-	$('#ModalProductos').modal('show');
-
-			
-	}
-	
-	
-		});
-	});
-}
 
 
 

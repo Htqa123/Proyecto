@@ -80,7 +80,7 @@ class Pedidos extends Controllers
 				}
 
 				$arrData[$i]['options'] = '<div class="text-center">
-				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Ver referencia"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button> 
+				<button class="btn btn-secondary btn-sm btnViewPedidos" pr="'.$arrData[$i]['prodCodi'].'" title="Ver referencia"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button> 
 				<button class="btn btn-primary btn-sm btnCarrito" pr="'.$arrData[$i]['prodCodi'].'" title="Agregar"><i class="fa fa-plus-square"></i></button>
 				
 				</div>';
@@ -90,11 +90,11 @@ class Pedidos extends Controllers
         die();
 	}
 
-	public function getPedido(int $idproductos){
-	 $idproductos = intval($idproductos);
-	 if($idproductos > 0)
+	public function getPedido(int $prodCodi){
+	 $prodCodi = intval($prodCodi);
+	 if($prodCodi > 0)
 	 {
-	  $arrData = $this->model->selectPedidos($idproductos);
+	  $arrData = $this->model->selectPedido($prodCodi);
 	  ///dep($arrData);
 	  if(empty($arrData))
 	  {
