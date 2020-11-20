@@ -95,9 +95,6 @@ function fntSelectProveedores(){
 	}
 }
 
-
-
-
 function btnViewProveedor() {
 	var btnViewProveedor = document.querySelectorAll(".btnViewProveedor");
 	btnViewProveedor.forEach(function(btnViewProveedor){
@@ -140,12 +137,11 @@ function fntEditProveedor() {
 	btnEditProveedor.forEach(function(btnEditProveedor){
 		btnEditProveedor.addEventListener('click', function(){
 			
-		document.querySelector('#titleModal').innerHTML = "Actualizar Proveedor";
-		document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate"); 
-		document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
-		document.querySelector('#btnText').innerHTML = "Actualizar";
+	document.querySelector('#titleModal').innerHTML = "Actualizar Proveedor";
+	document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate"); 
+	document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
+	document.querySelector('#btnText').innerHTML = "Actualizar";
 		
-
 	var provCodi = this.getAttribute("pv");
 	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
 	var ajaxUrl = base_url+'/Proveedores/getProveedor/'+provCodi;

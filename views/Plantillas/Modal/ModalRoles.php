@@ -12,14 +12,14 @@
         <div class="tile">
               <div class="tile-body">
                 <form id="formRol" name="formRol">
-                  <input type="hidden" id="idRol" name="idRol" value="">
+                  <input type="hidden" id="roleId" name="roleId" value="">
                   <div class="form-group">
                     <label for="control-label">Nombre</label>
-                    <input class="form-control" id="txtNombre" name="txtNombre" type="text"  placeholder="Nombre del rol" required=""/>
+                    <input class="form-control" id="txtroleNomb" name="txtroleNomb" type="text"  placeholder="Nombre del rol" required=""/>
                   </div>
                   <div class="form-group">
                     <label for="control-label">Descripción</label>
-                    <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="2" placeholder="Descripción del rol" required=""></textarea>
+                    <textarea class="form-control" id="txtroleDesc" name="txtroleDesc" rows="2" placeholder="Descripción del rol" required=""></textarea>
                   </div>
                   <div class="form-group">
                     <label for="eje">Estado</label>

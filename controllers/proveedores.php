@@ -104,7 +104,6 @@ class Proveedores extends Controllers
 	 die();
 	}
 
-
 /////metodo para extraer provedores	
 
 	public function getSelectProveedores(){

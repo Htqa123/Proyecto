@@ -16,28 +16,28 @@
              <div class="form-row">
                  <div class="form-group col-md-6">
                      <label for="txtIdentificacion">Identificacion</label>
-                     <input type="text" class="form-control" id="txtIdentificacion" name="txtIdentificacion" required="">
+                     <input type="text" class="form-control" id="txtpersIden" name="txtpersIden" required="">
                  </div>
              </div>
 
              <div class="form-row">
                  <div class="form-group col-md-6">
                      <label for="txtNombre">Nombre</label>
-                     <input type="text" class="form-control" id="txtNombre" name="txtNombre" required="">
+                     <input type="text" class="form-control" id="txtpersNomb" name="txtpersNomb" required="">
                  </div>
                  <div class="form-group col-md-6">
                      <label for="txtApellido">Apellidos</label>
-                     <input type="text" class="form-control" id="txtApellido" name="txtApellido" required="">
+                     <input type="text" class="form-control" id="txtpersApel" name="txtpersApel" required="">
                  </div>
              </div>
              <div class="form-row">
                  <div class="form-group col-md-6">
                      <label for="txtTelefono">Teléfono</label>
-                     <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" required="">
+                     <input type="text" class="form-control" id="txtpersTele" name="txtpersTele" required="">
                  </div>
                  <div class="form-group col-md-6">
                      <label for="txtEmail">Email</label>
-                     <input type="email" class="form-control" id="txtEmail" name="txtEmail" required="">
+                     <input type="email" class="form-control" id="txtpersEmail" name="txtpersEmail" required="">
                  </div>
              </div>
              <div class="form-row">
@@ -57,7 +57,7 @@
              <div class="form-row">
                  <div class="form-group col-md-6">
                      <label for="txtPassword">Password</label>
-                     <input type="password" class="form-control" id="txtPassword" name="txtPassword" required="">
+                     <input type="password" class="form-control" id="txtpersPass" name="txtpersPass" required="">
                  </div>
              </div>
              

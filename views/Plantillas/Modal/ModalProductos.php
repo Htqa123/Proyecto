@@ -86,28 +86,24 @@
        <table class="teble table-bordered">
         <tbody>
             <tr>
-                <td>Identificacion</td>
+                <td>Categoría</td>
                 <td id=celIdentificacion></td>
             </tr>
             <tr>
-               <td>Nombres</td>
+               <td>Nombre Producto</td>
                 <td id=celNombres></td>
             </tr>
             <tr>
-                <td>Apellidos</td>
+                <td>Precio</td>
                 <td id=celApellidos></td>
             </tr>
             <tr>
-                <td>Teléfono</td>
+                <td>Descripción</td>
                 <td id=celTelefono></td>
             </tr>
             <tr>
-                <td>Email</td>
+                <td>Cantidad</td>
                 <td id=celEmail></td>
-            </tr>
-            <tr>
-                <td>Tipo usuario</td>
-                <td id=celTipoUsuario></td>
             </tr>
             <tr>
                 <td>Estado</td>

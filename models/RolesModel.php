@@ -20,10 +20,10 @@
 		 	return $request;
 		 }
 
-		 public function selectRol(int $idrol)
+		 public function selectRol(int $roleId)
 		 {
-		 	$this->intIdrol = $idrol;
-		 	$sql = "SELECT * FROM roles WHERE idrol = $this->intIdrol";
+		 	$this->intIdrol = $roleId;
+		 	$sql = "SELECT * FROM roles WHERE roleId = $this->intIdrol";
 		 	$request = $this->select($sql);
 		 	return $request;
 
@@ -36,13 +36,13 @@
 		 	$this->strDescripcion = $descripcion;
 		 	$this->intStatus = $status;
 
-		 	$sql ="SELECT * FROM roles WHERE nombrerol = '{$this->strRol}' ";
+		 	$sql ="SELECT * FROM roles WHERE roleNomb = '{$this->strRol}' ";
 		 	$request = $this->select_all($sql);
 
 		 	if(empty($request))
 		 	{
 
-		 	$query_insert = "INSERT INTO roles (nombrerol,descripcion,status) VALUES(?,?,?)";
+		 	$query_insert = "INSERT INTO roles (roleNomb,roleDesc,status) VALUES(?,?,?)";
 		 	$arrData =  array($this->strRol, $this->strDescripcion, $this->intStatus);
 		 	$request_insert = $this->insert($query_insert,$arrData);
 		 	$return = $request_insert;
@@ -60,13 +60,13 @@
 		 	$this->strDescripcion = $descripcion;
 		 	$this->intStatus = $status;
 
-		 	$sql ="SELECT * FROM roles WHERE nombrerol = '$this->strRol' AND idrol !=  $this->intIdrol ";
+		 	$sql ="SELECT * FROM roles WHERE nombrerol = '$this->strRol' AND roleId !=  $this->intIdrol ";
 		 	$request = $this->select_all($sql);
 
 		 	if(empty($request))
 		 	{
 
-		 	$sql = "UPDATE roles SET nombrerol = ?, descripcion = ?, status= ? WHERE idrol = $this->intIdrol";
+		 	$sql = "UPDATE roles SET roleNomb = ?, roleDesc = ?, status= ? WHERE roleId = $this->intIdrol";
 		 	$arrData =  array($this->strRol, $this->strDescripcion, $this->intStatus);
 		 	$request = $this->update($sql,$arrData);
 		    }else{
@@ -76,13 +76,13 @@
 		    return $request;
 		 }
 
-		 public function deleteRol(int $idrol)
+		 public function deleteRol(int $roleId)
 		 {
-		 	$this->intIdrol = $idrol;
-		 	$sql = "SELECT * FROM personas WHERE rolid = $this->intIdrol ";
+		 	$this->intIdrol = $roleId;
+		 	$sql = "SELECT * FROM personas WHERE persRolId = $this->intIdrol ";
 		 	$request = $this->select_all($sql);
 		 	if(empty($request)){
-		 		$sql= "UPDATE roles SET status = ? WHERE idrol = $this->intIdrol";
+		 		$sql= "UPDATE roles SET status = ? WHERE roleId = $this->intIdrol";
 		 		$arrData = array(0);
 		 		$request = $this->update($sql, $arrData);
 		 		if($request){

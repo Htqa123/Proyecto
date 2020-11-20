@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			"dataSrc":""
 		},
 		"columns":[
-		{"data":"idrol"},
-		{"data":"nombrerol"},
-		{"data":"descripcion"},
+		{"data":"roleId"},
+		{"data":"roleNomb"},
+		{"data":"roleDesc"},
 		{"data":"status"},
 		{"data":"options"}
 		],
@@ -30,9 +30,9 @@ var formRol = document.querySelector("#formRol");
 formRol.onsubmit = function(e) {
 	e.preventDefault();
 
-    var intIdRol = document.querySelector('#idRol').value;
-	var strNombre = document.querySelector('#txtNombre').value;
-	var strDescripcion = document.querySelector('#txtDescripcion').value;
+    var intIdRol = document.querySelector('#roleId').value;
+	var strNombre = document.querySelector('#txtroleNomb').value;
+	var strDescripcion = document.querySelector('#txtroleDesc').value;
 	var intStatus = document.querySelector('#listStatus').value;
 	if(strNombre == '' || strDescripcion == '' || intStatus == '')
 	{
@@ -72,7 +72,7 @@ $('#tableRoles').DataTable();
 
 function openModal()
 {
-	document.querySelector('#idRol').value="";
+	document.querySelector('#roleId').value="";
 	document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister"); 
 	document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary"); 
 	document.querySelector('#btnText').innerHTML = "Guardar";
@@ -99,9 +99,9 @@ function fntEditRol(){
 			document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
 			document.querySelector('#btnText').innerHTML = "Actualizar";
 
-         var idrol = this.getAttribute("rl");
+         var roleId = this.getAttribute("rl");
          var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	      var ajaxUrl =  base_url+'/Roles/getRol/'+idrol;
+	      var ajaxUrl =  base_url+'/Roles/getRol/'+roleId;
 	      request.open("GET", ajaxUrl,true);
 	      request.send();
 
@@ -113,9 +113,9 @@ function fntEditRol(){
             var objData = JSON.parse(request.responseText);
             if(objData.status)
             {
-              document.querySelector("#idRol").value = objData.data.idrol;
-              document.querySelector("#txtNombre").value = objData.data.nombrerol;
-              document.querySelector("#txtDescripcion").value = objData.data.descripcion;
+              document.querySelector("#roleId").value = objData.data.roleId;
+              document.querySelector("#txtroleNomb").value = objData.data.roleNomb;
+              document.querySelector("#txtroleDesc").value = objData.data.roleDesc;
             
             if(objData.data.status == 1)
             {
@@ -143,7 +143,7 @@ function fntDelRol(){
 	var btnDelRol = document.querySelectorAll(".btnDelRol");
 	btnDelRol.forEach(function(btnDelRol) {
 		btnDelRol.addEventListener('click', function(){
-          var idrol = this.getAttribute("rl");
+          var roleId = this.getAttribute("rl");
           
           swal({
           	title: "Eliminar rol",
@@ -159,7 +159,7 @@ function fntDelRol(){
           	{
        		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
        		var ajaxUrl = base_url+'/Roles/delRol/';
-       		var strData = "idrol="+idrol;
+       		var strData = "roleId="+roleId;
        		request.open("POST", ajaxUrl, true);
        		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
        		request.sent(strData);

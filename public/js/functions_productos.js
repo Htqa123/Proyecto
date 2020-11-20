@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	formProductos.onsubmit = function(e) {
 	  e.preventDefault();
 	  
+
 	  var intlistProd = document.querySelector('#listProd').value;
 	  var strprodNomb = document.querySelector('#txtprodNomb').value;
 	  var intprodPrec = document.querySelector('#txtprodPrec').value;
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 window.addEventListener('load', function(){
 	fntSelectCategoria();
-	fntViewUsuario();
+	fntViewProductos();
 	fntEditProductos();
 	fntSelectProveedores();
 }, false);
@@ -117,13 +118,13 @@ function fntSelectProveedores(){
 	}
 }
 
-function fntViewUsuario() {
-	var btnViewUsuario = document.querySelectorAll(".btnViewUsuario");
-	btnViewUsuario.forEach(function(btnViewUsuario){
-		btnViewUsuario.addEventListener('click', function(){
-		var idpersona = this.getAttribute("us");
+function fntViewProductos() {
+	var btnViewProductos = document.querySelectorAll(".btnViewProductos");
+	btnViewProductos.forEach(function(btnViewProductos){
+		btnViewProductos.addEventListener('click', function(){
+		var prodCodi = this.getAttribute("pr");
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
-		var ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
+		var ajaxUrl = base_url+'/Productos/getProducto/'+prodCodi;
 		request.open("GET",ajaxUrl,true);
 		request.send();
 		request.onreadystatechange = function(){
@@ -133,12 +134,11 @@ function fntViewUsuario() {
 					var estadoUsuario = objData.data.status == 1 ?
 					'<span class="badge badge-success">Activo</span>':
 					'<span class="badge badge-danger">Inactivo</span>';
-					document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
-					document.querySelector("#celNombres").innerHTML = objData.data.nombres;
-					document.querySelector("#celApellidos").innerHTML = objData.data.apellidos;
-					document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
-					document.querySelector("#celEmail").innerHTML = objData.data.email_user;
-					document.querySelector("#celTipoUsuario").innerHTML = objData.data.nombrerol;
+					document.querySelector("#celIdentificacion").innerHTML = objData.data.cateNomb;
+					document.querySelector("#celNombres").innerHTML = objData.data.prodNomb;
+					document.querySelector("#celApellidos").innerHTML = objData.data.prodPrec;
+					document.querySelector("#celTelefono").innerHTML = objData.data.prodMode;
+					document.querySelector("#celEmail").innerHTML = objData.data.prodStock;
 					document.querySelector("#celEstado").innerHTML = estadoUsuario;
 					document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
 					$('#ModalViewUser').modal('show');
@@ -182,7 +182,7 @@ function fntEditProductos() {
 		document.querySelector("#txtprodMarc").value = objData.data.prodMarc;
 		document.querySelector("#txtprodStock").value = objData.data.prodStock;
 		document.querySelector("#txtprodMode").value = objData.data.prodMode;
-		document.querySelector("#listNitProv").value = objData.data.prodNitProv;
+		document.querySelector("#listNitProv").value = objData.data.provNomb;
 		document.querySelector("#listStatus").value = objData.data.status;
 		
 
@@ -193,7 +193,6 @@ function fntEditProductos() {
 
 			
 	}
-	
 	
 		});
 	});

@@ -49,11 +49,10 @@
                  </div>
              </div>
                  
-                <div class="form-group col-md-6">
-                        <label for="txtprovDeta">Descripción</label>
-                        <textarea class="form-control" id="txtprovDeta" name="txtprovDeta" rows="2" placeholder="Descripción del proveedor" required="">
-                        </textarea>
-                </div>  
+             <div class="form-group">
+                    <label for="control-label">Descripción del proveedor</label>
+                    <textarea class="form-control" id="txtprovDeta" name="txtprovDeta" rows="2" placeholder="Descripción del proveedor" required=""></textarea>
+               </div>  
              
              
             <div class="tile-footer">

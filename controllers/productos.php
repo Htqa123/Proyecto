@@ -18,7 +18,7 @@ class Productos extends Controllers
 	}
 	
 	public function setProducto(){
-		dep($_POST);
+		//dep($_POST);
 		if($_POST) {
 		if(empty($_POST['listProd']) || empty($_POST['txtprodNomb']) ||
 		empty($_POST['txtprodPrec']) || empty($_POST['txtprodMode']) || empty($_POST['txtprodMarc']) ||
@@ -80,7 +80,7 @@ class Productos extends Controllers
 				}
 
 				$arrData[$i]['options'] = '<div class="text-center">
-				<button class="btn btn-secondary btn-sm btnViewUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
+				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
 				<button class="btn btn-primary btn-sm btnEditProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
 				<button class="btn btn-danger btn-sm btnDelUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
 				</div>';
@@ -90,11 +90,11 @@ class Productos extends Controllers
         die();
 	}
 
-	public function getProducto(int $idproductos){
-	 $idproductos = intval($idproductos);
-	 if($idproductos > 0)
+	public function getProducto(int $prodCodi){
+	 $prodCodi = intval($prodCodi);
+	 if($prodCodi > 0)
 	 {
-	  $arrData = $this->model->selectProducto($idproductos);
+	  $arrData = $this->model->selectProducto($prodCodi);
 	  ///dep($arrData);
 	  if(empty($arrData))
 	  {

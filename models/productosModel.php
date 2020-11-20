@@ -28,12 +28,12 @@ class ProductosModel extends Mysql
     $this->intStatus = $status;
     $return = 0;
 
-    $sql = "SELECT * FROM productos WHERE prodNomb =
-    '{$this->strprodNomb}'";
-    $request = $this->select_all($sql);
+    // $sql = "SELECT * FROM productos WHERE prodNomb =
+    // '{$this->strprodNomb}'";
+    // $request = $this->select_all($sql);
     
     if(empty($request)){
-      $query_insert = "INSERT INTO productos (prodNomb,prodCodiCate , prodPrec, prodMode,
+      $query_insert = "INSERT INTO productos (prodCodiCate, prodNomb, prodPrec, prodMode,
       prodMarc, prodStock, prodNitProv, status) value(?,?,?,?,?,?,?,?)";
       $arrData = array(
         $this->intlistProd,
@@ -57,10 +57,8 @@ class ProductosModel extends Mysql
 
   public function selectProductos()
   {
-    $sql ="SELECT p.prodCodi, p.prodNomb, p.prodFech, p.prodPrec,
-    p.prodMode, p.prodMarc,  p.prodStock, p.prodNitProv, p.adminNomb,
-    p.status, c.cateNomb
-    FROM productos p
+    $sql ="SELECT *
+    FROM productos p 
     INNER JOIN categorias c
     ON p.prodCodiCate = c.cateCodi
     WHERE p.status != 0"  ;
@@ -73,10 +71,12 @@ class ProductosModel extends Mysql
   {
     $this->prodCodi = $prodCodi;
     $sql ="SELECT  p.prodNomb,p.prodCodiCate, p.prodPrec, p.prodMode, p.prodMarc, p.prodNitProv,
-    p.status, p.prodStock,   r.cateNomb, r.cateCodi, 
+    p.status, p.prodStock,   r.cateNomb, r.cateCodi, pv.provNomb,
     DATE_FORMAT(p.prodFech, '%d-%m-%Y') 
     as fechaRegistro
     FROM productos p
+    JOIN proveedores pv
+    ON p.prodNitProv = pv.provCodi
     INNER JOIN categorias r
     ON p.prodCodiCate = r.cateCodi
     WHERE p.prodCodi = $this->prodCodi";

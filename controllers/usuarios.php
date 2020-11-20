@@ -20,22 +20,22 @@ class Usuarios extends Controllers
 	public function setUsuario(){
 		///dep($_POST);
 		if($_POST) {
-		if(empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) ||
-		empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmail']) ||
+		if(empty($_POST['txtpersIden']) || empty($_POST['txtpersNomb']) ||
+		empty($_POST['txtpersApel']) || empty($_POST['txtpersTele']) || empty($_POST['txtpersEmail']) ||
 		empty($_POST['listRolid']) || empty($_POST['listStatus']) ) 
 		{
 			$arrResponse = array("status" => false, "msg" => 'Datos incorrectos');
 
 		}else{
-			$strIdentificacion = strClean($_POST['txtIdentificacion']);
-			$strNombre = ucwords (strClean($_POST['txtNombre']));
-			$strApellido = ucwords (strClean($_POST['txtApellido']));
-			$intTelefono = intval(strClean($_POST['txtTelefono']));
-			$strEmail = strtolower (strClean($_POST['txtEmail']));
+			$strIdentificacion = strClean($_POST['txtpersIden']);
+			$strNombre = ucwords (strClean($_POST['txtpersNomb']));
+			$strApellido = ucwords (strClean($_POST['txtpersApel']));
+			$intTelefono = intval(strClean($_POST['txtpersTele']));
+			$strEmail = strtolower (strClean($_POST['txtpersEmail']));
 			$intTipoId = intval(strClean($_POST['listRolid']));
 			$intStatus = intval(strClean($_POST['listStatus']));
 
-			$strPassword = empty($_POST['txtPassword']) ? hash("SHA256",passGenerator()) : hash("SHA256", $_POST['txtPassword']);
+			$strPassword = empty($_POST['txtpersPass']) ? hash("SHA256",passGenerator()) : hash("SHA256", $_POST['txtpersPass']);
 			$request_user = $this->model->insertUsuario($strIdentificacion,
 			$strNombre,
 			$strApellido,
@@ -78,9 +78,9 @@ class Usuarios extends Controllers
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['idpersona'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
-                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['idpersona'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['idpersona'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['persId'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['persId'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['persId'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
                     </div>';
             }
 
@@ -88,11 +88,11 @@ class Usuarios extends Controllers
         die();
 	}
 
-	public function getUsuario(int $idpersona){
-	 $idpersona = intval($idpersona);
-	 if($idpersona > 0)
+	public function getUsuario(int $persId){
+	 $idperson = intval($persId);
+	 if($idperson > 0)
 	 {
-	  $arrData = $this->model->selectUsuario($idpersona);
+	  $arrData = $this->model->selectUsuario($idperson);
 	  //dep($arrData);
 	  if(empty($arrData))
 	  {

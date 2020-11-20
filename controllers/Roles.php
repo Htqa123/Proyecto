@@ -32,9 +32,9 @@ public function Roles()
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnPermisoRol" rl="'.$arrData[$i]['idrol'].'" title="Permisos"><i class="fa fa-user-secret" aria-hidden="true"></i></button> 
-                    <button class="btn btn-primary btn-sm btnEditRol" rl="'.$arrData[$i]['idrol'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger btn-sm btnDelRol" rl="'.$arrData[$i]['idrol'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-secondary btn-sm btnPermisoRol" rl="'.$arrData[$i]['roleId'].'" title="Permisos"><i class="fa fa-user-secret" aria-hidden="true"></i></button> 
+                    <button class="btn btn-primary btn-sm btnEditRol" rl="'.$arrData[$i]['roleId'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger btn-sm btnDelRol" rl="'.$arrData[$i]['roleId'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
                     </div>';
             }
 
@@ -47,7 +47,7 @@ public function Roles()
         $arrData = $this->model->selectRoles();
         if(count($arrData) > 0){
             for($i=0; $i < count($arrData); $i++){
-                $htmlOptions .= '<option value="'.$arrData[$i]['idrol'].'">'.$arrData[$i]['nombrerol'].'</option>';
+                $htmlOptions .= '<option value="'.$arrData[$i]['roleId'].'">'.$arrData[$i]['roleNomb'].'</option>';
             }
         }
         echo $htmlOptions;
@@ -55,9 +55,9 @@ public function Roles()
     }
     
 
-    public function getRol( int $idrol)
+    public function getRol( int $roleId)
     {
-        $roleCodi = intval(strClean($idrol));
+        $roleCodi = intval(strClean($roleId));
 
         if($roleCodi > 0)
             {
@@ -82,9 +82,9 @@ echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 public function setRol()
 {
         
-            $roleCodi = intval($_POST['idRol']);
-                $roleNomb = strClean($_POST['txtNombre']);
-                $roleDesc = strClean($_POST['txtDescripcion']);
+                $roleCodi = intval($_POST['roleId']);
+                $roleNomb = strClean($_POST['txtroleNomb']);
+                $roleDesc = strClean($_POST['txtroleDesc']);
                 $intStatus = intval($_POST['listStatus']);
                 
                 if($roleCodi == 0)
@@ -128,7 +128,7 @@ public function delRol()
 {
     if($_POST){
 
-        $roleCodi = intval($_POST['idrol']);
+        $roleCodi = intval($_POST['roleId']);
         $requestDelete =  $this->model->deleteRol($roleCodi);
         if($requestDelete == 'ok'){
 

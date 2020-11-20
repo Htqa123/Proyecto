@@ -16,26 +16,26 @@ class UsuariosModel extends Mysql
   {
     parent::__construct();
   }
-  public function insertUsuario(string $identificacion, string $nombre, 
-  string $apellido, int $telefono, string $email, string $password, int $tipoid, int $status){
+  public function insertUsuario(string $persIden, string $persNomb, 
+  string $persApel, int $persTele, string $persEmail, string $persPass, int $persRolId, int $status){
    
-    $this->strIdentificacion = $identificacion;
-    $this->strNombre = $nombre;
-    $this->strApellido = $apellido;
-    $this->intTelefono = $telefono;
-    $this->strEmail = $email;
-    $this->strPassword = $password;
-    $this->intTipoId = $tipoid;
+    $this->strIdentificacion = $persIden;
+    $this->strNombre = $persNomb;
+    $this->strApellido = $persApel;
+    $this->intTelefono = $persTele;
+    $this->strEmail = $persEmail;
+    $this->strPassword = $persPass;
+    $this->intTipoId = $persRolId;
     $this->intStatus = $status;
     $return = 0;
 
-    $sql = "SELECT * FROM personas WHERE email_user =
-    '{$this->strEmail}' OR identificacion = '{$this->strIdentificacion}' ";
+    $sql = "SELECT * FROM personas WHERE persEmail =
+    '{$this->strEmail}' OR persIden = '{$this->strIdentificacion}' ";
     $request = $this->select_all($sql);
     
     if(empty($request)){
-      $query_insert = "INSERT INTO personas (identificacion, nombres, apellidos,telefono,
-      email_user, password, rolid, status) value(?,?,?,?,?,?,?,?)";
+      $query_insert = "INSERT INTO personas (persIden, persNomb, persApel,persTele,
+      persEmail, persPass, persRolId, status) value(?,?,?,?,?,?,?,?)";
       $arrData = array(
         $this->strIdentificacion,
         $this->strNombre,
@@ -56,25 +56,25 @@ class UsuariosModel extends Mysql
 
   public function selectUsuarios()
   {
-    $sql ="SELECT p.idpersona, p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user,
-    p.status, r.nombrerol
+    $sql ="SELECT p.persId, p.persIden, p.persNomb, p.persApel, p.persTele, p.persEmail,
+    p.status, r.roleNomb
     FROM personas p
     INNER JOIN roles r
-    ON p.rolid = r.idrol
+    ON p.persRolId = r.roleId
     WHERE p.status != 0";
     $request = $this->select_all($sql);
     return $request;
 
   }
-  public function selectUsuario(int $idpersona)
+  public function selectUsuario(int $persId)
   {
-    $this->intIdUsuario = $idpersona;
-    $sql ="SELECT p.idpersona, p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user,
-    p.status, r.nombrerol, r.idrol, DATE_FORMAT(p.Fech, '%d-%m-%Y') as fechaRegistro
+    $this->intIdUsuario = $persId;
+    $sql ="SELECT p.persId, p.persIden, p.persNomb, p.persApel, p.persTele, p.persEmail,
+    p.status, r.roleNomb, r.roleId, DATE_FORMAT(p.persFech, '%d-%m-%Y') as fechaRegistro
     FROM personas p
     INNER JOIN roles r
-    ON p.rolid = r.idrol
-    WHERE p.idpersona = $this->intIdUsuario";
+    ON p.persId = r.roleId
+    WHERE p.persId = $this->intIdUsuario";
     ///echo $sql;exit; 
     $request = $this->select($sql);
     return $request;
