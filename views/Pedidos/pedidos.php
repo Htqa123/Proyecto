@@ -1,6 +1,6 @@
 <?php
  headerAdmin($data); 
- ////getModal('ModalProductos', $data);
+ getModal('ModalPedido', $data);
  ?>
     <main class="app-content">
       <div class="app-title">
@@ -42,4 +42,5 @@
     </main>
     
   <?php footerAdmin($data); ?>
+  
   <script src="<?= media(); ?>/js/functions_pedidos.js"></script>

@@ -15,15 +15,24 @@ class PedidosModel extends Mysql
     return $request;
   }
 
-  public function selectPedido(int $prodCodi )
-  {
-    $this->intIdUsuario = $prodCodi ;
-    $sql ="SELECT p.prodCodi , p.prodNomb, p.prodMarc, p.prodStock, p.prodMode, c.cateNomb,
-    p.status, p.prodPrec, DATE_FORMAT(p.prodFech, '%d-%m-%Y') as fechaRegistro
+  public function selectPedido(int $prodCodi ){
+    $this->prodCodi = $prodCodi ;
+    $sql ="SELECT p.prodCodi , p.prodNomb, p.prodMarc, p.prodStock, 
+    p.prodMode, c.cateNomb, p.prodPrec, p.status
     FROM productos p
     INNER JOIN categorias c
     ON   p.prodCodiCate = c.cateCodi
-    WHERE p.prodCodi = $this->intIdUsuario";
+    WHERE p.status != 0";
+    ///echo $sql;exit; 
+    $request = $this->select($sql);
+    return $request;
+  }
+
+  public function AgregarProducto(int $prodCodi ){
+    $this->prodCodi = $prodCodi ;
+    $sql ="SELECT prodCodi , prodNomb, prodStock, 
+     prodPrec, status FROM productos 
+    WHERE prodCodi = $this->prodCodi";
     ///echo $sql;exit; 
     $request = $this->select($sql);
     return $request;

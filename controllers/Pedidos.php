@@ -16,7 +16,9 @@ class Pedidos extends Controllers
 		////$data['page_content'] = "Informacion de la pagina"; sirve para dar informacion.
 		$this->views->getView($this,"Pedidos", $data);
 	}
-	
+
+	///////////////////funcion para insertar productos
+
 	public function setProducto(){
 		dep($_POST);
 		if($_POST) {
@@ -67,6 +69,8 @@ class Pedidos extends Controllers
 		}
 		die();
 	}
+
+
 	public function getPedidos(){
 
 		$arrData =$this->model->selectPedidos();
@@ -80,8 +84,8 @@ class Pedidos extends Controllers
 				}
 
 				$arrData[$i]['options'] = '<div class="text-center">
-				<button class="btn btn-secondary btn-sm btnViewPedidos" pr="'.$arrData[$i]['prodCodi'].'" title="Ver referencia"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button> 
-				<button class="btn btn-primary btn-sm btnCarrito" pr="'.$arrData[$i]['prodCodi'].'" title="Agregar"><i class="fa fa-plus-square"></i></button>
+				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Ver Detalle"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Detalle</button> 
+				<button class="btn btn-primary btn-sm btnCarrito" pr="'.$arrData[$i]['prodCodi'].'" title="Agregar Producto"><i class="fa fa-plus-square"></i>Agregar</button>
 				
 				</div>';
 		}
@@ -90,7 +94,7 @@ class Pedidos extends Controllers
         die();
 	}
 
-	public function getPedido(int $prodCodi){
+	public function getProducto(int $prodCodi){
 	 $prodCodi = intval($prodCodi);
 	 if($prodCodi > 0)
 	 {
@@ -106,6 +110,25 @@ class Pedidos extends Controllers
 	 }
 	 die();
 	}
+
+
+	
+	public function getAgregar(int $prodCodi){
+		$prodCodi = intval($prodCodi);
+		if($prodCodi > 0)
+		{
+		 $arrData = $this->model->AgregarProducto($prodCodi);
+		 ///dep($arrData);
+		 if(empty($arrData))
+		 {
+			 $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos');
+		 }else{
+			 $arrResponse = array('status' => true,  'data' => $arrData);
+		 }
+		 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+		}
+		die();
+	   }
 	
 }
 

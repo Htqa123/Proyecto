@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 	////insertar productos
 	
-	formProductos.onsubmit = function(e) {
+	formPedidos.onsubmit = function(e) {
 	  e.preventDefault();
 	  
 	  var intlistProd = document.querySelector('#listProd').value;
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded',function(){
 			if(request.readyState == 4 && request.status == 200){
 				var objData = JSON.parse(request.responseText);
 				if(objData.status){
-					$('#ModalProductos').modal('hide');
+					$('#ModalPedido').modal('hide');
 					formElement.reset();
 					swal("Productos", objData.msg ,"success");
 					tableProductos.api().ajax.reload(function(){
@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded',function(){
 }, false);
 
 
-
 window.addEventListener('load', function(){
 	fntSelectCategoria();
-	fntViewPedidos();
+	fntViewProductos();
+	fntCarritoProductos();
 }, false);
 
 ///funcion para cargar select categorias
@@ -95,17 +95,52 @@ function fntSelectCategoria(){
 		}
 	}
 }
-///funcion para cargar select  provvedores
 
 
+///funcion para cargar select  carrito
 
-function fntViewPedidos() {
-	var btnViewPedidos = document.querySelectorAll(".btnViewPedidos");
-	btnViewPedidos.forEach(function(btnViewPedidos){
-		btnViewPedidos.addEventListener('click', function(){
+function fntCarritoProductos() {
+	var btnCarrito = document.querySelectorAll(".btnCarrito");
+	btnCarrito.forEach(function(btnCarrito){
+	btnCarrito.addEventListener('click', function(){
+
+	var prodCodi = this.getAttribute("pr");
+	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
+	var ajaxUrl = base_url+'/Pedidos/getAgregar/'+prodCodi;
+	request.open("GET",ajaxUrl,true);
+	request.send();
+	request.onreadystatechange = function(){
+	if(request.status == 200){
+		var objData = JSON.parse(request.responseText);
+		if(objData.status){
+		
+		document.querySelector("#txtprodNomb").innerHTML = objData.data.prodNomb;
+		document.querySelector("#txtprodPrec").innerHTML = objData.data.prodPrec;
+		document.querySelector("#txtprodStock").innerHTML = objData.data.prodStock;
+		
+		$('#ModalAgregar').modal('show');
+
+	}else{
+		swal("Error", objData.msg , "error");
+			}
+		}
+				
+	}
+	
+		});
+	});
+}
+
+
+//////funcion para ver producto ok
+
+function fntViewProductos() {
+	var btnViewProductos = document.querySelectorAll(".btnViewProductos");
+	btnViewProductos.forEach(function(btnViewProductos){
+		btnViewProductos.addEventListener('click', function(){
 		var prodCodi = this.getAttribute("pr");
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
-		var ajaxUrl = base_url+'/Pedidos/getPedido/'+prodCodi;
+		var ajaxUrl = base_url+'/Pedidos/getProducto/'+prodCodi;
 		request.open("GET",ajaxUrl,true);
 		request.send();
 		request.onreadystatechange = function(){
@@ -115,14 +150,14 @@ function fntViewPedidos() {
 					var estadoUsuario = objData.data.status == 1 ?
 					'<span class="badge badge-success">Activo</span>':
 					'<span class="badge badge-danger">Inactivo</span>';
-					document.querySelector("#celTipoUsuario").innerHTML = objData.data.cateNomb;
-					document.querySelector("#celIdentificacion").innerHTML = objData.data.prodNomb;
-					document.querySelector("#celNombres").innerHTML = objData.data.prodMode;
-					document.querySelector("#celApellidos").innerHTML = objData.data.prodStock;
-					document.querySelector("#celTelefono").innerHTML = objData.data.prodPrec;
+					document.querySelector("#celIdentificacion").innerHTML = objData.data.cateNomb;
+					document.querySelector("#celNombres").innerHTML = objData.data.prodNomb;
+					document.querySelector("#celApellidos").innerHTML = objData.data.prodPrec;
+					document.querySelector("#celTelefono").innerHTML = objData.data.prodMode;
+					document.querySelector("#celEmail").innerHTML = objData.data.prodStock;
 					document.querySelector("#celEstado").innerHTML = estadoUsuario;
-					
-					$('#ModalViewPedidos').modal('show');
+					document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
+					$('#ModalViewProductos').modal('show');
 
 				}else{
 					swal("Error", objData.msg , "error");
@@ -132,6 +167,7 @@ function fntViewPedidos() {
 		
 		});
 	});
+
 }
 
 
@@ -142,16 +178,15 @@ function fntViewPedidos() {
 
 
 
-function openModal()
-{
+  function openModal(){
 	document.querySelector('#idproductos').value="";
 	document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister"); 
 	document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary"); 
 	document.querySelector('#btnText').innerHTML = "Guardar";
-	document.querySelector('#titleModal').innerHTML = "Nuevo usuario";
-	document.querySelector("#formProductos").reset();
+	document.querySelector('#titleModal').innerHTML = "Agregar al carrito";
+	document.querySelector("#formPedidos").reset();
 
-	$('#ModalProductos').modal('show');
+	$('#ModalPedidos').modal('show');
 }
 
 
