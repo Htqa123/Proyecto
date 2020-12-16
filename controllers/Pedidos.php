@@ -19,35 +19,24 @@ class Pedidos extends Controllers
 
 	///////////////////funcion para insertar productos
 
-	public function setProducto(){
+	public function setPedidos(){
 		dep($_POST);
 		if($_POST) {
-		if(empty($_POST['listProd']) || empty($_POST['txtprodNomb']) ||
-		empty($_POST['txtprodPrec']) || empty($_POST['txtprodMode']) || empty($_POST['txtprodMarc']) ||
-		empty($_POST['txtprodStock']) || empty($_POST['listNitProv']) || empty($_POST['listStatus']) ) 
+		if(empty($_POST['txtCant']) || empty($_POST['txtprodNomb']) 
+		|| empty($_POST['idproductos'])) 
 		{
-			$arrResponse = array("status" => false, "msg" => 'Datos incorrectos');
+			$arrResponse = array("idproductos" => false, "msg" => 'Datos incorrectos');
 
 		}else{
-			$intlistProd = intval(strClean($_POST['listProd']));
-			$strprodNomb = ucwords (strClean($_POST['txtprodNomb']));
-			$intprodPrec = intval (strClean($_POST['txtprodPrec']));
-			$strprodMode = ucwords(strClean($_POST['txtprodMode']));
-			$strprodMarc = ucwords (strClean($_POST['txtprodMarc']));
-            $intprodStock = intval(strClean($_POST['txtprodStock']));
-            $intlistNitProv = intval(strClean($_POST['listNitProv']));
-			$intStatus = intval(strClean($_POST['listStatus']));
+				
+            $intprodStock = intval(strClean($_POST['txtCant']));
+			$intprodNomb = intval(strClean($_POST['txtprodNomb']));
 
 		
-			$request_user = $this->model->insertProductos(
-            $intlistProd,
-			$strprodNomb,
-			$intprodPrec,
-			$strprodMode,
-			$strprodMarc,
+			$request_user = $this->model->insertPedidos(
 			$intprodStock,
-			$intlistNitProv,
-			$intStatus);
+			$intprodNomb
+			);
 
 			if($request_user > 1)
 			{

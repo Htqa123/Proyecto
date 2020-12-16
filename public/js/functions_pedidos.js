@@ -30,24 +30,21 @@ document.addEventListener('DOMContentLoaded',function(){
 	
 	formPedidos.onsubmit = function(e) {
 	  e.preventDefault();
+	   
+	  //document.querySelector("#txtprodNomb").innerHTML = objData.data.prodNomb;
+	  var intprodStock = document.querySelector('#txtCant').value;
+	  var intprodNomb = document.querySelector('#txtprodNomb').value;
 	  
-	  var intlistProd = document.querySelector('#listProd').value;
-	  var strprodNomb = document.querySelector('#txtprodNomb').value;
-	  var intprodPrec = document.querySelector('#txtprodPrec').value;
-	  var strprodMode = document.querySelector('#txtprodMode').value;
-	  var strprodMarc = document.querySelector('#txtprodMarc').value;
-	  var intprodStock = document.querySelector('#txtprodStock').value;
-	  var listNitProv = document.querySelector('#listNitProv').value;
-	  var intStatus = document.querySelector('#listStatus').value;
-
-	  if(intlistProd == '' || strprodNomb  == '' || intprodPrec == '' ||  strprodMode == '' || strprodMarc == '' || intprodStock == '' || listNitProv == ''|| intStatus== '')
+		
+	  
+	  if(  intprodStock == '')
 	  {
 		  swal("Atencion", "Todos los campos son obligatorios", "error");
 		  return false;
 	  }
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-		var ajaxUrl = base_url+'/Productos/setProducto';
-		var formData = new FormData(formProductos);
+		var ajaxUrl = base_url+'/Pedidos/setPedidos';
+		var formData = new FormData(formPedidos);
 		request.open("POST", ajaxUrl, true);
 		request.send(formData);
 
@@ -57,8 +54,8 @@ document.addEventListener('DOMContentLoaded',function(){
 				if(objData.status){
 					$('#ModalPedido').modal('hide');
 					formElement.reset();
-					swal("Productos", objData.msg ,"success");
-					tableProductos.api().ajax.reload(function(){
+					swal("Pedidos", objData.msg ,"success");
+					tablepedido.api().ajax.reload(function(){
 
 					});
 				}else{
