@@ -1,6 +1,6 @@
 <?php
 
-class Pedidos extends Controllers
+class Facturas extends Controllers
 {
 	
 	public function __construct()
@@ -8,13 +8,13 @@ class Pedidos extends Controllers
 		parent::__construct();
 
 	}
-	public function Pedidos()
+	public function Facturas()
 	{
-		$data['page_tag'] = "Pedidos";
-		$data['page_title'] ="Pedidos";
-		$data['page_name'] = "Pedidos";
+		$data['page_tag'] = "Facturas";
+		$data['page_title'] ="Facturas";
+		$data['page_name'] = "Facturas";
 		////$data['page_content'] = "Informacion de la pagina"; sirve para dar informacion.
-		$this->views->getView($this,"Pedidos", $data);
+		$this->views->getView($this,"Facturas", $data);
 	}
 
 	///////////////////funcion para insertar productos

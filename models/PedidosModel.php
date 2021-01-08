@@ -6,10 +6,11 @@ class PedidosModel extends Mysql
     parent::__construct();
   }
 
-  public function insertPedidos( string $prodNomb , 
+
+  public function insertPedidos( string $pediNomb , 
   int $pediPrec,  int $pediCant, int $status){
    
-    $this->strprodNomb = $prodNomb;
+    $this->strprodNomb = $pediNomb;
     $this->intprodPrec = $pediPrec;
     $this->strprodStock = $pediCant;
     $this->intStatus = $status;

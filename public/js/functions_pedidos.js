@@ -26,18 +26,21 @@ document.addEventListener('DOMContentLoaded',function(){
 		"order":[[0,"desc"]]
 	});
 
+
 	////insertar productos
-	
+	var formPedidos = document.querySelector("#formPedidos");
 	formPedidos.onsubmit = function(e) {
 	  e.preventDefault();
 	   
 	  //document.querySelector("#txtprodNomb").innerHTML = objData.data.prodNomb;
-	  var intprodStock = document.querySelector('#txtCant').value;
+	  
+	  var intCant = document.querySelector('#txtCant').value;
 	  var intprodNomb = document.querySelector('#txtprodNomb').value;
+	  var intprodPrec = document.querySelector('#txtprodPrec').value;
 	  
 		
 	  
-	  if(  intprodStock == '')
+	  if( intCant == '')
 	  {
 		  swal("Atencion", "Todos los campos son obligatorios", "error");
 		  return false;

@@ -46,12 +46,25 @@
                 <span class="app-menu__label">Pedidos</span>
             </a>
         </li>
-        <li>
+        <li class="treeview">
+            <a class="app-menu__item" href="#" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-cog" aria-hidden="true"></i>
+                <span class="app-menu__label">Provedores</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="<?= base_url(); ?>/proveedores"><i class="icon fa fa-circle-o"></i>Proveedores</a></li>
+            <li><a class="treeview-item" href="<?= base_url(); ?>/facturas"><i class="icon fa fa-circle-o"></i>Facturas</a></li>
+            <!-- <li><a class="treeview-item" href="<?= base_url(); ?>/permisos"><i class="icon fa fa-circle-o"></i>Permisos</a></li>
+            <li><a class="treeview-item" href="<?= base_url(); ?>/categorias"><i class="icon fa fa-circle-o"></i>Categorias</a></li> -->
+          </ul>
+        </li>
+        <!-- <li>
             <a class="app-menu__item" href="<?= base_url(); ?>/proveedores">
                 <i class="app-menu__icon fa fa-check-circle" aria-hidden="true"></i>
                 <span class="app-menu__label">Proveedores</span>
             </a>
-        </li>
+        </li> -->
         <li>
             <a class="app-menu__item" href="<?= base_url(); ?>/logout">
                 <i class="app-menu__icon fa fa-sign-in" aria-hidden="true"></i>
