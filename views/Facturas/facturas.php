@@ -6,7 +6,7 @@
       <div class="app-title">
         <div>
           <h1><i class="fa fa-user-plus" aria-hidden="true"></i> <?= $data['page_title'] ?>
-          <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fa fa-plus-square" aria-hidden="true"></i>Registrar factura</button>
+          <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fa fa-plus-square" aria-hidden="true"></i>Nuevo</button>
           </h1>
           <p>Aqui puedes agregar una factura de un proveedor</p>
         </div>
@@ -25,9 +25,10 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Nombre del producto</th> 
-                        <th>Detalle</th>
-                        <th>Precio</th>
+                        <th>Número de factura</th> 
+                        <th>valor</th>
+                        <th>Fecha</th>
+                        <th>status</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
@@ -43,4 +44,4 @@
     
   <?php footerAdmin($data); ?>
   
-  <script src="<?= media(); ?>/js/functions_pedidos.js"></script>
+  <script src="<?= media(); ?>/js/functions_facturas.js"></script>
