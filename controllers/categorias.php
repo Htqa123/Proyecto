@@ -14,6 +14,7 @@ public function Categorias()
     $data['page_tag'] = "Categorias";
     $data['page_title'] ="Categorías <small></small>";
     $data['page_name'] = "Categorías";
+    $data['page_functions_js'] = "functions_categorias.js";
     ///$data['page_content'] = "Informacion de la pagina";
     $this->views->getView($this,"categorias", $data);
 }

@@ -42,4 +42,4 @@
     </main>
   
   <?php footerAdmin($data); ?>
-  <script src="<?= media(); ?>/js/functions_categorias.js"></script>
+  <script src="<?= media(); ?>js/<?= $data['page_functions_js']; ?>"></script>
