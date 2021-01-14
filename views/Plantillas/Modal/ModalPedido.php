@@ -1,5 +1,5 @@
 
-<div class="modal fade" id="ModalPedidos" name="ModalPedidos" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade modal-lx" id="ModalPedidos" name="ModalPedidos" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header headerRegister">
@@ -94,10 +94,10 @@
         </button>
       </div>
       <div class="modal-body">  
-       <table class="teble table-bordered">
-        <tbody>
+       <table class="table table-bordered">
+        <tbody class="table-responsive-x">
             <tr>
-                <td>Categoría</td>
+                <td >Categoría</td>
                 <td id=celIdentificacion></td>
             </tr>
             <tr>

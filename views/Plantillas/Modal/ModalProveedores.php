@@ -79,7 +79,7 @@
         </button>
       </div>
       <div class="modal-body">  
-       <table class="teble table-bordered">
+       <table class="table table-bordered">
         <tbody>
             <tr>
                 <td>Nit del proveedor</td>

@@ -85,8 +85,8 @@
         </button>
       </div>
       <div class="modal-body">  
-       <table class="teble table-bordered">
-        <tbody>
+       <table class="table table-bordered">
+        <tbody class="table-responsive-x">
             <tr>
                 <td>Identificacion</td>
                 <td id=celIdentificacion></td>
