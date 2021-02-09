@@ -1,6 +1,6 @@
 <?php
 
-class Pedidos extends Controllers
+class Ventas extends Controllers
 {
 	
 	public function __construct()
@@ -13,13 +13,13 @@ class Pedidos extends Controllers
 	    }
 
 	}
-	public function Pedidos()
+	public function Ventas()
 	{
-		$data['page_tag'] = "Pedidos";
-		$data['page_title'] ="Pedidos";
-		$data['page_name'] = "Pedidos";
+		$data['page_tag'] = "Ventas";
+		$data['page_title'] ="Ventas";
+		$data['page_name'] = "Ventas";
 		////$data['page_content'] = "Informacion de la pagina"; sirve para dar informacion.
-		$this->views->getView($this,"Pedidos", $data);
+		$this->views->getView($this,"Ventas", $data);
 	}
 
 	///////////////////funcion para insertar productos
@@ -64,9 +64,9 @@ class Pedidos extends Controllers
 	}
 
 
-	public function getPedidos(){
+	public function getVentas(){
 
-		$arrData =$this->model->selectPedidos();
+		$arrData =$this->model->selectVentas();
 		for($i = 0; $i < count($arrData); $i++)
 			{
 				if($arrData[$i]['status'] == 1)
@@ -77,8 +77,8 @@ class Pedidos extends Controllers
 				}
 
 				$arrData[$i]['options'] = '<div class="text-center">
-				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Ver Detalle"><i class="fa fa-plus"></i>&nbsp;Detalle</button> 
-				<button class="btn btn-primary btn-sm btnCarrito" pr="'.$arrData[$i]['prodCodi'].'" title="Agregar Producto"><i class="fa fa-shopping-cart"></i>&nbsp;Agregar</button>
+				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['pediCodi'].'" title="Ver Detalle"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Detalle</button> 
+				<button class="btn btn-primary btn-sm btnCarrito" pr="'.$arrData[$i]['pediCodi'].'" title="Agregar Producto"><i class="fa fa-plus-square"></i>Editar</button>
 				
 				</div>';
 		}

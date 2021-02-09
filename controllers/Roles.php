@@ -87,18 +87,18 @@ echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 public function setRol()
 {
         
-                $roleCodi = intval($_POST['roleId']);
+                $intIdrol = intval($_POST['roleId']);
                 $roleNomb = strClean($_POST['txtroleNomb']);
                 $roleDesc = strClean($_POST['txtroleDesc']);
                 $intStatus = intval($_POST['listStatus']);
                 
-                if($roleCodi == 0)
+                if($intIdrol == 0)
                 {
                     $request_rol = $this->model->insertRol($roleNomb, $roleDesc, $intStatus);
                     $option = 1;
 
                 }else{
-                    $request_rol = $this->model->updateRol($roleCodi, $roleNomb, $roleDesc, $intStatus);
+                    $request_rol = $this->model->updateRol($intIdrol, $roleNomb, $roleDesc, $intStatus);
                     $option = 2;
 
                 }

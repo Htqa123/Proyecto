@@ -60,7 +60,7 @@
 		 	$this->strDescripcion = $descripcion;
 		 	$this->intStatus = $status;
 
-		 	$sql ="SELECT * FROM roles WHERE nombrerol = '$this->strRol' AND roleId !=  $this->intIdrol ";
+		 	$sql ="SELECT * FROM roles WHERE roleNomb = '$this->strRol' AND roleId !=  $this->intIdrol ";
 		 	$request = $this->select_all($sql);
 
 		 	if(empty($request))

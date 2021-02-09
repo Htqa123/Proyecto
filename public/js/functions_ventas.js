@@ -3,21 +3,35 @@ var tablepedidos;
 
 document.addEventListener('DOMContentLoaded',function(){
 	////var formUsuarios = document.querySelector("formUsuarios");
-	tablepedidos = $('#tablepedidos').DataTable({
+	tablepedidos = $('#tablepedidos').DataTable({	
+		"footerCallback": function ( row, data, start, end, display ) {
+        
+            total = this.api()
+                .column(3)//numero de columna a sumar
+                .column(1, {page: 'current'})//para sumar solo la pagina actual
+                .data()
+                .reduce(function (a, b) {
+                    return parseInt(a) + parseInt(b);
+                }, 0 );
+
+            $(this.api().column(3).footer()).html(total);
+            
+        },
 		"aProcessing":true,
 		"aServerSide":true,
 		"language": {
+			"url": "//cdn.datatables.net/plug-ins/1.10.22/api/sum().js",
 			"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
 		},
 		"ajax":{
-			"url": " "+base_url+"/Pedidos/getPedidos",
+			"url": " "+base_url+"/Ventas/getVentas",
 			"dataSrc":""
 		},
 		"columns":[
-		{"data":"prodCodi"}, 
-		{"data":"prodNomb"},
-		{"data":"prodPrec"},
-		{"data":"prodStock"},
+		{"data":"pediCodi"}, 
+		{"data":"pediNombProd"},
+		{"data":"pediCant"},
+		{"data":"pediPrec"},
 	// 	{"render": function(data, type, row) {
 	// 		const resume = {
 	// 			prodNomb: row.prodNomb,
@@ -41,6 +55,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	
     //},
 {"data":"options"},
+
 		],
 
 		"resonsieve":"true",

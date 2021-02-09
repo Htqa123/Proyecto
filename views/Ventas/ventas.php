@@ -8,7 +8,7 @@
           <h1><i class="fa fa-user-plus" aria-hidden="true"></i> <?= $data['page_title'] ?>
           <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fa fa-plus-square" aria-hidden="true"></i>Detalle Compra</button>
           </h1>
-          <p>Aqui puedes agregar productos al carrito de compras</p>
+          <p>Aqui puedes ver las ventas</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -25,22 +25,29 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Nombre del producto</th> 
-                        <th>Precio</th>
+                        <th>Producto</th> 
                         <th>Cantidad</th>
+                        <th>Precio</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
-                    <tbody>      
+                    <tbody> 
                     </tbody>
+                    <tfoot>
+                          <tr>
+                              <th></th>
+                              <th>Total:</th>
+                          </tr>
+                    </tfoot>
                   </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
+       
     </main>
     
   <?php footerAdmin($data); ?>
   
-  <script src="<?= media(); ?>/js/functions_pedidos.js"></script>
+  <script src="<?= media(); ?>/js/functions_ventas.js"></script>

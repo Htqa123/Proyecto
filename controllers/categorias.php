@@ -75,46 +75,46 @@ public function Categorias()
             public function setCategoria()
             {
                    
-        $intIdcate = intval($_POST['cateCodi']);
-        $strcateNomb = strClean($_POST['txtcateNomb']);
-        $strcateDesc = strClean($_POST['txtcateDesc']);
-        $intStatus = intval($_POST['listStatus']);
+            $intIdcate = intval($_POST['cateCodi']);
+            $strcateNomb = strClean($_POST['txtcateNomb']);
+            $strcateDesc = strClean($_POST['txtcateDesc']);
+            $intStatus = intval($_POST['listStatus']);
         
-        if($intIdcate == 0)
-        {
-            $request_cate = $this->model->insertCategoria($strcateNomb, $strcateDesc, $intStatus);
-            $option = 1;
+            if($intIdcate == 0)
+            {
+                $request_cate = $this->model->insertCategoria($strcateNomb, $strcateDesc, $intStatus);
+                $option = 1;
 
-        }else{
-            $request_cate = $this->model->updateCategoria( $strcateNomb, $strcateDesc, $intStatus);
-            $option = 2;
+            }else{
+                $request_cate = $this->model->updateCategoria( $strcateNomb, $strcateDesc, $intStatus);
+                $option = 2;
 
-        }
+            }
 
-    if($request_cate > 0)
-    {
-        if($option == 1)
-        {
+            if($request_cate > 0)
+            {
+                if($option == 1)
+                {
 
-            $arrResponse = array('status' => true, 'msg' => 'Datos guardados con exito.');
-        }else{
+                    $arrResponse = array('status' => true, 'msg' => 'Datos guardados con exito.');
+                }else{
 
-            $arrResponse = array('status' => true, 'msg' => 'Datos Actualizado con exito.');
-        }
+                    $arrResponse = array('status' => true, 'msg' => 'Datos Actualizado con exito.');
+                }
 
-        }else if ($request_cate == 'exist') 
-        {
+                }else if ($request_cate == 'exist') 
+                {
 
-        $arrResponse = array('status' => false, 'msg' => 'La categoía ya existe.');
+                $arrResponse = array('status' => false, 'msg' => 'La categoría ya existe.');
 
-    }else{
+            }else{
 
-        $arrResponse = array("status" => false, "msg" => 'No se pueden guardar los datos.');
+                $arrResponse = array("status" => false, "msg" => 'No se pueden guardar los datos.');
 
-    }
+            }
 
-    echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
-        die();
+            echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+                die();
 }
 
 
