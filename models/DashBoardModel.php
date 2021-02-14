@@ -7,7 +7,8 @@ class DashBoardModel extends Mysql
   }
   public function selectUsuarios()
   {
-    $sql ="SELECT COUNT(*)  FROM personas ";
+    
+    $sql ="SELECT COUNT(*) as total  FROM personas ";
     $request = $this->select_all($sql);
     return $request;
     //dep($request);
