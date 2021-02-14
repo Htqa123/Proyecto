@@ -26,8 +26,9 @@ class Productos extends Controllers
 		//dep($_POST);
 		if($_POST) {
 		if(empty($_POST['listProd']) || empty($_POST['txtprodNomb']) ||
-		empty($_POST['txtprodPrec']) || empty($_POST['txtprodMode']) || empty($_POST['txtprodMarc']) ||
-		empty($_POST['txtprodStock']) || empty($_POST['listNitProv']) || empty($_POST['listStatus']) ) 
+		empty($_POST['txtprodPrec']) || empty($_POST['txtprodMode']) ||
+		 empty($_POST['txtprodMarc']) ||empty($_POST['txtprodStock']) || 
+		 empty($_POST['listNitProv']) || empty($_POST['listStatus']) ) 
 		{
 			$arrResponse = array("status" => false, "msg" => 'Datos incorrectos');
 
@@ -50,7 +51,8 @@ class Productos extends Controllers
 			$strprodMarc,
 			$intprodStock,
 			$intlistNitProv,
-			$intStatus);
+			$intStatus
+		);
 
 			if($request_user > 1)
 			{

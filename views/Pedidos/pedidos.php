@@ -1,4 +1,4 @@
-<?php
+ <?php
  headerAdmin($data); 
  getModal('ModalPedido', $data);
  ?>

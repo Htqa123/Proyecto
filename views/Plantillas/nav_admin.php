@@ -48,7 +48,7 @@
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="<?= base_url(); ?>pedidos"><i class="icon fa fa-circle-o"></i>Pedidios</a></li>
+            <li><a class="treeview-item" href="<?= base_url(); ?>pedidos"><i class="icon fa fa-circle-o"></i>Pedidos</a></li>
             <li><a class="treeview-item" href="<?= base_url(); ?>ventas"><i class="icon fa fa-circle-o"></i>Ventas</a></li>
             <!-- <li><a class="treeview-item" href="<?= base_url(); ?>/permisos"><i class="icon fa fa-circle-o"></i>Permisos</a></li>
             <li><a class="treeview-item" href="<?= base_url(); ?>/categorias"><i class="icon fa fa-circle-o"></i>Categorias</a></li> -->

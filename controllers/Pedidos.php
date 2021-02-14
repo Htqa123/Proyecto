@@ -22,14 +22,14 @@ class Pedidos extends Controllers
 		$this->views->getView($this,"Pedidos", $data);
 	}
 
-	///////////////////funcion para insertar productos
+	///////////////////funcion para insertar pedidos
 
 	public function setPedidos(){
 		dep($_POST);
 		if($_POST) {
-		if(empty($_POST['idproductos']) || empty($_POST['txtCant']) || empty($_POST['txtprodNomb']) || empty($_POST['txtprodPrec'])) 
+		if(empty($_POST['txtCant']) || empty($_POST['txtprodNomb']) || empty($_POST['txtprodPrec'])) 
 		{
-			$arrResponse = array("idproductos" => false, "msg" => "Datos incorrectos");
+			$arrResponse = array("txtCant" => false, "msg" => "Datos incorrectos");
 
 		}else{
 			$strprodNomb = ucwords (strClean($_POST['txtprodNomb']));

@@ -12,6 +12,8 @@ class LoginModel extends Mysql
   }
   public function loginUser(string $usuario, string $password)
   {
+     $usuario='claudiaoso@gmail.com';
+     $password='2580';
      $this->strUsuario = $usuario;
      $this->strPassword = $password;
      $sql = "SELECT persId, status  FROM personas WHERE 
@@ -21,6 +23,7 @@ class LoginModel extends Mysql
      
      $request = $this->select($sql);
      return $request;
+     
   }
 
 }

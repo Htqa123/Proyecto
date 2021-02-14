@@ -24,22 +24,29 @@ class Facturas extends Controllers
 
 	///////////////////funcion para insertar productos
 
-	public function setPedidos(){
+	public function setFacturas(){
 		dep($_POST);
 		if($_POST) {
-		if(empty($_POST['txtCant']) || empty($_POST['txtprodNomb']) || empty($_POST['txtprodPrec'])) 
+		if(empty($_POST['listEmpresa']) || 
+		empty($_POST['txtprovNumeFact']) ||
+		empty($_POST['txtprovValoFact']) ||
+		empty($_POST['listStatus']) 
+		) 
 		{
-			$arrResponse = array("txtprodNomb" => false, "msg" => 'Datos incorrectos');
+			$arrResponse = array("txtprovNumeFact" => false, "msg" => 'Datos incorrectos');
 
 		}else{
-			$strprodNomb = ucwords (strClean($_POST['txtprodNomb']));
-            $intprodPrec = intval(strClean($_POST['txtCant']));
-            $intCant    = intval(strClean($_POST['txtcant']));
+
+			$intlistEmpresa = intval(strClean($_POST['listEmpresa']));
+			$intprovNumeFact = intval (strClean($_POST['txtprovNumeFact']));
+            $intprovValoFact = intval(strClean($_POST['txtprovValoFact']));
+			$intStatus = intval(strClean($_POST['listStatus']));
 		
-			$request_user = $this->model->insertPedidos(
-			$intCant,
-			$intprodPrec,
-			$strprodNomb
+			$request_user = $this->model->insertFacturas(
+			$intlistEmpresa,
+			$intprovNumeFact,
+			$intprovValoFact,
+			$intStatus
 			);
 
 			if($request_user > 1)
@@ -63,10 +70,10 @@ class Facturas extends Controllers
 		die();
 	}
 
+////metodo para cargar tabla de las facturas
+	public function getFacturas(){
 
-	public function getPedidos(){
-
-		$arrData =$this->model->selectPedidos();
+		$arrData =$this->model->selectFacturas();
 		for($i = 0; $i < count($arrData); $i++)
 			{
 				if($arrData[$i]['status'] == 1)
@@ -77,8 +84,8 @@ class Facturas extends Controllers
 				}
 
 				$arrData[$i]['options'] = '<div class="text-center">
-				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Ver Detalle"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Detalle</button> 
-				<button class="btn btn-primary btn-sm btnCarrito" pr="'.$arrData[$i]['prodCodi'].'" title="Agregar Producto"><i class="fa fa-plus-square"></i>Agregar</button>
+				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['provFactCodi'].'" title="Ver Detalle"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Detalle</button> 
+				<button class="btn btn-primary btn-sm btnCarrito" pr="'.$arrData[$i]['provFactCodi'].'" title="Editar"><i class="fa fa-plus-square"></i>Editar</button>
 				
 				</div>';
 		}
@@ -88,11 +95,11 @@ class Facturas extends Controllers
         die();
 	}
 
-	public function getProducto(int $prodCodi){
-	 $prodCodi = intval($prodCodi);
-	 if($prodCodi > 0)
+	public function getFactura(int $provFactCodi){
+	 $provFactCodi = intval($provFactCodi);
+	 if($provFactCodi > 0)
 	 {
-	  $arrData = $this->model->selectPedido($prodCodi);
+	  $arrData = $this->model->selectFactura($provFactCodi);
 	  ///dep($arrData);
 	  if(empty($arrData))
 	  {

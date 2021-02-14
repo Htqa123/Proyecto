@@ -7,28 +7,26 @@ class FacturasModel extends Mysql
   }
 
 
-  public function insertFactura( string $pediNomb , 
-  int $pediPrec,  int $pediCant, int $status){
+  public function insertFacturas(int $listEmpresa, int $provNumeFact, 
+  int $provValoFact,  int $status){
    
-    $this->strprodNomb = $provFactCodi;
-    $this->intprodPrec = $provNumeFact;
-    $this->strprodStock = $provValoFact;
+    
+    $this->intlistEmpresa = $listEmpresa;
+    $this->intprovNumeFact = $provNumeFact;
+    $this->intprovValoFact = $provValoFact;
     $this->intStatus = $status;
     $return = 0;
 
-     $sql = "SELECT * FROM proveedores_facturas WHERE prodCodi =
-     '{$this->strprodNomb}'";
-     $request = $this->select_all($sql);
     
     if(empty($request)){
-      $query_insert = "INSERT INTO proveedores_facturas (provNumeFact,  provValoFact, provFactCodi,
-         status) value(?,?,?,?)";
+      $query_insert = "INSERT INTO proveedores_facturas (provNumeFact,  provValoFact,
+         status, provFactCodi) value(?,?,?,?)";
       $arrData = array(
         
-        $this->strprodNomb,
-        $this->intprodPrec,
-        $this->strprodStock,
-        $this->intStatus
+        $this->intlistEmpresa,
+        $this->intprovNumeFact,
+        $this->intprovValoFact,
+        $this->intStatus,
       );
       $request_insert = $this->insert($query_insert, $arrData);
       $return = $request_insert;
@@ -38,24 +36,26 @@ class FacturasModel extends Mysql
     return $return;
   } 
 
-  public function selectPedidos(){
-    $sql ="SELECT prodCodi,  prodNomb, prodPrec, prodMode, prodStock,
+  ///metodo para mostrar datos en la tabla
+
+  public function selectFacturas(){
+    $sql ="SELECT provFactCodi,  provNumeFact, provValoFact,provFactFech,
     status
-    FROM productos  WHERE status != 0"  ;
+    FROM proveedores_facturas  WHERE status != 0"  ;
     //echo $sql;exit;
     $request = $this->select_all($sql);
     return $request;
   }
 
-  public function selectPedido(int $prodCodi ){
-    $this->prodCodi = $prodCodi ;
-    $sql ="SELECT p.prodCodi , p.prodNomb, p.prodMarc, p.prodStock, 
-    p.prodMode, c.cateNomb, p.prodPrec, p.status, DATE_FORMAT(p.prodFech, '%d-%m-%Y') 
+  public function selectFactura(int $provFactCodi ){
+    $this->provFactCodi = $provFactCodi ;
+    $sql ="SELECT p.provFactCodi, p.provNumeFact, p.provValoFact, C.provNit,
+    c.provCodi, c.provNomb, p.status, DATE_FORMAT(p.provFactFech, '%d-%m-%Y') 
     as fechaRegistro
-    FROM productos p
-    INNER JOIN categorias c
-    ON   p.prodCodiCate = c.cateCodi
-   WHERE p.status != 0 and prodCodi ={$this->prodCodi}";
+    FROM proveedores_facturas p
+    left JOIN proveedores c
+    ON   p.provFactId = c.provCodi
+   WHERE p.status != 0 and c.provCodi ={$this->provFactId}";
     ///echo $sql;exit; 
     $request = $this->select($sql);
     return $request;

@@ -23,7 +23,7 @@ class Login extends Controllers
     }
     
     public function loginUser(){
-        //dep($_POST);
+        dep($_POST);
         if($_POST){
             if( empty($_POST['usuEmail']) || empty($_POST['usuCont'])){
                $arrResponse = array('status' => false, 'msg' => 'Error de datos');
@@ -31,7 +31,7 @@ class Login extends Controllers
                 $strUsuario = strtolower(strClean($_POST['usuEmail']));
                 $srtPassword = hash("SHA256", $_POST['usuCont']);
                 $requestUser = $this->model->loginUser($strUsuario, $srtPassword);
-                //dep($requestUser);
+                dep($requestUser);
                 if(empty($requestUser)){
                     $arrResponse = array('status' => false, 'msg' => 'El usuario o la contraseña es incorrecto');
                 }else{
@@ -50,28 +50,7 @@ class Login extends Controllers
         die();
     }
 	
-	// public function getProductos(){
-
-	// 	$arrData =$this->model->selectProductos();
-	// 	for($i = 0; $i < count($arrData); $i++)
-	// 		{
-	// 			if($arrData[$i]['status'] == 1)
-	// 			{
-	// 				$arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
-	// 			}else{
-	// 				$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
-	// 			}
-
-	// 			$arrData[$i]['options'] = '<div class="text-center">
-	// 			<button class="btn btn-secondary btn-sm btnCarrito" pr="'.$arrData[$i]['prodCodi'].'" title="Ver productos"><i class="fa fa-shopping-cart"></i>&nbsp; Añadir</button> 
-	// 			<button class="btn btn-primary btn-sm btnEditProductos" pr="'.$arrData[$i]['prodCodi'].'" title="Editar"><i class="fa fa-shopping-cart aria-hidden="true"></i></button>
-	// 			<button class="btn btn-danger btn-sm btnDelUsuario" pr="'.$arrData[$i]['prodCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
-	// 			</div>';
-	// 	}
-
-    //     echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
-    //     die();
-	// }
+	
 }
 
   ?>

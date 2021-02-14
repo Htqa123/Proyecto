@@ -1,4 +1,4 @@
-////cargar la tabla de la categoria
+////cargar la tabla de pedidos
 var tablepedidos;
 
 document.addEventListener('DOMContentLoaded',function(){

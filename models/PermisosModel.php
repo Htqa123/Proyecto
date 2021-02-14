@@ -1,9 +1,10 @@
 <?php
 
+
 class PermisosModel extends Mysql
 {
-    public $intIdpermiso;
-    public $intRolid;
+    public $permId;
+    public $introlid;
     public $intmoduloid;
     public $r;
     public $w;
@@ -16,6 +17,13 @@ class PermisosModel extends Mysql
     public function selectModulos()
     {
         $sql = "SELECT * FROM modulos WHERE status != 0 ";
+        $request = $this->select_all($sql);
+        return $request;
+    }
+    public function selectPermisosRol( int $roleId)
+    {
+        $this->intRolid = $roleId;
+        $sql ="SELECT * FROM permisos WHERE rolid = $this->intRolid";
         $request = $this->select_all($sql);
         return $request;
     }

@@ -186,18 +186,23 @@ function fntDelRol(){
 		});
 	});
 }
+
+
+////funcion para los permisos
  function fntPermisos(){
 	 var btnPermisoRol = document.querySelectorAll(".btnPermisoRol");
 	 btnPermisoRol.forEach(function(btnPermisoRol){
 		btnPermisoRol.addEventListener('click', function(){
 			 var roleId = this.getAttribute("rl");
 			 var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-			 var ajaxUrl =  base_url+'/Permisos/gePermisoRol/'+roleId;
+			 var ajaxUrl =  base_url+'/Permisos/getPermisosRol/'+roleId;
 			 request.open("GET", ajaxUrl,true);
 			 request.send();
 			 request.onreadystatechange = function(){
-				 if(request.status == 200) {
-					 console.log(request.responseText);
+				 if(request.readyState == 4 && request.status == 200) {
+					document.querySelector('#contentAjax').innerHTML = request.responseText;
+                    $('.modalPermisos').modal('show');
+                    document.querySelector('#formPermisos').addEventListener('submit',fntSavePermisos,false);
 				 }
 			 }
 			$('.modalPermisos').modal('show');

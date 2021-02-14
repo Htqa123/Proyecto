@@ -64,7 +64,7 @@
                      <label for="txtprodStock"></label>
                      <input type="hidden" class="form-control" id="txtprodStock" name="txtprodStock">
                  </div>
-                 <div class="form-group col-md-6">
+                 <div class="form-group col-md-12">
                      <label for="txtprodMode">Ingrese cantidad</label>
                      <input type="num" class="form-control" id="txtCant" name="txtCant" required="">
                  </div>
