@@ -3,8 +3,8 @@
 
 class PermisosModel extends Mysql
 {
-    public $permId;
-    public $introlid;
+    public $intIdpermiso;
+    public $intRolid;
     public $intmoduloid;
     public $r;
     public $w;
@@ -20,9 +20,9 @@ class PermisosModel extends Mysql
         $request = $this->select_all($sql);
         return $request;
     }
-    public function selectPermisosRol( int $roleId)
+    public function selectPermisosRol( int $idrol)
     {
-        $this->intRolid = $roleId;
+        $this->intRolid = $idrol;
         $sql ="SELECT * FROM permisos WHERE rolid = $this->intRolid";
         $request = $this->select_all($sql);
         return $request;

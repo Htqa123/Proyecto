@@ -186,9 +186,6 @@ function fntDelRol(){
 		});
 	});
 }
-
-
-////funcion para los permisos
  function fntPermisos(){
 	 var btnPermisoRol = document.querySelectorAll(".btnPermisoRol");
 	 btnPermisoRol.forEach(function(btnPermisoRol){
@@ -199,10 +196,8 @@ function fntDelRol(){
 			 request.open("GET", ajaxUrl,true);
 			 request.send();
 			 request.onreadystatechange = function(){
-				 if(request.readyState == 4 && request.status == 200) {
-					document.querySelector('#contentAjax').innerHTML = request.responseText;
-                    $('.modalPermisos').modal('show');
-                    document.querySelector('#formPermisos').addEventListener('submit',fntSavePermisos,false);
+				 if(request.status == 200) {
+					 console.log(request.responseText);
 				 }
 			 }
 			$('.modalPermisos').modal('show');
