@@ -57,6 +57,8 @@ formRol.onsubmit = function(e) {
            	swal("Roles de usuario", objData.msg ,"success");
            	tableRoles.api().ajax.reload(function() {
              fntEditRol();
+			 fntDelRol();
+			 fntPermisos();
            	});
            }else{
            	swal("Error", objData.msg , "Error");
@@ -173,6 +175,7 @@ function fntDelRol(){
        					tableRoles.api().ajax.reload(function(){
        						fntEditRol();
        						fntDelRol();
+							fntPermisos();
 
        					});
        				}else{
@@ -206,3 +209,26 @@ function fntDelRol(){
 
 	 });
  }
+
+ function fntSavePermisos(evnet){
+    evnet.preventDefault();
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url+'/Permisos/setPermisos'; 
+    var formElement = document.querySelector("#formPermisos");
+    var formData = new FormData(formElement);
+    request.open("POST",ajaxUrl,true);
+    request.send(formData);
+
+    request.onreadystatechange = function(){
+        if(request.readyState == 4 && request.status == 200){
+            var objData = JSON.parse(request.responseText);
+            if(objData.status)
+            {
+                swal("Permisos de usuario", objData.msg ,"success");
+            }else{
+                swal("Error", objData.msg , "error");
+            }
+        }
+    }
+    
+}

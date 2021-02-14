@@ -23,7 +23,7 @@ class Login extends Controllers
     }
     
     public function loginUser(){
-        dep($_POST);
+        //dep($_POST);
         if($_POST){
             if( empty($_POST['usuEmail']) || empty($_POST['usuCont'])){
                $arrResponse = array('status' => false, 'msg' => 'Error de datos');
@@ -31,7 +31,7 @@ class Login extends Controllers
                 $strUsuario = strtolower(strClean($_POST['usuEmail']));
                 $srtPassword = hash("SHA256", $_POST['usuCont']);
                 $requestUser = $this->model->loginUser($strUsuario, $srtPassword);
-                dep($requestUser);
+                //dep($requestUser);
                 if(empty($requestUser)){
                     $arrResponse = array('status' => false, 'msg' => 'El usuario o la contraseña es incorrecto');
                 }else{

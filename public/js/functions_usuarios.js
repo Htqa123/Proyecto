@@ -1,4 +1,4 @@
-////cargar la tabla de la categoria
+////cargar la tabla de la usuarios
 var tableUsuarios;
 
 document.addEventListener('DOMContentLoaded',function(){

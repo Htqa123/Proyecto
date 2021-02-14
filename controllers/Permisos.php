@@ -12,18 +12,71 @@ class Permisos extends Controllers
 	    }
 
 	}
-	public function getPermisosRol(int $idrol)
+	public function getPermisosRol(int $roleId)
 	{
-		$rolid = intval($idrol);
-		if ($idrol > 0) 
+		$rolid = intval($roleId);
+		if ($rolid > 0) 
 		{   
 			$arrModulos = $this->model->selectModulos();
 			$arrPermisosRol = $this->model->selectPermisosRol($rolid);
-			dep($arrModulos);
-			dep($arrPermisosRol);
-		}
-		
+			$arrPermisos = array('r' => 0, 'w' => 0, 'u' => 0, 'd' => 0);
+				$arrPermisoRol = array('roleId' => $rolid );
+
+				if(empty($arrPermisosRol))
+				{
+					for ($i=0; $i < count($arrModulos) ; $i++) { 
+
+						$arrModulos[$i]['permisos'] = $arrPermisos;
+					}
+				}else{
+					for ($i=0; $i < count($arrModulos); $i++) {
+
+						$arrPermisos = array('r' => $arrPermisosRol[$i]['r'], 
+											 'w' => $arrPermisosRol[$i]['w'], 
+											 'u' => $arrPermisosRol[$i]['u'], 
+											 'd' => $arrPermisosRol[$i]['d'] 
+											);
+						if($arrModulos[$i]['idmodulo'] == $arrPermisosRol[$i]['moduid'])
+						{
+							$arrModulos[$i]['permisos'] = $arrPermisos;
+						}
+					}
+				}
+				$arrPermisoRol['modulos'] = $arrModulos;
+				$html = getModal("modalPermisos",$arrPermisoRol);
+				($arrPermisoRol);
+			}
+			die();	
 	}
+
+	public function setPermisos()
+		{
+			if($_POST)
+			{
+				$intIdrol = intval($_POST['roleId']);
+				$modulos = $_POST['modulos'];
+
+				$this->model->deletePermisos($intIdrol);
+				foreach ($modulos as $modulo) {
+					$idModulo = $modulo['moduId'];
+					$r = empty($modulo['r']) ? 0 : 1;
+					$w = empty($modulo['w']) ? 0 : 1;
+					$u = empty($modulo['u']) ? 0 : 1;
+					$d = empty($modulo['d']) ? 0 : 1;
+					$requestPermiso = $this->model->insertPermisos($intIdrol, $idModulo, $r, $w, $u, $d);
+				}
+				if($requestPermiso > 0)
+				{
+					$arrResponse = array('status' => true, 'msg' => 'Permisos asignados correctamente.');
+				}else{
+					$arrResponse = array("status" => false, "msg" => 'No es posible asignar los permisos.');
+				}
+				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
+
+
 }
 
 ?>

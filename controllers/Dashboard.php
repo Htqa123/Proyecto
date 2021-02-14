@@ -21,33 +21,16 @@ class Dashboard extends Controllers
 		///$data['page_content'] = "Informacion de la pagina";
 		$this->views->getView($this,"dashboard", $data);
 	}
-	
-	// public function insertar()
-	// {
-	// 	$data = $this->model->setUser("carlos",18);
-	// }
-
-	// public function verusuario($id)
-	// {
-	// 	$data = $this->model->getUser($id);
-	// 	print_r($data);
-	// }
-	// public function actualizar()
-	// {
-	// 	$data = $this->model->updateUser(1, "emilio",40);
-	// 	print_r($data);
-	// }
-
-	// public function verusuarios()
-	// {
-	// 	$data = $this->model->getUsers();
-	// 	print_r($data);
-	// }
-	// public function eliminarusuario($id)
-	// {
-	// 	$data = $this->model->delUser($id);
-	// 	print_r($data);
-	// }
+	public function verUsuarios()
+	{
+		$arrData =$this->model->selectUsuarios();
+		for($i = 0; $i < count($arrData); $i++)
+                {
+                   dep($arrData);
+                }
+        echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        die();
+	}
 
 }
 

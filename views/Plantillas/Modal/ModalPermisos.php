@@ -9,12 +9,12 @@
         </div>
         <div class="modal-body">
             <?php 
-                //dep($data);
+                ////dep($data);
              ?>
             <div class="col-md-12">
               <div class="tile">
                 <form action="" id="formPermisos" name="formPermisos">
-                  <input type="hidden" id="idrol" name="idrol" value="<?= $data['idrol']; ?>" required="">
+                  <input type="hidden" id="roleId" name="roleId" value="<?= $data['roleId']; ?>" required="">
                     <div class="table-responsive">
                       <table class="table table-bordered">
                         <thead>
