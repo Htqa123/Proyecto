@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded',function(){
 			"dataSrc":""
 		},
 		"columns":[
-		{"data":"provFactCodi"},
+		{"data":"provFactId"},
+		{"data":"provNombEmpr"},
 		{"data":"provNumeFact"},
 		{"data":"provValoFact"},
-		{"data":"provFactFech"},
 		{"data":"status"},
 		{"data":"options"}
 		],
@@ -35,9 +35,9 @@ formFacturas.onsubmit = function(e) {
 	  var listEmpresa = document.querySelector('#listEmpresa').value;
 	  var intprovNumeFact = document.querySelector('#txtprovNumeFact').value;
 	  var intprovValoFact = document.querySelector('#txtprovValoFact').value;
-	  var intTipousuario = document.querySelector('#listStatus').value;
+	  var intStatus = document.querySelector('#listStatus').value;
 
-	  if( listEmpresa == '' ||  intprovNumeFact  == '' || intprovValoFact == ''  || intTipousuario == '')
+	  if( listEmpresa == '' ||  intprovNumeFact  == '' || intprovValoFact == ''  || intStatus == '')
 	  {
 		  swal("Atencion", "Todos los campos son obligatorios", "error");
 		  return false;
