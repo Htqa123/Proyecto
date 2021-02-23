@@ -39,7 +39,7 @@ formRol.onsubmit = function(e) {
 		swal("Atención", "Todos los campos son obligatorios", "error");
 		return false;
 	}
-	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+	
 	var ajaxUrl =  base_url+'/Roles/setRol';
 	var formData = new FormData(formRol);
 	request.open("POST", ajaxUrl,true);

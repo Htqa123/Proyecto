@@ -22,11 +22,12 @@ public function Roles()
     ///$data['page_content'] = "Informacion de la pagina";
     $this->views->getView($this,"roles", $data);
 }
+    ////consultar data y muestra la tabla
 
     public function getRoles()
         {
                 $arrData = $this->model->selectRoles();
-
+                 //dep($arrData);
                 for($i = 0; $i < count($arrData); $i++)
                 {
                     if($arrData[$i]['status'] == 1)
@@ -43,9 +44,11 @@ public function Roles()
                     </div>';
             }
 
-        echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
-        die();
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+            die();
     }
+
+///fin de la culsulta, y la logíca de la tabla
 
     public function getSelectRoles(){
         $htmlOptions = "";

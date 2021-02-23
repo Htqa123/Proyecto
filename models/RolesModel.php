@@ -11,7 +11,7 @@
 		{
 			parent::__construct();
 		}
-
+///////consulta a la base de datos
 		 public function selectRoles()
 		 {
 		 	$sql = "SELECT * FROM roles WHERE status != 0";
@@ -19,6 +19,7 @@
 	        
 		 	return $request;
 		 }
+///////fin consulta a la base de datos
 
 		 public function selectRol(int $roleId)
 		 {
