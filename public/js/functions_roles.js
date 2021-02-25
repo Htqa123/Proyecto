@@ -30,7 +30,7 @@ var formRol = document.querySelector("#formRol");
 formRol.onsubmit = function(e) {
 	e.preventDefault();
 
-    var intIdRol = document.querySelector('#roleId').value;
+    var intIdrol = document.querySelector('#roleId').value;
 	var strNombre = document.querySelector('#txtroleNomb').value;
 	var strDescripcion = document.querySelector('#txtroleDesc').value;
 	var intStatus = document.querySelector('#listStatus').value;
@@ -39,7 +39,7 @@ formRol.onsubmit = function(e) {
 		swal("Atención", "Todos los campos son obligatorios", "error");
 		return false;
 	}
-	
+	var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	var ajaxUrl =  base_url+'/Roles/setRol';
 	var formData = new FormData(formRol);
 	request.open("POST", ajaxUrl,true);
@@ -52,16 +52,16 @@ formRol.onsubmit = function(e) {
            
            if(objData.status)
            {
-           	$('#ModalRoles').modal("hide");
-           	formRol.reset();
-           	swal("Roles de usuario", objData.msg ,"success");
-           	tableRoles.api().ajax.reload(function() {
-             fntEditRol();
-			 fntDelRol();
-			 fntPermisos();
+				$('#ModalRoles').modal("hide");
+				formRol.reset();
+				swal("Roles de usuario", objData.msg ,"success");
+				tableRoles.api().ajax.reload(function(){
+				fntEditRol();
+				fntDelRol();
+				fntPermisos();
            	});
            }else{
-           	swal("Error", objData.msg , "Error");
+              	swal("Error", objData.msg , "Error");
            }
 		}
 		
@@ -102,14 +102,13 @@ function fntEditRol(){
 			document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
 			document.querySelector('#btnText').innerHTML = "Actualizar";
 
-         var roleId = this.getAttribute("rl");
-         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	      var ajaxUrl =  base_url+'/Roles/getRol/'+roleId;
-	      request.open("GET", ajaxUrl,true);
-	      request.send();
+			var roleId = this.getAttribute("rl");
+			var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+			var ajaxUrl =  base_url+'/Roles/getRol/'+roleId;
+			request.open("GET", ajaxUrl,true);
+			request.send();
 
-	      request.onreadystatechange = function() {
-		
+	        request.onreadystatechange = function() {
 			if(request.readyState == 4 && request.status == 200)
 			{
            /// console.log(request.responseText);
@@ -165,7 +164,7 @@ function fntDelRol(){
        		var strData = "roleId="+roleId;
        		request.open("POST", ajaxUrl, true);
        		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-       		request.sent(strData);
+       		request.send(strData);
        		request.onreadystatechange = function(){
        			if(request.readyState == 4 && request.status == 200){
        				var objData = JSON.parse(responseText);

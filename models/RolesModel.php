@@ -21,14 +21,18 @@
 		 }
 ///////fin consulta a la base de datos
 
+///funcion para editar datos
 		 public function selectRol(int $roleId)
 		 {
+			 ///dep($_POST);
 		 	$this->intIdrol = $roleId;
 		 	$sql = "SELECT * FROM roles WHERE roleId = $this->intIdrol";
 		 	$request = $this->select($sql);
 		 	return $request;
 
 		 }
+
+		 ////funcion para insertar los datos
 
 		 public function insertRol(string $rol, string $descripcion, int $status)
 		 {
@@ -54,6 +58,8 @@
 		    return $return;
 		 }
 
+		 ////////////actualizar un rol
+
 		 public function updateRol(int $idrol, string $rol, string $descripcion, int $status)
 		 {
 		 	$this->intIdrol = $idrol;
@@ -67,12 +73,11 @@
 		 	if(empty($request))
 		 	{
 
-		 	$sql = "UPDATE roles SET roleNomb = ?, roleDesc = ?, status= ? WHERE roleId = $this->intIdrol";
+		 	$sql = "UPDATE roles SET roleNomb = ?, roleDesc = ?, status = ? WHERE roleId = $this->intIdrol";
 		 	$arrData =  array($this->strRol, $this->strDescripcion, $this->intStatus);
 		 	$request = $this->update($sql,$arrData);
 		    }else{
 		    	$request = "exist";
-
 		    }
 		    return $request;
 		 }
@@ -80,7 +85,7 @@
 		 public function deleteRol(int $roleId)
 		 {
 		 	$this->intIdrol = $roleId;
-		 	$sql = "SELECT * FROM personas WHERE persRolId = $this->intIdrol ";
+		 	$sql = "SELECT * FROM personas WHERE roleId = $this->intIdrol ";
 		 	$request = $this->select_all($sql);
 		 	if(empty($request)){
 		 		$sql= "UPDATE roles SET status = ? WHERE roleId = $this->intIdrol";

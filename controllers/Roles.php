@@ -50,45 +50,10 @@ public function Roles()
 
 ///fin de la culsulta, y la logíca de la tabla
 
-    public function getSelectRoles(){
-        $htmlOptions = "";
-        $arrData = $this->model->selectRoles();
-        if(count($arrData) > 0){
-            for($i=0; $i < count($arrData); $i++){
-                $htmlOptions .= '<option value="'.$arrData[$i]['roleId'].'">'.$arrData[$i]['roleNomb'].'</option>';
-            }
-        }
-        echo $htmlOptions;
-        die();
-    }
-    
 
-    public function getRol( int $roleId)
-    {
-        $roleCodi = intval(strClean($roleId));
-
-        if($roleCodi > 0)
-            {
-
-$arrData = $this->model->selectRol($roleCodi);
-if(empty($arrData))
-{ 
-
-$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
-
-}else{
-
-$arrResponse = array('status' => true, 'data' => $arrData);
-
-}
-
-echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-                    }
-            die();
-    }
-
-public function setRol()
-{
+///insertar datos
+        public function setRol()
+        {
         
                 $intIdrol = intval($_POST['roleId']);
                 $roleNomb = strClean($_POST['txtroleNomb']);
@@ -110,27 +75,57 @@ public function setRol()
                 {
                     if($option == 1)
                     {
-
                         $arrResponse = array('status' => true, 'msg' => 'Datos guardados con exito.');
                     }else{
-
                         $arrResponse = array('status' => true, 'msg' => 'Datos Actualizado con exito.');
                     }
-
                     }else if ($request_rol == 'exist') 
                     {
-
                     $arrResponse = array('status' => false, 'msg' => 'El rol ya existe.');
-
                 }else{
-
                     $arrResponse = array("status" => false, "msg" => 'No se pueden guardar los datos.');
-
                 }
-
-            echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+                 echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
                 die();
-}
+        }   
+
+    public function getSelectRoles(){
+        $htmlOptions = "";
+        $arrData = $this->model->selectRoles();
+        if(count($arrData) > 0){
+            for($i=0; $i < count($arrData); $i++){
+                $htmlOptions .= '<option value="'.$arrData[$i]['roleId'].'">'.$arrData[$i]['roleNomb'].'</option>';
+            }
+        }
+        echo $htmlOptions;
+        die();
+    }
+    
+
+    public function getRol( int $roleId)
+    {
+        $intIdrol = intval(strClean($roleId));
+
+        if($intIdrol > 0)
+        {
+
+            $arrData = $this->model->selectRol($intIdrol);
+            if(empty($arrData))
+            { 
+
+            $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+
+            }else{
+
+            $arrResponse = array('status' => true, 'data' => $arrData);
+
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+
 
 public function delRol()
 {
