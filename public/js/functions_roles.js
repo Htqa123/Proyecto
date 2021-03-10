@@ -157,6 +157,7 @@ function fntDelRol(){
           	closeOnConfirm: false,
           	closeOnCancel: true
           }, function(isConfirm){
+			  
           	if(isConfirm)
           	{
        		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -167,7 +168,7 @@ function fntDelRol(){
        		request.send(strData);
        		request.onreadystatechange = function(){
        			if(request.readyState == 4 && request.status == 200){
-       				var objData = JSON.parse(responseText);
+       				var objData = JSON.parse(request.responseText);
        				if(objData.status)
        				{
        					swal("Eliminar", objData.msg , "success");

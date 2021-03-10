@@ -85,7 +85,7 @@
 		 public function deleteRol(int $roleId)
 		 {
 		 	$this->intIdrol = $roleId;
-		 	$sql = "SELECT * FROM personas WHERE roleId = $this->intIdrol ";
+		 	$sql = "SELECT * FROM personas WHERE persRolId = $this->intIdrol ";
 		 	$request = $this->select_all($sql);
 		 	if(empty($request)){
 		 		$sql= "UPDATE roles SET status = ? WHERE roleId = $this->intIdrol";

@@ -127,31 +127,31 @@ public function Roles()
 
 
 
-public function delRol()
-{
-    if($_POST){
+        public function delRol()
+        {
+            if($_POST){
 
-        $roleCodi = intval($_POST['roleId']);
-        $requestDelete =  $this->model->deleteRol($roleCodi);
-        if($requestDelete == 'ok'){
+                $roleCodi = intval($_POST['roleId']);
+                $requestDelete =  $this->model->deleteRol($roleCodi);
+                if($requestDelete == 'ok'){
 
-            $arrResponse = array('status' => true, 'msg' => 'se ha eliminado con exito el rol');
+                    $arrResponse = array('status' => true, 'msg' => 'se ha eliminado con exito el rol');
 
-        }elseif ($requestDelete == 'exist') {
+                }else if ($requestDelete == 'exist') {
 
-            $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar el rol');
+                    $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar el rol');
 
-        }else{
+                }else{
 
-            $arrResponse = array('status' => false, 'msg' => 'Error al tratar de eliminado el rol');
+                    $arrResponse = array('status' => false, 'msg' => 'Error al tratar de eliminado el rol');
 
+                }
+
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }
+
+            die();
         }
-
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-    }
-
-    die();
-}
 
 }
 
