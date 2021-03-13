@@ -131,8 +131,8 @@ public function Roles()
         {
             if($_POST){
 
-                $roleCodi = intval($_POST['roleId']);
-                $requestDelete =  $this->model->deleteRol($roleCodi);
+                $intIdrol = intval($_POST['roleId']);
+                $requestDelete =  $this->model->deleteRol($intIdrol);
                 if($requestDelete == 'ok'){
 
                     $arrResponse = array('status' => true, 'msg' => 'se ha eliminado con exito el rol');

@@ -10,23 +10,27 @@ class PermisosModel extends Mysql
     public $w;
     public $u;
     public $d;
+
     public function __construct()
     {
         parent::__construct();
     }
+
     public function selectModulos()
     {
         $sql = "SELECT * FROM modulos WHERE status != 0 ";
         $request = $this->select_all($sql);
         return $request;
     }
-    public function selectPermisosRol( int $idrol)
+
+    public function selectPermisosRol( int $roleId)
     {
-        $this->intRolid = $idrol;
+        $this->intRolid = $roleId;
         $sql ="SELECT * FROM permisos WHERE rolid = $this->intRolid";
         $request = $this->select_all($sql);
         return $request;
     }
+
     public function deletePermisos(int $idrol)
 		{
 			$this->intRolid = $idrol;
@@ -34,6 +38,7 @@ class PermisosModel extends Mysql
 			$request = $this->delete($sql);
 			return $request;
 		}
+        
         public function insertPermisos(int $roleId, int $idmodulo, int $r, int $w, int $u, int $d){
 			$this->intRolid = $roleId;
 			$this->intModuloid = $idmodulo;

@@ -5,11 +5,7 @@ class Permisos extends Controllers
 	public function __construct()
 	{
 		parent::__construct();
-		session_start();
-        if(empty($_SESSION['login']))
-        {
-			header('Location: '.base_url().'/login');
-	    }
+		
 
 	}
 	public function getPermisosRol(int $roleId)
@@ -19,6 +15,8 @@ class Permisos extends Controllers
 		{   
 			$arrModulos = $this->model->selectModulos();
 			$arrPermisosRol = $this->model->selectPermisosRol($rolid);
+		    //dep($arrPermisosRol);
+			//dep($arrModulos);
 			$arrPermisos = array('r' => 0, 'w' => 0, 'u' => 0, 'd' => 0);
 				$arrPermisoRol = array('roleId' => $rolid );
 
@@ -36,17 +34,18 @@ class Permisos extends Controllers
 											 'u' => $arrPermisosRol[$i]['u'], 
 											 'd' => $arrPermisosRol[$i]['d'] 
 											);
-						if($arrModulos[$i]['idmodulo'] == $arrPermisosRol[$i]['moduid'])
+						if($arrModulos[$i]['moduId'] == $arrPermisosRol[$i]['moduloId'])
 						{
 							$arrModulos[$i]['permisos'] = $arrPermisos;
 						}
 					}
 				}
 				$arrPermisoRol['modulos'] = $arrModulos;
+				//dep($arrPermisoRol);
 				$html = getModal("modalPermisos",$arrPermisoRol);
-				($arrPermisoRol);
+			
 			}
-			die();	
+		die();	
 	}
 
 	public function setPermisos()

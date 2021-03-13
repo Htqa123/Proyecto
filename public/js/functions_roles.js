@@ -157,13 +157,13 @@ function fntDelRol(){
           	closeOnConfirm: false,
           	closeOnCancel: true
           }, function(isConfirm){
-			  
+
           	if(isConfirm)
           	{
        		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
        		var ajaxUrl = base_url+'/Roles/delRol/';
        		var strData = "roleId="+roleId;
-       		request.open("POST", ajaxUrl, true);
+       		request.open("POST",ajaxUrl,true);
        		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
        		request.send(strData);
        		request.onreadystatechange = function(){
@@ -199,8 +199,9 @@ function fntDelRol(){
 			 request.open("GET", ajaxUrl,true);
 			 request.send();
 			 request.onreadystatechange = function(){
-				 if(request.status == 200) {
+				 if(request.readyState == 4 && request.status == 200) {
 					 console.log(request.responseText);
+					 document.querySelector('#contentAjax').innerHTML =request.responseText;
 				 }
 			 }
 			$('.modalPermisos').modal('show');
