@@ -157,7 +157,7 @@ function fntEditUsuario() {
 		document.querySelector("#txtApellido").value = objData.data.persApel;
 		document.querySelector("#txtTelefono").value = objData.data.persTele;
 		document.querySelector("#txtEmail").value = objData.data.persEmail;
-		document.querySelector("#listRolid").value = objData.data.roleId;
+		document.querySelector("#listRolid").value = objData.data.idrol;
 		
 
 		}

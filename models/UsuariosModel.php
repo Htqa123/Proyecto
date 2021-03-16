@@ -60,7 +60,7 @@ class UsuariosModel extends Mysql
     p.status, r.roleNomb
     FROM personas p
     INNER JOIN roles r
-    ON p.persRolId = r.roleId
+    ON p.persRolId = r.idrol
     WHERE p.status != 0";
     $request = $this->select_all($sql);
     return $request;
@@ -70,10 +70,10 @@ class UsuariosModel extends Mysql
   {
     $this->intIdUsuario = $persId;
     $sql ="SELECT p.persId, p.persIden, p.persNomb, p.persApel, p.persTele, p.persEmail,
-    p.status, r.roleNomb, r.roleId, DATE_FORMAT(p.persFech, '%d-%m-%Y') as fechaRegistro
+    p.status, r.roleNomb, r.idrol, DATE_FORMAT(p.persFech, '%d-%m-%Y') as fechaRegistro
     FROM personas p
     INNER JOIN roles r
-    ON p.persId = r.roleId
+    ON p.persId = r.idrol
     WHERE p.persId = $this->intIdUsuario";
     ///echo $sql;exit; 
     $request = $this->select($sql);

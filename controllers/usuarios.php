@@ -7,14 +7,20 @@ class Usuarios extends Controllers
 	{
 		parent::__construct();
 		session_start();
-        if(empty($_SESSION['login']))
-        {
-			header('Location: '.base_url().'/login');
-	    }
+			session_regenerate_id(true);
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+				die();
+			}
+			getPermisos(2);
 
 	}
 	public function Usuarios()
 	{
+		if(empty($_SESSION['permisosMod']['r'])){
+			header("Location:".base_url().'/dashboard');
+		}
 		$data['page_tag'] = "usuarios";
 		$data['page_title'] ="usuarios";
 		$data['page_name'] = "usuarios";

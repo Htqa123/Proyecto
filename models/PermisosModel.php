@@ -1,46 +1,44 @@
-<?php
+<?php 
 
+	class PermisosModel extends Mysql
+	{
+		public $intIdpermiso;
+		public $intRolid;
+		public $intModuloid;
+		public $r;
+		public $w;
+		public $u;
+		public $d;
 
-class PermisosModel extends Mysql
-{
-    public $intIdpermiso;
-    public $intRolid;
-    public $intmoduloid;
-    public $r;
-    public $w;
-    public $u;
-    public $d;
+		public function __construct()
+		{
+			parent::__construct();
+		}
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
+		public function selectModulos()
+		{
+			$sql = "SELECT * FROM modulo WHERE status != 0";
+			$request = $this->select_all($sql);
+			return $request;
+		}	
+		public function selectPermisosRol(int $idrol)
+		{
+			$this->intRolid = $idrol;
+			$sql = "SELECT * FROM permisos WHERE rolid = $this->intRolid";
+			$request = $this->select_all($sql);
+			return $request;
+		}
 
-    public function selectModulos()
-    {
-        $sql = "SELECT * FROM modulos WHERE status != 0 ";
-        $request = $this->select_all($sql);
-        return $request;
-    }
-
-    public function selectPermisosRol( int $roleId)
-    {
-        $this->intRolid = $roleId;
-        $sql ="SELECT * FROM permisos WHERE rolid = $this->intRolid";
-        $request = $this->select_all($sql);
-        return $request;
-    }
-
-    public function deletePermisos(int $idrol)
+		public function deletePermisos(int $idrol)
 		{
 			$this->intRolid = $idrol;
 			$sql = "DELETE FROM permisos WHERE rolid = $this->intRolid";
 			$request = $this->delete($sql);
 			return $request;
 		}
-        
-        public function insertPermisos(int $roleId, int $idmodulo, int $r, int $w, int $u, int $d){
-			$this->intRolid = $roleId;
+
+		public function insertPermisos(int $idrol, int $idmodulo, int $r, int $w, int $u, int $d){
+			$this->intRolid = $idrol;
 			$this->intModuloid = $idmodulo;
 			$this->r = $r;
 			$this->w = $w;
@@ -51,5 +49,26 @@ class PermisosModel extends Mysql
         	$request_insert = $this->insert($query_insert,$arrData);		
 	        return $request_insert;
 		}
-}
-?>
+
+		public function permisosModulo(int $idrol){
+			$this->intRolid = $idrol;
+			$sql = "SELECT p.rolid,
+						   p.moduloid,
+						   m.titulo as modulo,
+						   p.r,
+						   p.w,
+						   p.u,
+						   p.d 
+					FROM permisos p 
+					INNER JOIN modulo m
+					ON p.moduloid = m.idmodulo
+					WHERE p.rolid = $this->intRolid";
+			$request = $this->select_all($sql);
+			$arrPermisos = array();
+			for ($i=0; $i < count($request); $i++) { 
+				$arrPermisos[$request[$i]['moduloid']] = $request[$i];
+			}
+			return $arrPermisos;
+		}
+	}
+ ?>
