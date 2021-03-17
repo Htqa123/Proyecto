@@ -5,7 +5,7 @@ $instanciaCategorias = new categoriasModel();
 $objetoCate = $instanciaCategorias->filtrarCategorias();
 
 include_once 'models/categoriasModel.php';
-class mainModel extends Model{
+class MainModel extends Model{
 
     public function __construct(){
         parent::__construct();

@@ -24,11 +24,15 @@ class Dashboard extends Controllers
 	public function verUsuarios()
 	{
 		$arrData =$this->model->selectUsuarios();
-		for($i = 0; $i < count($arrData); $i++)
-                {
-                   dep($arrData);
-                }
+		
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        die();
+	}
+	public function verLog()
+	{
+		$arrDataLog =$this->model->selectLog();
+		dep($arrDataLog);
+		echo json_encode($arrDataLog, JSON_UNESCAPED_UNICODE);
         die();
 	}
 

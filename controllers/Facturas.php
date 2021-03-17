@@ -84,9 +84,8 @@ class Facturas extends Controllers
 				}
 
 				$arrData[$i]['options'] = '<div class="text-center">
-				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['provFactCodi'].'" title="Ver Detalle"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Detalle</button> 
-				<button class="btn btn-primary btn-sm btnCarrito" pr="'.$arrData[$i]['provFactCodi'].'" title="Editar"><i class="fa fa-plus-square"></i>Editar</button>
-				
+				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['provFactId'].'" title="Ver Detalle"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Detalle</button> 
+				<button class="btn btn-primary" pr="'.$arrData[$i]['provFactId'].'" title="Editar"><i class="fa fa-pencil"></i></button>
 				</div>';
 		}
 
@@ -95,11 +94,11 @@ class Facturas extends Controllers
         die();
 	}
 
-	public function getFactura(int $provFactCodi){
-	 $provFactCodi = intval($provFactCodi);
-	 if($provFactCodi > 0)
+	public function getFactura(int $provFactId){
+	 $provFactId = intval($provFactId);
+	 if($provFactId > 0)
 	 {
-	  $arrData = $this->model->selectFactura($provFactCodi);
+	  $arrData = $this->model->selectFactura($provFactId);
 	  ///dep($arrData);
 	  if(empty($arrData))
 	  {
@@ -110,27 +109,7 @@ class Facturas extends Controllers
 	  echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 	 }
 	 die();
-	}
-
-
-	
-	public function getAgregar(int $prodCodi){
-		$prodCodi = intval($prodCodi);
-		if($prodCodi > 0)
-		{
-		 $arrData = $this->model->AgregarProducto($prodCodi);
-		 ///dep($arrData);
-		 if(empty($arrData))
-		 {
-			 $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos');
-		 }else{
-			 $arrResponse = array('status' => true,  'data' => $arrData);
-		 }
-		 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-		}
-		die();
-	   }
-	
+	}	
 }
 
   ?>

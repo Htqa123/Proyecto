@@ -20,8 +20,8 @@
                      </select>
                  </div>
                  <div class="form-group col-md-6">
-                     <label for="txtprovNumeFact">Número Factura</label>
-                     <input type="text" class="form-control" id="txtprovNumeFact" name="txtprovNumeFact" required="">
+                     <label for="txtprovNombEmpr">Número Factura</label>
+                     <input type="text" class="form-control" id="txtprovNombEmpr" name="txtprovNombEmpr" required="">
                  </div>
              </div>
              

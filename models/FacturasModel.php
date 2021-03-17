@@ -19,8 +19,8 @@ class FacturasModel extends Mysql
 
     
     if(empty($request)){
-      $query_insert = "INSERT INTO proveedores_facturas (provNumeFact,  provValoFact,
-         status, provFactCodi) value(?,?,?,?)";
+      $query_insert = "INSERT INTO proveedores_facturas ( provNumeFact,  provValoFact,
+         provNombEmpr, status) value(?,?,?,?)";
       $arrData = array(
         
         $this->intlistEmpresa,
@@ -39,7 +39,7 @@ class FacturasModel extends Mysql
   ///metodo para mostrar datos en la tabla
 
   public function selectFacturas(){
-    $sql ="SELECT provFactCodi,  provNumeFact, provValoFact,provFactFech,
+    $sql ="SELECT  provNombEmpr, provNumeFact, provValoFact,provFactFech,
     status
     FROM proveedores_facturas  WHERE status != 0"  ;
     //echo $sql;exit;
@@ -47,28 +47,20 @@ class FacturasModel extends Mysql
     return $request;
   }
 
-  public function selectFactura(int $provFactCodi ){
-    $this->provFactCodi = $provFactCodi ;
-    $sql ="SELECT p.provFactCodi, p.provNumeFact, p.provValoFact, C.provNit,
+  public function selectFactura(string $provNombEmpr ){
+    $this->provFactId = $provFactId ;
+    $sql ="SELECT p.provNombEmpr, p.provNumeFact, p.provValoFact, C.provNit,
     c.provCodi, c.provNomb, p.status, DATE_FORMAT(p.provFactFech, '%d-%m-%Y') 
     as fechaRegistro
     FROM proveedores_facturas p
     left JOIN proveedores c
     ON   p.provFactId = c.provCodi
    WHERE p.status != 0 and c.provCodi ={$this->provFactId}";
-    ///echo $sql;exit; 
+    echo $sql;exit; 
     $request = $this->select($sql);
     return $request;
   }
 
-  public function AgregarProducto(int $prodCodi ){
-    $this->prodCodi = $prodCodi ;
-    $sql ="SELECT prodCodi , prodNomb, prodStock, 
-     prodPrec, status FROM productos 
-    WHERE prodCodi = $this->prodCodi";
-    ///echo $sql;exit; 
-    $request = $this->select($sql);
-    return $request;
-  }
+  
 }
 ?>

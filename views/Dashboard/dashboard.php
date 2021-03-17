@@ -16,34 +16,32 @@
             <div class="tile-body">Estos son los eventos del día.</div>
             <br>
             <div class="row">
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-2">
           <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
             <div class="info">
-              <h4>Usuarios
-                 
-               </h4>
+              <h5>Usuario</h5>
+              
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-2">
           <div class="widget-small info coloured-icon"><i class="icon fa fa-calculator fa-3x"></i>
             <div class="info">
-              <h4>Gastos</h4>
-             
+              <h5>Gastos</h5>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-money fa-3x" aria-hidden="true"></i>
             <div class="info">
-              <h4>Ventas</h4>
+              <h5>Ventas</h5>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
           <div class="widget-small danger coloured-icon"><i class="icon fa fa-university fa-3x"></i>
             <div class="info">
-              <h4>Cuentas</h4>
+              <h5>Cuentas</h5>
             </div>
           </div>
         </div>
@@ -56,14 +54,14 @@
         <div class="col-md-6 col-lg-3">
           <div class="widget-small primary coloured-icon"><i class="icon fa fa-address-card fa-3x"></i>
             <div class="info">
-              <h4>Clientes</h4>
+              <h5>Clientes</h5>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
           <div class="widget-small info coloured-icon"><i class="icon fa fa-shopping-bag fa-3x"></i>
             <div class="info">
-              <h4>Pedidos</h4>
+              <h5>Pedidos</h5>
              
             </div>
           </div>
@@ -71,14 +69,14 @@
         <div class="col-md-6 col-lg-3">
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-truck fa-3x" aria-hidden="true"></i>
             <div class="info">
-              <h4>Proveedores</h4>
+              <h5>Proveedores</h5>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
           <div class="widget-small danger coloured-icon"><i class="icon fa fa-bar-chart fa-3x"></i>
             <div class="info">
-              <h4>Productos</h4>
+              <h5>Productos</h5>
             </div>
           </div>
         </div>
