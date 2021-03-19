@@ -14,15 +14,15 @@
 
 		public function selectRoles()
 		{
-			$whereAdmin = "";
-			if($_SESSION['idUser'] != 1 ){
-				$whereAdmin = " and idrol != 1 ";
-			}
+			// $whereAdmin = "";
+			// if($_SESSION['idUser'] != 1 ){
+			// 	$whereAdmin = " and idrol != 1 ";
+			// }
 			//EXTRAE ROLES
-			$sql = "SELECT * FROM roles WHERE status != 0".$whereAdmin;
+			$sql = "SELECT * FROM roles WHERE status != 0";
 			$request = $this->select_all($sql);
 			return $request;
-			dep($sql);
+			//Sdep($sql);
 		}
 
 		public function selectRol(int $idrol)

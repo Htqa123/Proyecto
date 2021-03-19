@@ -12,7 +12,7 @@ class FacturasModel extends Mysql
    
     
     $this->intlistEmpresa = $listEmpresa;
-    $this->intprovNumeFact = $provNumeFact;
+    $this->txtprovNombEmpr = $txtprovNombEmpr;
     $this->intprovValoFact = $provValoFact;
     $this->intStatus = $status;
     $return = 0;

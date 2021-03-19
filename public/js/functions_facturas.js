@@ -32,12 +32,13 @@ document.addEventListener('DOMContentLoaded',function(){
 formFacturas.onsubmit = function(e) {
 	  e.preventDefault();
 	  
+	  
 	  var listEmpresa = document.querySelector('#listEmpresa').value;
-	  var intprovNumeFact = document.querySelector('#txtprovNumeFact').value;
+	  var intprovNumeFact = document.querySelector('#txtprovNombEmpr').value;
 	  var intprovValoFact = document.querySelector('#txtprovValoFact').value;
 	  var intStatus = document.querySelector('#listStatus').value;
 
-	  if( listEmpresa == '' ||  intprovNumeFact  == '' || intprovValoFact == ''  || intStatus == '')
+	  if( listEmpresa == '' ||  txtprovNombEmpr  == '' || intprovValoFact == ''  || intStatus == '')
 	  {
 		  swal("Atencion", "Todos los campos son obligatorios", "error");
 		  return false;

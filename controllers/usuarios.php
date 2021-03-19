@@ -89,9 +89,9 @@ class Usuarios extends Controllers
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['persId'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
-                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['persId'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['persId'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['persId'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true">Ver usuario</i></button> 
+                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['persId'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</button>
+                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['persId'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button> 
                     </div>';
             }
 

@@ -82,9 +82,9 @@ class Proveedores extends Controllers
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnViewProveedor" pv="'.$arrData[$i]['provCodi'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true"></i></button> 
-                    <button class="btn btn-primary btn-sm btnEditProveedor" pv="'.$arrData[$i]['provCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger btn-sm btnDelProveedor" pv="'.$arrData[$i]['provCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                    <button class="btn btn-secondary btn-sm btnViewProveedor" pv="'.$arrData[$i]['provCodi'].'" title="Ver Proveedores"><i class="fa fa-address-book-o" aria-hidden="true"></i>Ver Proveedores</button> 
+                    <button class="btn btn-primary btn-sm btnEditProveedor" pv="'.$arrData[$i]['provCodi'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</button>
+                    <button class="btn btn-danger btn-sm btnDelProveedor" pv="'.$arrData[$i]['provCodi'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button> 
                     </div>';
             }
 
