@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', function(){
                     formRol.reset();
                     swal("Roles de usuario", objData.msg ,"success");
                     tableRoles.api().ajax.reload();
+                       fntEditRol();
+                       fntDelRol();
+                       fntPermisos();
                 }else{
                     swal("Error", objData.msg , "error");
                 }              
@@ -83,9 +86,9 @@ function openModal(){
 }
 
 window.addEventListener('load', function() {
-    /*fntEditRol();
+    fntEditRol();
     fntDelRol();
-    fntPermisos();*/
+    fntPermisos();
 }, false);
 
 function fntEditRol(idrol){

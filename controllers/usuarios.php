@@ -6,21 +6,21 @@ class Usuarios extends Controllers
 	public function __construct()
 	{
 		parent::__construct();
-		session_start();
-			session_regenerate_id(true);
-			if(empty($_SESSION['login']))
-			{
-				header('Location: '.base_url().'/login');
-				die();
-			}
-			getPermisos(2);
+		// session_start();
+		// 	session_regenerate_id(true);
+		// 	if(empty($_SESSION['login']))
+		// 	{
+		// 		header('Location: '.base_url().'/login');
+		// 		die();
+		// 	}
+		// 	getPermisos(1);
 
 	}
 	public function Usuarios()
 	{
-		if(empty($_SESSION['permisosMod']['r'])){
-			header("Location:".base_url().'/dashboard');
-		}
+		// if(empty($_SESSION['permisosMod']['r'])){
+		// 	header("Location:".base_url().'/dashboard');
+		// }
 		$data['page_tag'] = "usuarios";
 		$data['page_title'] ="usuarios";
 		$data['page_name'] = "usuarios";

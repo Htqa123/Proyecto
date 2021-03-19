@@ -17,7 +17,7 @@ class UsuariosModel extends Mysql
     parent::__construct();
   }
   public function insertUsuario(string $persIden, string $persNomb, 
-  string $persApel, int $persTele, string $persEmail, string $persPass, int $persRolId, int $status){
+  string $persApel, int $persTele, string $persEmail, string $persPass, int $rolid, int $status){
    
     $this->strIdentificacion = $persIden;
     $this->strNombre = $persNomb;
@@ -25,7 +25,7 @@ class UsuariosModel extends Mysql
     $this->intTelefono = $persTele;
     $this->strEmail = $persEmail;
     $this->strPassword = $persPass;
-    $this->intTipoId = $persRolId;
+    $this->intTipoId = $rolid;
     $this->intStatus = $status;
     $return = 0;
 
@@ -35,7 +35,7 @@ class UsuariosModel extends Mysql
     
     if(empty($request)){
       $query_insert = "INSERT INTO personas (persIden, persNomb, persApel,persTele,
-      persEmail, persPass, persRolId, status) value(?,?,?,?,?,?,?,?)";
+      persEmail, persPass, rolid, status) value(?,?,?,?,?,?,?,?)";
       $arrData = array(
         $this->strIdentificacion,
         $this->strNombre,
@@ -60,7 +60,7 @@ class UsuariosModel extends Mysql
     p.status, r.roleNomb
     FROM personas p
     INNER JOIN roles r
-    ON p.persRolId = r.idrol
+    ON p.rolid = r.idrol
     WHERE p.status != 0";
     $request = $this->select_all($sql);
     return $request;
@@ -73,7 +73,7 @@ class UsuariosModel extends Mysql
     p.status, r.roleNomb, r.idrol, DATE_FORMAT(p.persFech, '%d-%m-%Y') as fechaRegistro
     FROM personas p
     INNER JOIN roles r
-    ON p.persId = r.idrol
+    ON p.rolid = r.idrol
     WHERE p.persId = $this->intIdUsuario";
     ///echo $sql;exit; 
     $request = $this->select($sql);
