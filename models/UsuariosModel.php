@@ -16,8 +16,11 @@ class UsuariosModel extends Mysql
   {
     parent::__construct();
   }
+
+
+  ////insertar usuarios con el modal
   public function insertUsuario(string $persIden, string $persNomb, 
-  string $persApel, int $persTele, string $persEmail, string $persPass, int $rolid, int $status){
+  string $persApel, int $persTele, string $persEmail, string $persPass, int $tipoid, int $status){
    
     $this->strIdentificacion = $persIden;
     $this->strNombre = $persNomb;
@@ -25,7 +28,7 @@ class UsuariosModel extends Mysql
     $this->intTelefono = $persTele;
     $this->strEmail = $persEmail;
     $this->strPassword = $persPass;
-    $this->intTipoId = $rolid;
+    $this->intTipoId = $tipoid;
     $this->intStatus = $status;
     $return = 0;
 
@@ -54,30 +57,31 @@ class UsuariosModel extends Mysql
     return $return;
   } 
 
-  public function selectUsuarios()
-  {
-    $sql ="SELECT p.persId, p.persIden, p.persNomb, p.persApel, p.persTele, p.persEmail,
-    p.status, r.roleNomb
-    FROM personas p
-    INNER JOIN roles r
-    ON p.rolid = r.idrol
-    WHERE p.status != 0";
-    $request = $this->select_all($sql);
-    return $request;
+    public function selectUsuarios()
+    {
+      $sql ="SELECT p.persId, p.persIden, p.persNomb, p.persApel, p.persTele, p.persEmail,
+      p.status, r.roleNomb
+      FROM personas p
+      INNER JOIN roles r
+      ON p.rolid = r.idrol
+      WHERE p.status != 0";
+      $request = $this->select_all($sql);
+      return $request;
 
-  }
-  public function selectUsuario(int $persId)
-  {
-    $this->intIdUsuario = $persId;
-    $sql ="SELECT p.persId, p.persIden, p.persNomb, p.persApel, p.persTele, p.persEmail,
-    p.status, r.roleNomb, r.idrol, DATE_FORMAT(p.persFech, '%d-%m-%Y') as fechaRegistro
-    FROM personas p
-    INNER JOIN roles r
-    ON p.rolid = r.idrol
-    WHERE p.persId = $this->intIdUsuario";
-    ///echo $sql;exit; 
-    $request = $this->select($sql);
-    return $request;
-  }
+    }
+
+    public function selectUsuario(int $persId)
+    {
+      $this->intIdUsuario = $persId;
+      $sql ="SELECT p.persId, p.persIden, p.persNomb, p.persApel, p.persTele, p.persEmail,
+      p.status, r.roleNomb, r.idrol, DATE_FORMAT(p.persFech, '%d-%m-%Y') as fechaRegistro
+      FROM personas p
+      INNER JOIN roles r
+      ON p.rolid = r.idrol
+      WHERE p.persId = $this->intIdUsuario";
+      ///echo $sql;exit; 
+      $request = $this->select($sql);
+      return $request;
+    }
 }
 ?>

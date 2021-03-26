@@ -15,7 +15,7 @@
              
              <div class="form-row">
                  <div class="form-group col-md-6">
-                     <label for="txtIdentificacion">Identificacion</label>
+                     <label for="txtpersIden">Identificacion</label>
                      <input type="text" class="form-control" id="txtpersIden" name="txtpersIden" required="">
                  </div>
              </div>

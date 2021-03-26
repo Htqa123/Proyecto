@@ -1,5 +1,5 @@
 var tableRoles;
-var divLoading = document.querySelector("#divLoading");
+// var divLoading = document.querySelector("#divLoading");
 document.addEventListener('DOMContentLoaded', function(){
 
 	tableRoles = $('#tableRoles').dataTable( {

@@ -25,49 +25,57 @@
 			"bDestroy":true,
 			"iDisplayLength": 10,
 			"order":[[0,"desc"]]
-		});
+	});
 		
-		formUsuarios.onsubmit = function(e) {
-		e.preventDefault();
-		
-		var strIdentificacion = document.querySelector('#txtpersIden').value;
-		var strNombre = document.querySelector('#txtpersNomb').value;
-		var strApellido = document.querySelector('#txtpersApel').value;
-		var strEmail = document.querySelector('#txtpersEmail').value;
-		var intTelefono = document.querySelector('#txtpersTele').value;
-		var intTipousuario = document.querySelector('#listRolid').value;
-		var strPassword = document.querySelector('#txtpersPass').value;
+		document.addEventListener('DOMContentLoaded', function(){
+				var formUsuarios = document.querySelector("#formUsuarios");
+				formUsuarios.onsubmit = function(e) {
+					e.preventDefault();
+					var strIdentificacion = document.querySelector('#txtpersIden').value;
+	     			var strNombre = document.querySelector('#txtpersNomb').value;
+					var strApellido = document.querySelector('#txtpersApel').value;
+					var strEmail = document.querySelector('#txtpersEmail').value;
+					var intTelefono = document.querySelector('#txtpersTele').value;
+					var intTipousuario = document.querySelector('#listRolid').value;
+					var intStatus = document.querySelector('#listStatus').value;
+					var strPassword = document.querySelector('#txtpersPass').value;
 
-		if(strIdentificacion == '' || strNombre  == '' || strApellido == '' || strEmail == '' || intTelefono == '' || intTipousuario == '')
-		{
-			swal("Atencion", "Todos los campos son obligatorios", "error");
-			return false;
-		}
-			var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-			var ajaxUrl = base_url+'/Usuarios/setUsuario';
-			var formData = new FormData(formUsuarios);
-			request.open("POST", ajaxUrl, true);
-			request.send(formData);
-
-			request.onreadystatechange = function(){
-				if(request.readyState == 4 && request.status == 200){
-					var objData = JSON.parse(request.responseText);
-					if(objData.status){
-						$('#ModalUsuarios').modal('hide');
-						formElement.reset();
-						swal("Usuarios", objData.msg ,"success");
-						tableUsuarios.api().ajax.reload(function(){
-
-						});
-					}else{
-						swal("Error", objData.msg , "error");
+					if(strIdentificacion == '' || strNombre  == '' || strApellido == '' || strEmail == '' || intTelefono == '' || intTipousuario == '' || intStatus == '')
+					{
+						swal("Atencion", "Todos los campos son obligatorios", "error");
+						return false;
+					}
+					var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+		        	var ajaxUrl = base_url+'/Usuarios/setUsuario';
+					var formData = new FormData(formUsuarios);
+					request.open("POST", ajaxUrl, true);
+					request.send(formData);
+					request.onreadystatechange = function(){
+						if(request.readyState == 4 && request.status == 200){
+							var objData = JSON.parse(request.responseText);
+							if(objData.status)
+							{
+								$('#ModalUsuarios').modal('hide');
+								formElement.reset();
+								swal("Usuarios", objData.msg ,"success");
+								tableUsuarios.api().ajax.reload(function(){
+								});
+							}else{
+								swal("Error", objData.msg , "error");
+				            }
+						}else{
+							console.log("Error")
+						}
 					}
 				}
-			}
-		}
-
-	}, false);
-
+		   });
+			
+		}, false);
+	
+	
+	
+	
+	
 
 
 	window.addEventListener('load', function(){
@@ -110,8 +118,9 @@
 					var objData = JSON.parse(request.responseText);
 					if(objData.status){
 						var estadoUsuario = objData.data.status == 1 ?
-						'<span class="badge badge-success">Activo</span>':
+						'<span class="badge badge-success">Activo</span>' :
 						'<span class="badge badge-danger">Inactivo</span>';
+						
 						document.querySelector("#celIdentificacion").innerHTML = objData.data.persIden;
 						document.querySelector("#celNombres").innerHTML = objData.data.persNomb;
 						document.querySelector("#celApellidos").innerHTML = objData.data.persApel;
@@ -143,7 +152,6 @@
 		document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
 		document.querySelector('#btnText').innerHTML = "Actualizar";
 		
-
 		var persId = this.getAttribute("us");
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
 		var ajaxUrl = base_url+'/Usuarios/getUsuario/'+persId;
@@ -155,12 +163,14 @@
 			if(objData.status)
 			{
 			document.querySelector("#idUsuario").value = objData.data.persId;
-			document.querySelector("#txtIdentificacion").value = objData.data.persIden;
-			document.querySelector("#txtNombre").value = objData.data.persNomb;
-			document.querySelector("#txtApellido").value = objData.data.persApel;
-			document.querySelector("#txtTelefono").value = objData.data.persTele;
-			document.querySelector("#txtEmail").value = objData.data.persEmail;
+			document.querySelector("#txtpersIden").value = objData.data.persIden;
+			document.querySelector("#txtpersNomb").value = objData.data.persNomb;
+			document.querySelector("#txtpersApel").value = objData.data.persApel;
+			document.querySelector("#txtpersTele").value = objData.data.persTele;
+			document.querySelector("#txtpersEmail").value = objData.data.persEmail;
 			document.querySelector("#listRolid").value = objData.data.idrol;
+			document.querySelector("#listStatus").value = objData.data.status ;
+
 			
 
 			}
@@ -188,6 +198,3 @@
 
 		$('#ModalUsuarios').modal('show');
 	}
-
-
-

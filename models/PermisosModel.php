@@ -17,10 +17,11 @@
 
 		public function selectModulos()
 		{
-			$sql = "SELECT * FROM modulo WHERE status != 0";
+			$sql = "SELECT * FROM modulos WHERE status != 0";
 			$request = $this->select_all($sql);
 			return $request;
 		}	
+		
 		public function selectPermisosRol(int $idrol)
 		{
 			$this->intRolid = $idrol;

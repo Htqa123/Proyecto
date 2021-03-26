@@ -29,7 +29,7 @@ class Usuarios extends Controllers
 	}
 	
 	public function setUsuario(){
-		///dep($_POST);
+		//dep($_POST['txtpersIden']);
 		if($_POST) {
 		if(empty($_POST['txtpersIden']) || empty($_POST['txtpersNomb']) ||
 		empty($_POST['txtpersApel']) || empty($_POST['txtpersTele']) || empty($_POST['txtpersEmail']) ||
@@ -48,15 +48,15 @@ class Usuarios extends Controllers
 
 			$strPassword = empty($_POST['txtpersPass']) ? hash("SHA256",passGenerator()) : hash("SHA256", $_POST['txtpersPass']);
 			$request_user = $this->model->insertUsuario($strIdentificacion,
-			$strNombre,
-			$strApellido,
-			$intTelefono,
-			$strEmail,
-			$strPassword,
-			$intTipoId,
-			$intStatus);
+						$strNombre,
+						$strApellido,
+						$intTelefono,
+						$strEmail,
+						$strPassword,
+						$intTipoId,
+			            $intStatus);
 
-			if($request_user > 1)
+			if($request_user > 0)
 			{
 				
 				$arrResponse = array('status' => true, 'msg' => 'Datos Guardados con éxito');
@@ -74,8 +74,10 @@ class Usuarios extends Controllers
 		echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 
 		}
+		
 		die();
 	}
+	
 	public function getUsuarios()
 	{
 		$arrData =$this->model->selectUsuarios();
