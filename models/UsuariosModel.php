@@ -20,7 +20,7 @@ class UsuariosModel extends Mysql
 
   ////insertar usuarios con el modal
   public function insertUsuario(string $persIden, string $persNomb, 
-  string $persApel, int $persTele, string $persEmail, string $persPass, int $tipoid, int $status){
+  string $persApel, string $persTele, string $persEmail, string $persPass, string $tipoid, string $status){
    
     $this->strIdentificacion = $persIden;
     $this->strNombre = $persNomb;
@@ -82,6 +82,57 @@ class UsuariosModel extends Mysql
       ///echo $sql;exit; 
       $request = $this->select($sql);
       return $request;
+    }
+
+    public function updateUsuario(int $idUsuario, string $persIden, string $persNomb, string $persApel,
+    int $persTele, string $persEmail, string $persPass, string $tipoid, string $status){
+
+      $this->intIdUsuario = $idUsuario;
+      $this->strIdentificacion = $persIden;
+      $this->strNombre = $persNomb;
+      $this->strApellido = $persApel;
+      $this->intTelefono = $persTele;
+      $this->strEmail = $persEmail;
+      $this->strPassword = $persPass;
+      $this->intTipoId = $tipoid;
+      $this->intStatus = $status;
+
+      $sql = "SELECT * FROM personas WHERE (persEmail = '{$this->strEmail}' AND persId != $this->intIdUsuario)
+										  OR (persIden = '{$this->strIdentificacion}' AND persId != $this->intIdUsuario) ";
+			$request = $this->select_all($sql);
+      
+      if(empty($request))
+			{
+				if($this->strPassword  != "")
+				{
+					$sql = "UPDATE personas SET persIden=?, persNomb=?, persApel=?, persTele=?, persEmail=?, persPass=?, rolid=?, status=? 
+							WHERE persId = $this->intIdUsuario ";
+					$arrData = array($this->strIdentificacion,
+	        						$this->strNombre,
+	        						$this->strApellido,
+	        						$this->intTelefono,
+	        						$this->strEmail,
+	        						$this->strPassword,
+	        						$this->intTipoId,
+	        						$this->intStatus);
+				}else{
+					$sql = "UPDATE personas SET persIden=?, persNomb=?, persApel=?, persTele=?, persEmail=?, rolid=?, status=? 
+							WHERE persId = $this->intIdUsuario ";
+					$arrData = array($this->strIdentificacion,
+	        						$this->strNombre,
+	        						$this->strApellido,
+	        						$this->intTelefono,
+	        						$this->strEmail,
+	        						$this->intTipoId,
+	        						$this->intStatus);
+				}
+				$request = $this->update($sql,$arrData);
+			}else{
+				$request = "exist";
+			}
+			return $request;
+
+
     }
 }
 ?>

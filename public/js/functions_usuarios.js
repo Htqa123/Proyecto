@@ -27,7 +27,7 @@
 			"order":[[0,"desc"]]
 	});
 		
-		document.addEventListener('DOMContentLoaded', function(){
+		
 				var formUsuarios = document.querySelector("#formUsuarios");
 				formUsuarios.onsubmit = function(e) {
 					e.preventDefault();
@@ -68,8 +68,6 @@
 						}
 					}
 				}
-		   });
-			
 		}, false);
 	
 	
@@ -114,7 +112,7 @@
 			request.open("GET",ajaxUrl,true);
 			request.send();
 			request.onreadystatechange = function(){
-				if(request.status == 200){
+				if(request.readyState == 4 && request.status == 200){
 					var objData = JSON.parse(request.responseText);
 					if(objData.status){
 						var estadoUsuario = objData.data.status == 1 ?
@@ -158,7 +156,7 @@
 		request.open("GET",ajaxUrl,true);
 		request.send();
 		request.onreadystatechange = function(){
-		if(request.status == 200){
+		if(request.readyState == 4 && request.status == 200){
 			var objData = JSON.parse(request.responseText);
 			if(objData.status)
 			{

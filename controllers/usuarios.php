@@ -38,6 +38,7 @@ class Usuarios extends Controllers
 			$arrResponse = array("status" => false, "msg" => 'Datos incorrectos');
 
 		}else{
+			$idUsuario = intval($_POST['idUsuario']);
 			$strIdentificacion = strClean($_POST['txtpersIden']);
 			$strNombre = ucwords (strClean($_POST['txtpersNomb']));
 			$strApellido = ucwords (strClean($_POST['txtpersApel']));
@@ -46,8 +47,12 @@ class Usuarios extends Controllers
 			$intTipoId = intval(strClean($_POST['listRolid']));
 			$intStatus = intval(strClean($_POST['listStatus']));
 
-			$strPassword = empty($_POST['txtpersPass']) ? hash("SHA256",passGenerator()) : hash("SHA256", $_POST['txtpersPass']);
-			$request_user = $this->model->insertUsuario($strIdentificacion,
+
+			if($idUsuario == 0)
+			{
+				$option = 1;
+				$strPassword = empty($_POST['txtpersPass']) ? hash("SHA256",passGenerator()) : hash("SHA256", $_POST['txtpersPass']);
+		    	$request_user = $this->model->insertUsuario($strIdentificacion,
 						$strNombre,
 						$strApellido,
 						$intTelefono,
@@ -56,10 +61,30 @@ class Usuarios extends Controllers
 						$intTipoId,
 			            $intStatus);
 
+			}else{
+				$option = 2;
+				$strPassword = empty($_POST['txtpersPass']) ? hash("SHA256",passGenerator()) : hash("SHA256", $_POST['txtpersPass']);
+		    	$request_user = $this->model->insertUsuario($idUsuario,
+				        $strIdentificacion,
+						$strNombre,
+						$strApellido,
+						$intTelefono,
+						$strEmail,
+						$strPassword,
+						$intTipoId,
+			            $intStatus);
+			}
+
+
 			if($request_user > 0)
 			{
+				if($option == 1)
+				{
+					$arrResponse = array('status' => true, 'msg' => 'Datos Guardados con éxito');
+				}else{
+					$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados con éxito');
+				}
 				
-				$arrResponse = array('status' => true, 'msg' => 'Datos Guardados con éxito');
 
 			}else if($request_user == 'exist')
 			{
