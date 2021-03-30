@@ -40,7 +40,7 @@
 					var intStatus = document.querySelector('#listStatus').value;
 					var strPassword = document.querySelector('#txtpersPass').value;
 
-					if(strIdentificacion == '' || strNombre  == '' || strApellido == '' || strEmail == '' || intTelefono == '' || intTipousuario == '' || intStatus == '')
+					if(strIdentificacion == '' || strNombre  == '' || strApellido == '' || strEmail == '' || intTelefono == '' || intTipousuario == '' || intStatus == ''|| strPassword=='')
 					{
 						swal("Atencion", "Todos los campos son obligatorios", "error");
 						return false;
@@ -59,6 +59,10 @@
 								formElement.reset();
 								swal("Usuarios", objData.msg ,"success");
 								tableUsuarios.api().ajax.reload(function(){
+									fntRolesUsuarios();
+	                            	fntViewUsuario();
+									fntEditUsuario();
+									fntDelUsuario();
 								});
 							}else{
 								swal("Error", objData.msg , "error");
@@ -80,6 +84,7 @@
 		fntRolesUsuarios();
 		fntViewUsuario();
 		fntEditUsuario();
+		fntDelUsuario();
 	}, false);
 
 //funcion para traer roles de usuario
@@ -183,6 +188,60 @@
 			});
 		});
 	}
+
+	function fntDelUsuario(idUsuario){
+			var btnDelUsuario = document.querySelectorAll(".btnDelUsuario");
+			btnDelUsuario.forEach(function(btnDelUsuario){
+				btnDelUsuario.addEventListener('click', function(){
+				var idUsuario = this.getAttribute('us');
+				
+			swal({
+				title: "Eliminar Usuario",
+				text: "¿Realmente quiere eliminar el Usuario?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonText: "Si, eliminar!",
+				cancelButtonText: "No, cancelar!",
+				closeOnConfirm: false,
+				closeOnCancel: true
+			}, function(isConfirm) {
+				
+				if (isConfirm) 
+				{
+					var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+					var ajaxUrl = base_url+'/Usuarios/delUsuario/';
+					var strData = "idUsuario="+idUsuario;
+					request.open("POST",ajaxUrl,true);
+					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					request.send(strData);
+					request.onreadystatechange = function(){
+						if(request.readyState == 4 && request.status == 200){
+							var objData = JSON.parse(request.responseText);
+							if(objData.status)
+							{
+								swal("Eliminar!", objData.msg , "success");
+								tableUsuarios.api().ajax.reload(function(){
+									fntRolesUsuarios();
+									fntViewUsuario();
+									fntEditUsuario();
+									fntDelUsuario();
+									
+								});
+							}else{
+								swal("Atención!", objData.msg , "error");
+							} 
+						}
+					
+					}
+				}
+			});
+		});
+
+	   });
+    }
+		   
+
+
 
 
 	function openModal()
