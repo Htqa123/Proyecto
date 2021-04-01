@@ -2,7 +2,7 @@ var tableRoles;
 // var divLoading = document.querySelector("#divLoading");
 document.addEventListener('DOMContentLoaded', function(){
 
-	tableRoles = $('#tableRoles').dataTable( {
+	tableRoles = $('#tableRoles').dataTable({
 		"aProcessing":true,
 		"aServerSide":true,
         "language": {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function(){
         "iDisplayLength": 10,
         "order":[[0,"desc"]]  
     });
-    console.log(tableRoles);
+   
 
     //NUEVO ROL
     var formRol = document.querySelector("#formRol");
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function(){
             swal("Atención", "Todos los campos son obligatorios." , "error");
             return false;
         }
-        divLoading.style.display = "flex";
+        // divLoading.style.display = "flex";
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url+'/Roles/setRol'; 
         var formData = new FormData(formRol);
@@ -52,13 +52,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 var objData = JSON.parse(request.responseText);
                 if(objData.status)
                 {
-                    $('#modalFormRol').modal("hide");
+                    $('#ModalRoles').modal("hide");
                     formRol.reset();
                     swal("Roles de usuario", objData.msg ,"success");
                     tableRoles.api().ajax.reload();
-                       fntEditRol();
-                       fntDelRol();
-                       fntPermisos();
+                    //    fntEditRol();
+                    //    fntDelRol();
+                    //    fntPermisos();
                 }else{
                     swal("Error", objData.msg , "error");
                 }              
@@ -86,9 +86,9 @@ function openModal(){
 }
 
 window.addEventListener('load', function() {
-    fntEditRol();
-    fntDelRol();
-    fntPermisos();
+    // fntEditRol();
+    // fntDelRol();
+    // fntPermisos();
 }, false);
 
 function fntEditRol(idrol){
@@ -124,7 +124,7 @@ function fntEditRol(idrol){
                                   <option value="2">Inactivo</option>
                                 `;
                 document.querySelector("#listStatus").innerHTML = htmlSelect;
-                $('#modalFormRol').modal('show');
+                $('#ModalRoles').modal('show');
             }else{
                 swal("Error", objData.msg , "error");
             }
@@ -185,7 +185,7 @@ function fntPermisos(idrol){
     request.onreadystatechange = function(){
         if(request.readyState == 4 && request.status == 200){
             document.querySelector('#contentAjax').innerHTML = request.responseText;
-            $('.modalPermisos').modal('show');
+            $('.ModalPermisos').modal('show');
             document.querySelector('#formPermisos').addEventListener('submit',fntSavePermisos,false);
         }
     }

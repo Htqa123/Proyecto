@@ -16,28 +16,28 @@
              <div class="form-row">
                  <div class="form-group col-md-6">
                      <label for="txtpersIden">Identificacion</label>
-                     <input type="text" class="form-control" id="txtpersIden" name="txtpersIden" required="">
+                     <input type="text" class="form-control validNumber" id="txtpersIden" name="txtpersIden" required="" onKeypress="return controlTag(event);">
                  </div>
              </div>
 
              <div class="form-row">
                  <div class="form-group col-md-6">
                      <label for="txtNombre">Nombre</label>
-                     <input type="text" class="form-control" id="txtpersNomb" name="txtpersNomb" required="">
+                     <input type="text" class="form-control valid validText" id="txtpersNomb" name="txtpersNomb" required="">
                  </div>
                  <div class="form-group col-md-6">
                      <label for="txtApellido">Apellidos</label>
-                     <input type="text" class="form-control" id="txtpersApel" name="txtpersApel" required="">
+                     <input type="text" class="form-control validText" id="txtpersApel" name="txtpersApel" required="">
                  </div>
              </div>
              <div class="form-row">
                  <div class="form-group col-md-6">
                      <label for="txtTelefono">Teléfono</label>
-                     <input type="text" class="form-control" id="txtpersTele" name="txtpersTele" required="">
+                     <input type="text" class="form-control validNumber" id="txtpersTele" name="txtpersTele" required="" onKeypress="return controlTag(event);">
                  </div>
                  <div class="form-group col-md-6">
                      <label for="txtEmail">Email</label>
-                     <input type="email" class="form-control" id="txtpersEmail" name="txtpersEmail" required="">
+                     <input type="email" class="form-control validEmail" id="txtpersEmail" name="txtpersEmail" required="">
                  </div>
              </div>
              <div class="form-row">

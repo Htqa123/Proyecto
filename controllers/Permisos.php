@@ -1,6 +1,8 @@
 <?php 
 
-	class Permisos extends Controllers{
+	class Permisos extends Controllers
+	{
+		
 		public function __construct()
 		{
 			parent::__construct();

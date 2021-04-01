@@ -22,18 +22,18 @@
 			$data['page_id'] = 3;
 			$data['page_tag'] = "Roles Usuario";
 			$data['page_name'] = "rol_usuario";
-			$data['page_title'] = "Roles Usuario <small> Tienda Virtual</small>";
+			$data['page_title'] = "Roles Usuario";
 			$data['page_functions_js'] = "functions_roles.js";
 			$this->views->getView($this,"roles",$data);
 		}
 
 		 public function getRoles()
 		 {
-		 	if($_SESSION['permisosMod']['r']){
-		 		$btnView = '';
-		 		$btnEdit = '';
-		 		$btnDelete = '';
-		 		$arrData = $this->model->selectRoles();
+		 	// if($_SESSION['permisosMod']['r']){
+		 	// 	$btnView = '';
+		 	// 	$btnEdit = '';
+		 	// 	$btnDelete = '';
+		 	 	$arrData = $this->model->selectRoles();
 
 		 		for ($i=0; $i < count($arrData); $i++) {
 
@@ -53,9 +53,10 @@
 		 			</div>';
 		 			}
 		 			$arrData[$i]['options'] = '<div class="text-center">'.$btnView.' '.$btnEdit.' '.$btnDelete.'</div>';
+					 
 		 		}
 		 		echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
-		 	}
+		 	// }
 		 	die();
 		 }
 

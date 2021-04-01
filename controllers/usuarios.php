@@ -24,6 +24,7 @@ class Usuarios extends Controllers
 		$data['page_tag'] = "usuarios";
 		$data['page_title'] ="usuarios";
 		$data['page_name'] = "usuarios";
+		$data['page_functions_js'] = "functions_usuarios.js";
 		////$data['page_content'] = "Informacion de la pagina"; sirve para dar informacion.
 		$this->views->getView($this,"usuarios", $data);
 	}
@@ -115,9 +116,9 @@ class Usuarios extends Controllers
                     }
 
                     $arrData[$i]['options'] = '<div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnViewUsuario" us="'.$arrData[$i]['persId'].'" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true">Ver usuario</i></button> 
-                    <button class="btn btn-primary btn-sm btnEditUsuario" us="'.$arrData[$i]['persId'].'" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</button>
-                    <button class="btn btn-danger btn-sm btnDelUsuario" us="'.$arrData[$i]['persId'].'" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button> 
+                    <button class="btn btn-secondary btn-sm btnViewUsuario" onClick="fntViewUsuario('.$arrData[$i]['persId'].')" title="Ver usuario"><i class="fa fa-address-book-o" aria-hidden="true">Ver usuario</i></button> 
+                    <button class="btn btn-primary btn-sm btnEditUsuario" onClick="fntEditUsuario('.$arrData[$i]['persId'].')" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</button>
+                    <button class="btn btn-danger btn-sm btnDelUsuario" onClick="fntDelUsuario('.$arrData[$i]['persId'].')" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button> 
                     </div>';
             }
 

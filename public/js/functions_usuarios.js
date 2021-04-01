@@ -21,6 +21,30 @@
 			{"data":"status"},
 			{"data":"options"}
 			],
+			'dom': 'lBfrtip',
+			'buttons': [
+				{
+					"extend": "copyHtml5",
+					"text": "<i class='far fa-copy'></i> Copiar",
+					"titleAttr":"Copiar",
+					"className": "btn btn-secondary"
+				},{
+					"extend": "excelHtml5",
+					"text": "<i class='fas fa-file-excel'></i> Excel",
+					"titleAttr":"Esportar a Excel",
+					"className": "btn btn-success"
+				},{
+					"extend": "pdfHtml5",
+					"text": "<i class='fas fa-file-pdf'></i> PDF",
+					"titleAttr":"Esportar a PDF",
+					"className": "btn btn-danger"
+				},{
+					"extend": "csvHtml5",
+					"text": "<i class='fas fa-file-csv'></i> CSV",
+					"titleAttr":"Esportar a CSV",
+					"className": "btn btn-info"
+				}
+			],
 			"resonsieve":"true",
 			"bDestroy":true,
 			"iDisplayLength": 10,
@@ -45,6 +69,13 @@
 						swal("Atencion", "Todos los campos son obligatorios", "error");
 						return false;
 					}
+					let elementsValid = document.getElementsByClassName("valid");
+					for (let i = 0; i < elementsValid.length; i++) { 
+						if(elementsValid[i].classList.contains('is-invalid')) { 
+							swal("Atención", "Por favor verifique los campos en rojo." , "error");
+							return false;
+						} 
+					} 
 					var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 		        	var ajaxUrl = base_url+'/Usuarios/setUsuario';
 					var formData = new FormData(formUsuarios);
@@ -58,12 +89,7 @@
 								$('#ModalUsuarios').modal('hide');
 								formElement.reset();
 								swal("Usuarios", objData.msg ,"success");
-								tableUsuarios.api().ajax.reload(function(){
-									fntRolesUsuarios();
-	                            	fntViewUsuario();
-									fntEditUsuario();
-									fntDelUsuario();
-								});
+								tableUsuarios.api().ajax.reload();
 							}else{
 								swal("Error", objData.msg , "error");
 				            }
@@ -82,9 +108,9 @@
 
 	window.addEventListener('load', function(){
 		fntRolesUsuarios();
-		fntViewUsuario();
-		fntEditUsuario();
-		fntDelUsuario();
+		// fntViewUsuario();
+		// fntEditUsuario();
+		// fntDelUsuario();
 	}, false);
 
 //funcion para traer roles de usuario
@@ -107,11 +133,9 @@
 
 	//fin funcion para traer roles de usuario
 
-	function fntViewUsuario() {
-		var btnViewUsuario = document.querySelectorAll(".btnViewUsuario");
-		btnViewUsuario.forEach(function(btnViewUsuario){
-			btnViewUsuario.addEventListener('click', function(){
-			var persId = this.getAttribute("us");
+	function fntViewUsuario(persId) {
+		
+			var persId = persId;
 			var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
 			var ajaxUrl = base_url+'/Usuarios/getUsuario/'+persId;
 			request.open("GET",ajaxUrl,true);
@@ -139,23 +163,18 @@
 					}
 				}
 			}
-			
-			});
-		});
-	}
+	}	
+				
 
 
-	function fntEditUsuario() {
-		var btnEditUsuario = document.querySelectorAll(".btnEditUsuario");
-		btnEditUsuario.forEach(function(btnEditUsuario){
-		btnEditUsuario.addEventListener('click', function(){
+	function fntEditUsuario(persId) {
 				
 		document.querySelector('#titleModal').innerHTML = "Actualizar usuario";
 		document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate"); 
 		document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info"); 
 		document.querySelector('#btnText').innerHTML = "Actualizar";
 		
-		var persId = this.getAttribute("us");
+		var persId = persId;
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
 		var ajaxUrl = base_url+'/Usuarios/getUsuario/'+persId;
 		request.open("GET",ajaxUrl,true);
@@ -171,6 +190,7 @@
 			document.querySelector("#txtpersApel").value = objData.data.persApel;
 			document.querySelector("#txtpersTele").value = objData.data.persTele;
 			document.querySelector("#txtpersEmail").value = objData.data.persEmail;
+			document.querySelector("#txtpersPass").value = objData.data.persPass;
 			document.querySelector("#listRolid").value = objData.data.idrol;
 			document.querySelector("#listStatus").value = objData.data.status ;
 
@@ -183,18 +203,12 @@
 
 				
 		}
+	}	
 		
 		
-			});
-		});
-	}
 
-	function fntDelUsuario(idUsuario){
-			var btnDelUsuario = document.querySelectorAll(".btnDelUsuario");
-			btnDelUsuario.forEach(function(btnDelUsuario){
-				btnDelUsuario.addEventListener('click', function(){
-				var idUsuario = this.getAttribute('us');
-				
+	function fntDelUsuario(persId){
+			var persId =persId;	
 			swal({
 				title: "Eliminar Usuario",
 				text: "¿Realmente quiere eliminar el Usuario?",
@@ -222,10 +236,7 @@
 								swal("Eliminar!", objData.msg , "success");
 								tableUsuarios.api().ajax.reload(function(){
 									fntRolesUsuarios();
-									fntViewUsuario();
-									fntEditUsuario();
-									fntDelUsuario();
-									
+										
 								});
 							}else{
 								swal("Atención!", objData.msg , "error");
@@ -235,13 +246,11 @@
 					}
 				}
 			});
-		});
+		
+    
+		}	   
 
-	   });
-    }
-		   
-
-
+	
 
 
 	function openModal()
@@ -255,3 +264,4 @@
 
 		$('#ModalUsuarios').modal('show');
 	}
+

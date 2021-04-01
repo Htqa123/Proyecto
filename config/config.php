@@ -9,7 +9,7 @@
  const DB_NAME = "SISO";
  const DB_USER = "root";
  const DB_PASSWORD = "";
- const DB_CHARSET = "charset=utf8";
+ const DB_CHARSET = "utf8";
 
  const SPD = ".";
  const SPM = ",";
