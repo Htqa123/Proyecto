@@ -47,7 +47,7 @@
                                 <input type="hidden" name="modulos[<?= $i; ?>][idmodulo]" value="<?= $idmod ?>" required >
                             </td>
                             <td>
-                                <?= $modulos[$i]['titulo']; ?>
+                                <?= $modulos[$i]['moduTitu']; ?>
                             </td>
                             <td><div class="toggle-flip">
                                   <label>

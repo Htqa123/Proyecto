@@ -7,7 +7,8 @@ class LoginModel extends Mysql
     private $strToken;
 
   public function __construct()
-  {
+  { 
+
     parent::__construct();
   }
   public function loginUser(string $usuario, string $password)
@@ -24,6 +25,27 @@ class LoginModel extends Mysql
      $request = $this->select($sql);
      return $request;
      
+  }
+  public function sessionLogin(int $iduser){
+    $this->intIdUsuario = $iduser;
+    //BUSCAR ROLE 
+    $sql = "SELECT p.persId,
+            p.persIden,
+            p.persNomb,
+            p.persApel,
+            p.persTele,
+            p.persEmail,
+            p.nit,
+            p.persDireFisc,
+            r.idrol,r.roleNomb,
+            p.status 
+        FROM persons p
+        INNER JOIN roles r
+        ON p.rolid = r.idrol
+        WHERE p.persId = $this->intIdUsuario";
+        $request = $this->select($sql);
+        $_SESSION['userData'] = $request;
+    return $request;
   }
 
 }

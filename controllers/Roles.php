@@ -3,6 +3,11 @@
 	class Roles extends Controllers{
 		public function __construct()
 		{
+			session_start();
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+			}
 			parent::__construct();
 			// session_start();
 			// session_regenerate_id(true);
@@ -44,15 +49,18 @@
 		 				$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
 		 			}
 
-		 			if($_SESSION['permisosMod']['u']){
-		 				$btnView = '<button class="btn btn-secondary btn-sm btnPermisosRol" onClick="fntPermisos('.$arrData[$i]['idrol'].')" title="Permisos"><i class="fas fa-key"></i></button>';
-		 				$btnEdit = '<button class="btn btn-primary btn-sm btnEditRol" onClick="fntEditRol('.$arrData[$i]['idrol'].')" title="Editar"><i class="fas fa-pencil-alt"></i></button>';
-		 			}
-		 			if($_SESSION['permisosMod']['d']){
-		 				$btnDelete = '<button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol('.$arrData[$i]['idrol'].')" title="Eliminar"><i class="far fa-trash-alt"></i></button>
-		 			</div>';
-		 			}
-		 			$arrData[$i]['options'] = '<div class="text-center">'.$btnView.' '.$btnEdit.' '.$btnDelete.'</div>';
+		 			// if($_SESSION['permisosMod']['u']){
+		 			// 	$btnView = '<button class="btn btn-secondary btn-sm btnPermisosRol" onClick="fntPermisos('.$arrData[$i]['idrol'].')" title="Permisos"><i class="fas fa-key"></i></button>';
+		 			// 	$btnEdit = '<button class="btn btn-primary btn-sm btnEditRol" onClick="fntEditRol('.$arrData[$i]['idrol'].')" title="Editar"><i class="fas fa-pencil-alt"></i></button>';
+		 			// }
+		 			// if($_SESSION['permisosMod']['d']){
+		 			// 	$btnDelete = '<button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol('.$arrData[$i]['idrol'].')" title="Eliminar"><i class="far fa-trash-alt"></i></button>
+		 			// </div>';
+		 			// }
+		 			 $arrData[$i]['options'] = '<div class="text-center"></div>
+					  <button class="btn btn-secondary btn-sm btnPermisosRol" onClick="fntPermisos('.$arrData[$i]['idrol'].')" title="Permisos">Permisos<i class="fas fa-key"></i></button>
+					  <button class="btn btn-primary btn-sm btnEditRol" onClick="fntEditRol('.$arrData[$i]['idrol'].')" title="Editar">Editar<i class="fas fa-pencil-alt"></i></button>
+					  <button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol('.$arrData[$i]['idrol'].')" title="Eliminar">Eliminar<i class="far fa-trash-alt"></i></button>';
 					 
 		 		}
 		 		echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
@@ -79,7 +87,7 @@
 
 		public function getRol(int $idrol)
 		{
-			if($_SESSION['permisosMod']['r']){
+			
 				$intIdrol = intval(strClean($idrol));
 				if($intIdrol > 0)
 				{
@@ -92,13 +100,13 @@
 					}
 					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
 				}
-			}
+			
 			die();
 		}
 
 		public function setRol(){
-			if($_SESSION['permisosMod']['w']){
-				$intIdrol = intval($_POST['idRol']);
+			
+				$intIdrol = intval($_POST['idrol']);
 				$strRol =  strClean($_POST['txtNombre']);
 				$strDescipcion = strClean($_POST['txtDescripcion']);
 				$intStatus = intval($_POST['listStatus']);
@@ -129,7 +137,7 @@
 					$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
 				}
 				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
-			}
+			
 			die();
 		}
 

@@ -4,6 +4,7 @@
         <div>
           <h1><i class="fa fa-dashboard"></i> <?= $data['page_title'] ?></h1>
           <p>Aqui puedes ver los movimientos del día</p>
+       
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>

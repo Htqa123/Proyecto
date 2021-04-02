@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
             "dataSrc":""
         },
         "columns":[
-            {"data":"idrol"},
+            
             {"data":"roleNomb"},
             {"data":"roleDesc"},
             {"data":"status"},
@@ -76,13 +76,13 @@ $('#tableRoles').DataTable();
 
 function openModal(){
 
-    document.querySelector('#idRol').value ="";
+    document.querySelector('#idrol').value ="";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
     document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
     document.querySelector('#btnText').innerHTML ="Guardar";
     document.querySelector('#titleModal').innerHTML = "Nuevo Rol";
     document.querySelector("#formRol").reset();
-	$('#modalFormRol').modal('show');
+	$('#ModalRoles').modal('show');
 }
 
 window.addEventListener('load', function() {
@@ -109,7 +109,7 @@ function fntEditRol(idrol){
             var objData = JSON.parse(request.responseText);
             if(objData.status)
             {
-                document.querySelector("#idRol").value = objData.data.idrol;
+                document.querySelector("#idrol").value = objData.data.idrol;
                 document.querySelector("#txtroleNomb").value = objData.data.roleNomb;
                 document.querySelector("#txtroleDesc").value = objData.data.roleDesc;
 
