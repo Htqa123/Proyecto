@@ -54,7 +54,7 @@ class Usuarios extends Controllers
 			{
 				$option = 1;
 				$strPassword = empty($_POST['txtpersPass']) ? hash("SHA256",passGenerator()) : hash("SHA256", $_POST['txtpersPass']);
-		    	$request_user = $this->model->insertUsuario($idUsuario,
+		    	$request_user = $this->model->insertUsuario($strIdentificacion,
 						$strNombre,
 						$strApellido,
 						$intTelefono,
@@ -66,7 +66,7 @@ class Usuarios extends Controllers
 			}else{
 				$option = 2;
 				$strPassword = empty($_POST['txtpersPass']) ? hash("SHA256",passGenerator()) : hash("SHA256", $_POST['txtpersPass']);
-		    	$request_user = $this->model->insertUsuario($idUsuario,
+		    	$request_user = $this->model->updateUsuario($idUsuario,
 				        $strIdentificacion,
 						$strNombre,
 						$strApellido,

@@ -84,10 +84,10 @@ class UsuariosModel extends Mysql
       return $request;
     }
 
-    public function updateUsuario(int $idUsuario, string $persIden, string $persNomb, string $persApel,
-    int $persTele, string $persEmail, string $persPass, string $tipoid, string $status){
+    public function updateUsuario(int $persId, string $persIden, string $persNomb, string $persApel,
+    int $persTele, string $persEmail, string $persPass, int $tipoid, int $status){
 
-      $this->intIdUsuario = $idUsuario;
+      $this->intIdUsuario = $persId;
       $this->strIdentificacion = $persIden;
       $this->strNombre = $persNomb;
       $this->strApellido = $persApel;

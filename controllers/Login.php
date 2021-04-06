@@ -54,6 +54,18 @@ class Login extends Controllers
         }
         die();
     }
+
+    public function resetPass(){
+       // dep($_POST);
+       if($_POST){
+           if(empty($_POST['txtEmailReset'])){
+               $arrResponse = array('status' => false, 'msg' => 'error de datos' );
+           }else{
+             $token = token();
+           }
+       }
+        die();
+    }
 	
 	
 }

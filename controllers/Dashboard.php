@@ -7,7 +7,8 @@ class Dashboard extends Controllers
 	{
 		parent::__construct();
 		session_start();
-		if(empty($_SESSION['login'])){
+		if(empty($_SESSION['login']))
+		{
 		    header('Location: '.base_url().'/login');
 		}
 
@@ -15,13 +16,15 @@ class Dashboard extends Controllers
 	
 	public function Dashboard()
 	{
-		$data['page_id'] = 2;
+		
 		$data['page_tag'] = "Dashboard-SISO";
 		$data['page_title'] ="Bienvenido al sitio";
 		$data['page_name'] = "dashboard";
+		
 		///$data['page_content'] = "Informacion de la pagina";
 		$this->views->getView($this,"dashboard", $data);
 	}
+
 	public function verUsuarios()
 	{
 		$arrData =$this->model->selectUsuarios();
@@ -32,7 +35,7 @@ class Dashboard extends Controllers
 	public function verLog()
 	{
 		$arrDataLog =$this->model->selectLog();
-		dep($arrDataLog);
+		///Sdep($arrDataLog);
 		echo json_encode($arrDataLog, JSON_UNESCAPED_UNICODE);
         die();
 	}

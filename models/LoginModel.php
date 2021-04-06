@@ -26,8 +26,8 @@ class LoginModel extends Mysql
      return $request;
      
   }
-  public function sessionLogin(int $iduser){
-    $this->intIdUsuario = $iduser;
+  public function sessionLogin(int $idUser){
+    $this->intIdUsuario = $idUser;
     //BUSCAR ROLE 
     $sql = "SELECT p.persId,
             p.persIden,
@@ -39,12 +39,12 @@ class LoginModel extends Mysql
             p.persDireFisc,
             r.idrol,r.roleNomb,
             p.status 
-        FROM persons p
+        FROM personas p
         INNER JOIN roles r
         ON p.rolid = r.idrol
         WHERE p.persId = $this->intIdUsuario";
         $request = $this->select($sql);
-        $_SESSION['userData'] = $request;
+       
     return $request;
   }
 
