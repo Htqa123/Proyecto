@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">  
         <form id="formFacturas" name="formFacturas">
-            <input type="hidden" id="idfactura " name="idfactura" class="form-horizontal" value="">
+            <input type="hidden" id="provFactId " name="provFactId" class="form-horizontal" value="">
             <p class="text-primary">Todos los campos son obligatorios.</p>
              
             <div class="form-row">
@@ -53,7 +53,7 @@
 
 
 
-<div class="modal fade" id="ModalViewProveedor"  tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="ModalViewFacturas"  tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header primary" style="background-color:#009688">
@@ -88,14 +88,6 @@
             <tr>
                 <td>Detalle proveedor</td>
                 <td id=celprovDeta></td>
-            </tr>
-            <tr>
-                <td>Estado</td>
-                <td id=celEstado></td>
-            </tr>
-            <tr>
-                <td>Fech registro</td>
-                <td id=celFechaRegistro></td>
             </tr>
         </tbody>
        </table>

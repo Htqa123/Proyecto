@@ -72,8 +72,8 @@ formFacturas.onsubmit = function(e) {
 
 window.addEventListener('load', function(){
 	fntSelectProveedores();
-	btnViewProveedor();
-	fntEditProveedor();
+	fntViewFacturas();
+	fntEditFactura();
 }, false);
 
 
@@ -94,31 +94,29 @@ function fntSelectProveedores(){
 	}
 }
 
-function btnViewProveedor() {
-	var btnViewProveedor = document.querySelectorAll(".btnViewProveedor");
-	btnViewProveedor.forEach(function(btnViewProveedor){
-		btnViewProveedor.addEventListener('click', function(){
-		var provCodi = this.getAttribute("pv");
+function fntViewFacturas() {
+	var btnViewFacturas = document.querySelectorAll(".btnViewFacturas");
+	btnViewFacturas.forEach(function(btnViewFacturas){
+		btnViewFacturas.addEventListener('click', function(){
+		var provFactId = this.getAttribute("pr");
 		var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('microsoft.XMLHTTP');
-		var ajaxUrl = base_url+'/Proveedores/getProveedor/'+provCodi;
+		var ajaxUrl = base_url+'/Facturas/getFacturas/'+provFactId;
 		request.open("GET",ajaxUrl,true);
 		request.send();
 		request.onreadystatechange = function(){
 			if(request.status == 200){
 				var objData = JSON.parse(request.responseText);
 				if(objData.status){
-					var estadoUsuario = objData.data.status == 1 ?
+					var status = objData.data.status == 1 ?
 					'<span class="badge badge-success">Activo</span>':
 					'<span class="badge badge-danger">Inactivo</span>';
-					document.querySelector("#celprovNit").innerHTML = objData.data.provNit;
-					document.querySelector("#celprovNomb").innerHTML = objData.data.provNomb;
-					document.querySelector("#celprovDire").innerHTML = objData.data.provDire;
-					document.querySelector("#celprovTele").innerHTML = objData.data.provTele;
-					document.querySelector("#celprovEmail").innerHTML = objData.data.provEmail;
-					document.querySelector("#celprovDeta").innerHTML = objData.data.provDeta;
-					document.querySelector("#celEstado").innerHTML = estadoUsuario;
-					document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
-					$('#ModalViewProveedor').modal('show');
+					document.querySelector("#celprovNit").innerHTML = objData.data.provNombEmpr;
+					document.querySelector("#celprovNomb").innerHTML = objData.data.provNumeEmpr;
+					document.querySelector("#celprovDire").innerHTML = objData.data.prov;
+					document.querySelector("#celprovTele").innerHTML = objData.data.provValoFact;
+					document.querySelector("#celprovEmail").innerHTML = objData.data.provFactFech;
+					document.querySelector("#celprovDeta").innerHTML = objData.data.status;
+					$('#ModalViewFacturas').modal('show');
 
 				}else{
 					swal("Error", objData.msg , "error");
@@ -131,7 +129,7 @@ function btnViewProveedor() {
 }
 
 
-function fntEditProveedor() {
+function fntEditFactura() {
 	var btnEditProveedor = document.querySelectorAll(".btnEditProveedor");
 	btnEditProveedor.forEach(function(btnEditProveedor){
 		btnEditProveedor.addEventListener('click', function(){

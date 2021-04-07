@@ -62,12 +62,36 @@ class Login extends Controllers
                $arrResponse = array('status' => false, 'msg' => 'error de datos' );
            }else{
              $token = token();
+             $strEmail = strtolower(strClean($_POST['txtEmailReset']));
+             $arrData = $this->model->getUserEmail($strEmail);
+             if(empty($arrData)){
+                 $arrResponse = array('status' => false, 'msg' => 'Usuario no existe');
+
+             }else{
+                 $persId = $arrData['persId'];
+                 $nombreUsuario = $arrData['persNomb'].' '.$arrData['persApel'];
+                 $url_recovery = base_url().'/login/confirmarUser/'.$strEmail.'/'.$token;
+                 $requestUpdate = $this->model->setTokenUser($persId,$token);
+                 if($requestUpdate){
+                     $arrResponse = array('status' => true,
+                     'msg' => 'Se envio un email a tu correo para cambiar tu contraseña');
+                 }else{
+                     $arrResponse = array('status' => false,
+                     'msg' => 'No es posible realizar la solicitud intenta más tarde.');
+                 }
+             }
            }
+           echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
        }
         die();
     }
-	
-	
+     public function confirmUser(string $params){
+        $data['page_tag'] = "cambiar Contraseña";
+		$data['page_title'] ="Cambiar Contraseña";
+		$data['page_name'] = "login";
+        $data['persId'] = 1;
+        $this->views->getView($this,"cambiar_password", $data);
+     }
 }
 
   ?>

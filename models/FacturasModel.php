@@ -39,7 +39,7 @@ class FacturasModel extends Mysql
   ///metodo para mostrar datos en la tabla
 
   public function selectFacturas(){
-    $sql ="SELECT  provNombEmpr, provNumeFact, provValoFact,provFactFech,
+  echo  $sql ="SELECT  provNombEmpr, provNumeFact, provValoFact,provFactFech,
     status
     FROM proveedores_facturas  WHERE status != 0"  ;
     //echo $sql;exit;

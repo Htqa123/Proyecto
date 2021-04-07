@@ -85,8 +85,8 @@ class Facturas extends Controllers
 				}
 
 				$arrData[$i]['options'] = '<div class="text-center">
-				<button class="btn btn-secondary btn-sm btnViewProductos" pr="'.$arrData[$i]['idfactura'].'" title="Ver Detalle"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Detalle</button> 
-				<button class="btn btn-primary" pr="'.$arrData[$i]['idfactura'].'" title="Editar"><i class="fa fa-pencil"></i></button>
+				<button class="btn btn-secondary btn-sm btnViewFacturas" pr="'.$arrData[$i]['provFactId'].'" title="Ver Detalle"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Detalle</button> 
+				<button class="btn btn-primary" pr="'.$arrData[$i]['provFactId'].'" title="Editar"><i class="fa fa-pencil"></i></button>
 				</div>';
 		}
 

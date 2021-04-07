@@ -47,6 +47,22 @@ class LoginModel extends Mysql
        
     return $request;
   }
+  public function getUserEmail(string $strEmail){
+    $this->strUsuario = $strEmail;
+    $sql = "SELECT  persId, persNomb, persApel, status FROM personas WHERE persEmail = '$this->strUsuario' AND
+    status=1 ";
+    $request = $this->select($sql);
+    return $request;
+
+  }
+  public function setTokenUser(int $persId, string $token){
+    $this->intIdusuario = $persId;
+    $this->strToken = $token;
+    $sql = "UPDATE personas SET persToke = ? WHERE persId = $this->intIdusuario ";
+    $arrData = array($this->strToken);
+    $request = $this->update($sql, $arrData);
+    return $request;
+  }
 
 }
 ?>

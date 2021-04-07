@@ -24,8 +24,8 @@
                   <table class="table table-hover  table-bordered" id="tableFacturas">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th># Factura</th> 
+                       
+                        <th>Factura</th> 
                         <th>valor</th>
                         <th>Fecha</th>
                         <th>status</th>
