@@ -90,4 +90,48 @@ document.addEventListener('DOMContentLoaded', function(){
 
         }
     }
+
+    if(document.querySelector("#formCambiarPass"))
+    {
+        let formCambiarPass = document.querySelector("#formCambiarPass");
+        formCambiarPass.onsubmit = function(e)
+        {
+            e.preventDefault();
+            let strPassword = document.querySelector('#txtPassword').value;
+            let strPasswordConfirm = document.querySelector('#txtPasswordConfirm').value;
+            let idusuario = document.querySelector('#persId').value;
+            if(strPassword == '' || strPasswordConfirm =='')
+            {
+                swal("Por favor", "Escriba la nueva contraseña", "error");
+                return false;
+            }else{
+                if(strPasswordConfirm.length < 5)
+                {
+                    swal("Atención", "La contraseña debe tener mínimo 5 caracteres.", "info");
+                     return false;
+                }
+                if(strPassword != strPasswordConfirm)
+                {
+                    swal("Por favor", "Las contraseñas no son iguales", "info");
+                    return false;
+                }
+                var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                var ajaxUrl = base_url+'/Login/setPassword';
+                var formData = new FormData(formCambiarPass);
+                request.open("POST", ajaxUrl, true);
+                request.send(formData);
+                request.onreadystatechange = function()
+                {
+                    if(request.readyState != 4) return;
+                    if(request.status == 200)
+                    {
+                        console.log(request.responseText);
+                    } 
+                }
+
+            }
+        }
+    }
+
+
 }, false );

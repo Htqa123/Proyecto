@@ -47,7 +47,8 @@ class LoginModel extends Mysql
        
     return $request;
   }
-  public function getUserEmail(string $strEmail){
+  public function getUserEmail(string $strEmail)
+  {
     $this->strUsuario = $strEmail;
     $sql = "SELECT  persId, persNomb, persApel, status FROM personas WHERE persEmail = '$this->strUsuario' AND
     status=1 ";
@@ -62,6 +63,17 @@ class LoginModel extends Mysql
     $arrData = array($this->strToken);
     $request = $this->update($sql, $arrData);
     return $request;
+  }
+
+  public function getUsuario(string $email , string $token)
+  {
+     $this->strEmail = $email;
+     $this->strToken = $token;
+     $sql = "SELECT persId FROM personas WHERE
+     persEmail = '$this->strEmail' AND
+     persToke = '$this->strToken' AND status = 1";
+     $request = $this->select($sql);
+     return $request;
   }
 
 }
